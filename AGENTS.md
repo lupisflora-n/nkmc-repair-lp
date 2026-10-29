@@ -3,6 +3,11 @@
 作業開始時に `docs/PROJECT.md`、`docs/WORKFLOW.md`、`site/content.json` を読む。
 このファイルと制作メモは、この案件の継続用記録。ChatGPT全体の永続メモリが設定済みとは説明しない。
 
+## GitHub管理
+
+- 管理先は https://github.com/lupisflora-n/nkmc-repair-lp 、非公開、main。
+- 内部限定の創業背景はGitへ追加しない。ソースの登録とWeb公開を別工程として扱う。
+
 ## 実装と確認
 
 - 本文と差し替え情報は `site/content.json`、構造は `site/template.html`、表示は `site/styles.css`、操作は `site/app.js`。
