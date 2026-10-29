@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 2,
+  "updatedAt": "2026-10-29",
+  "brand": {
+    "nameJa": "リブライト",
+    "nameEn": "LIBRIGHT",
+    "assets": {
+      "wordmark": null,
+      "symbol": null,
+      "horizontal": null,
+      "favicon": null
+    },
+    "assetsReady": false
+  },
+  "audience": {
+    "primary": [
+      "工務店",
+      "建築会社"
+    ],
+    "secondary": [
+      "一般のお客様"
+    ],
+    "goal": "継続的な取引につながる現場相談"
+  },
+  "services": {
+    "materials": [
+      "木部",
+      "フローリング",
+      "アルミサッシ"
+    ],
+    "requests": [
+      "引渡し前のまとめ補修",
+      "現場案件",
+      "緊急補修"
+    ],
+    "excludedConditions": null,
+    "emergency": {
+      "acceptsConsultation": true,
+      "hours": null,
+      "responseTime": null,
+      "sameDayGuaranteed": null
+    },
+    "descriptions": [
+      "現場内にある複数のキズについて、まとめてご相談いただけます。",
+      "今後の現場での補修先をお探しの工務店・建築会社さまも、お問い合わせください。",
+      "現場の地域、キズの状態、ご希望の日時をお知らせください。対応の可否を含め、日程をご相談します。"
+    ],
+    "titles": [
+      "引渡し前のまとめ補修",
+      "継続的な現場のご依頼",
+      "緊急補修のご相談"
+    ]
+  },
+  "area": {
+    "summary": "千葉県中心・関東エリア対応",
+    "municipalities": null,
+    "travelConditions": null
+  },
+  "pricing": {
+    "publish": false,
+    "confirmed": false,
+    "minimum": null,
+    "travelFee": null,
+    "taxNote": null,
+    "estimateFee": null,
+    "estimateConditions": null,
+    "paymentConditions": null
+  },
+  "cases": {
+    "publish": false,
+    "items": [
+      {
+        "id": "case-01",
+        "before": null,
+        "after": null,
+        "material": null,
+        "description": "室内建具の縦枠に生じた欠けの補修事例です。",
+        "altBefore": "縦枠の化粧面に欠けが見える補修前の写真",
+        "altAfter": "同じ縦枠を補修後として撮影した写真",
+        "confirmed": false,
+        "publicationCleared": false,
+        "title": "縦枠の欠け補修",
+        "beforeSha256": null,
+        "afterSha256": null
+      },
+      {
+        "id": "case-02",
+        "before": null,
+        "after": null,
+        "material": null,
+        "description": "室内建具の上枠の角・接合部に関する補修事例です。",
+        "altBefore": "木目調の上枠の角・接合部を写した補修前の写真",
+        "altAfter": "同じ上枠の角・接合部を補修後として撮影した写真",
+        "confirmed": false,
+        "publicationCleared": false,
+        "title": "上枠の角・接合部の補修",
+        "beforeSha256": null,
+        "afterSha256": null
+      },
+      {
+        "id": "case-03",
+        "before": null,
+        "after": null,
+        "material": null,
+        "description": "木目調の扉の下端に見られる欠け・傷の補修事例です。",
+        "altBefore": "木目調の扉の下端に欠けと擦れが見える補修前の写真",
+        "altAfter": "扉の下端を補修後として撮影した写真",
+        "confirmed": false,
+        "publicationCleared": false,
+        "beforeSha256": null,
+        "afterSha256": null,
+        "title": "扉下端の欠け補修"
+      }
+    ],
+    "imagePolicy": {
+      "useOriginalFiles": true,
+      "allowEditing": false,
+      "allowCompression": false,
+      "allowFormatConversion": false,
+      "allowCropping": false,
+      "preserveAspectRatio": true,
+      "showWholeImage": true,
+      "labelsOutsideImage": true
+    }
+  },
+  "contact": {
+    "channel": "instagram_dm",
+    "instagramUsername": "libright_chiba",
+    "profileUrl": "https://www.instagram.com/libright_chiba/",
+    "linkVerified": false,
+    "channelConfirmedForLp": false,
+    "hours": null,
+    "replyTime": null,
+    "phone": null,
+    "email": null,
+    "lineUrl": null,
+    "suggestedMessage": "会社名・ご担当者名：\n現場の市区町村：\n希望日程・引渡し予定日：\nキズの箇所数：\n気になる点：\n\n（全体とキズが分かる写真を添付）"
+  },
+  "business": {
+    "publishDetails": false,
+    "publicRepresentativeName": null,
+    "publicAddress": null,
+    "profile": null,
+    "profileConfirmed": false
+  },
+  "partnerIntroduction": {
+    "publish": false,
+    "name": null,
+    "relationship": null,
+    "description": null,
+    "officialUrl": null,
+    "confirmed": false,
+    "publicationCleared": false
+  },
+  "copy": {
+    "heroHeadline": "引渡し前のキズ補修から、\n急な補修のご相談まで。",
+    "heroDescription": "木部・フローリング・アルミサッシのキズ補修は、リブライトへ。\n千葉県を中心に、関東エリアの現場に対応しています。",
+    "primaryCta": "現場の補修を相談する",
+    "processSteps": [
+      {
+        "title": "ご相談",
+        "text": "現場の地域、ご希望の日程、キズの写真や箇所数をお知らせください。"
+      },
+      {
+        "title": "内容確認・お見積もり",
+        "text": "補修内容と条件を確認し、お見積もりをご案内します。"
+      },
+      {
+        "title": "日程調整・施工",
+        "text": "内容と日程を確認のうえ、施工へ進みます。"
+      },
+      {
+        "title": "仕上がりの確認",
+        "text": "施工した箇所の仕上がりをご確認いただきます。"
+      }
+    ],
+    "faq": [
+      {
+        "question": "複数のキズをまとめて相談できますか？",
+        "answer": "引渡し前のまとめ補修を承っています。現場の地域と、キズの箇所数・写真、ご希望の日程をお知らせください。",
+        "confirmed": true
+      },
+      {
+        "question": "急ぎの補修も相談できますか？",
+        "answer": "緊急補修もご相談いただけます。希望日時と現場の状況をお知らせください。対応の可否を含めて確認します。",
+        "confirmed": true
+      },
+      {
+        "question": "継続的な現場の依頼について相談できますか？",
+        "answer": "工務店・建築会社さまからの継続的なお取引も承っています。今後のご依頼について、まずはご相談ください。",
+        "confirmed": true
+      },
+      {
+        "question": "一般の住宅のキズ補修も相談できますか？",
+        "answer": "一般のお客様からの住宅のキズ補修も、ご相談いただけます。現場の市区町村と、キズの写真、ご希望の日程をお知らせください。",
+        "confirmed": true
+      }
+    ],
+    "aboutHeadline": "傷を直す。その先の、\n晴れやかな暮らしまで。",
+    "aboutText": "住まいについた傷だけでなく、その傷を見るたびに生まれる気がかりにも目を向ける。\n\n丁寧な補修で住まいの本来の美しさを取り戻し、安心して毎日を過ごせるように。\n\nかつて補修技術に感動した人が、今度はその技術で人に喜びを届けていく。",
+    "aboutConfirmed": true,
+    "processConfirmed": false,
+    "brandPromise": "傷を直す。その先の、晴れやかな暮らしまで。",
+    "contractorBridge": "引渡しの先にある、晴れやかな暮らしを支えるために。",
+    "brandOriginText": "フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、晴れやかな暮らしへ向かうお手伝いを目指しています。"
+  },
+  "publication": {
+    "hostingConditionsChecked": false,
+    "repository": null,
+    "siteUrl": null
+  }
+}

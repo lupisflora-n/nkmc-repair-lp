@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="{{ROBOTS}}">
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="theme-color" content="#173e4b">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:locale" content="ja_JP">
+  <title>{{TITLE}}</title>
+  <link rel="icon" href="data:,">
+  {{STYLE}}
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  {{REVIEW_BAR}}
+  <header class="wrap site-header">
+    <a class="brand" href="#main" aria-label="リブライト ページ先頭へ">{{BRAND}}</a>
+    <nav class="navigation" aria-label="ページ内メニュー">
+      {{WORKS_NAV}}
+      <a class="nav-detail" href="#services">対応内容</a>
+      <a class="nav-cta" href="#contact">ご相談</a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="wrap hero">
+      <div>
+        <p class="eyebrow">工務店・建築会社のみなさまへ</p>
+        <h1>{{HERO_HEADLINE}}</h1>
+        <p class="hero-description">{{HERO_DESCRIPTION}}</p>
+        {{BRAND_PROMISE}}
+        <a class="button" href="#contact">{{PRIMARY_CTA}}<span class="button-arrow" aria-hidden="true">↗</span></a>
+        <p class="hero-subnote">引渡し前のまとめ補修・継続的なお取引のご相談</p>
+        {{WORKS_LINK}}
+      </div>
+      {{HERO_VISUAL}}
+    </div>
+    <div class="wrap scope-line"><strong>{{AREA_SUMMARY}}</strong>{{MATERIALS_LINE}}</div>
+    {{WORKS_SECTION}}
+    <section class="services-section" id="services">
+      <div class="wrap">
+        <div class="section-heading"><div><span class="section-label">FOR YOUR SITE</span><h2>現場の補修を、<br>まとめて相談できる窓口に。</h2></div></div>
+        {{SERVICE_ROWS}}
+      </div>
+    </section>
+    {{ABOUT_SECTION}}
+    <section class="area-section" id="area"><div class="wrap area-grid">
+      <div><span class="section-label">SERVICE AREA</span><h2>千葉県を中心に、<br>関東エリアへ。</h2></div>
+      <div class="area-copy"><p>現場の市区町村とご希望の日程をお知らせください。</p><div class="materials">{{MATERIALS_LINE}}</div></div>
+    </div></section>
+    {{PRICING_SECTION}}
+    {{PROCESS_SECTION}}
+    {{FAQ_SECTION}}
+    {{PARTNER_SECTION}}
+    <section class="contact-section" id="contact">
+      <div class="wrap contact-grid">
+        <div><span class="section-label">CONTACT</span><h2>現場の補修先を<br>お探しでしたら、<br>ご相談ください。</h2><p>引渡し前のまとめ補修から、<br>継続的な現場のご依頼まで。</p></div>
+        <div>
+          <p>次の内容が分かると、確認を進めやすくなります。</p>
+          <ul class="contact-list"><li>会社名・ご担当者名</li><li>現場の市区町村</li><li>希望する日程・引渡し予定日</li><li>キズの箇所数と写真（全体・近くから）</li></ul>
+          <a class="button instagram-link" href="{{INSTAGRAM_URL}}" target="_blank" rel="noopener noreferrer">Instagramで補修を相談する<span class="button-arrow" aria-hidden="true">↗</span></a>
+          <p class="contact-help">Instagramのプロフィールにある「メッセージ」から、DMをお送りください。</p>
+          <div class="copy-panel"><h3><label for="message-template">相談文のひな形</label></h3><textarea class="message-template" id="message-template" readonly spellcheck="false">{{MESSAGE_TEMPLATE}}</textarea><button class="copy-button" type="button" data-copy-message>相談文をコピーする</button><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></div>
+          <p class="secondary-audience">一般のお客様からの住宅のキズ補修も、ご相談いただけます。<br>会社名の代わりに、お名前をお知らせください。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap footer"><div class="brand"><span class="brand-name">{{BRAND_NAME}}</span><small>{{BRAND_NAME_JA}}｜住宅リペア・キズ補修</small></div>{{BUSINESS_DETAILS}}<span>© {{BRAND_NAME}}</span></footer>
+  <div class="mobile-contact"><span>引渡し前の補修・継続取引<br>現場のご相談はこちら</span><a class="button" href="#contact">補修を相談する<span class="button-arrow" aria-hidden="true">↗</span></a></div>
+  <dialog class="photo-dialog" id="photo-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><span id="dialog-title">施工写真</span><button class="dialog-close" type="button" data-close-dialog autofocus>閉じる</button></div><img class="dialog-image" id="dialog-image" alt=""><p class="dialog-caption" id="dialog-caption"></p></dialog>
+  <noscript><p class="wrap no-script">相談文は選択してコピーできます。写真は通常の表示でご確認ください。</p></noscript>
+  {{SCRIPT}}
+</body>
+</html>
