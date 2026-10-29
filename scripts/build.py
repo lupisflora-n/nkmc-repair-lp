@@ -173,7 +173,7 @@ def render(data, review):
     business_html = ''
     if business.get('publishDetails'):
         business_html = '<div class="business-details">' + '<br>'.join(esc(business[key]) for key in ['publicRepresentativeName', 'publicAddress'] if business.get(key)) + '</div>'
-    review_bar = '<div class="review-bar"><span>DESIGN PREVIEW</span> 制作確認版・未公開｜施工写真は配置枠です。</div>' if review else ''
+    review_bar = '<div class="review-bar"><span>DESIGN PREVIEW</span> 制作確認版・未公開｜掲載内容は最終確認前です。</div>' if review else ''
     values = {
         'ROBOTS': 'noindex,nofollow' if review else 'index,follow',
         'TITLE': esc('工務店・建築会社向け住宅リペア｜千葉・関東｜LIBRIGHT'),

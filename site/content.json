@@ -79,8 +79,8 @@
     "items": [
       {
         "id": "case-01",
-        "before": null,
-        "after": null,
+        "before": "assets/cases/case-01-before.jpg",
+        "after": "assets/cases/case-01-after.jpg",
         "material": null,
         "description": "室内建具の縦枠に生じた欠けの補修事例です。",
         "altBefore": "縦枠の化粧面に欠けが見える補修前の写真",
@@ -88,13 +88,13 @@
         "confirmed": false,
         "publicationCleared": false,
         "title": "縦枠の欠け補修",
-        "beforeSha256": null,
-        "afterSha256": null
+        "beforeSha256": "7cc39982cca1963739896d2afa3c3e7d6c2ddd3ab5f133bc04758dd2c0a4010e",
+        "afterSha256": "f1d3c14328a4cc99bac4c2a59ae4d149ee991524e55bf5bf063d89d20b030f37"
       },
       {
         "id": "case-02",
-        "before": null,
-        "after": null,
+        "before": "assets/cases/case-02-before.jpg",
+        "after": "assets/cases/case-02-after.jpg",
         "material": null,
         "description": "室内建具の上枠の角・接合部に関する補修事例です。",
         "altBefore": "木目調の上枠の角・接合部を写した補修前の写真",
@@ -102,21 +102,21 @@
         "confirmed": false,
         "publicationCleared": false,
         "title": "上枠の角・接合部の補修",
-        "beforeSha256": null,
-        "afterSha256": null
+        "beforeSha256": "d6215bc905895c74e2cf82852cac8f7795a2b946afdbaaf6bd801db97671241c",
+        "afterSha256": "632956ad6ac1cd60d4f5ebf6300f96ea853e386bc72cba5cb4577cf23b9f3aaf"
       },
       {
         "id": "case-03",
-        "before": null,
-        "after": null,
+        "before": "assets/cases/case-03-before.jpg",
+        "after": "assets/cases/case-03-after.jpg",
         "material": null,
         "description": "木目調の扉の下端に見られる欠け・傷の補修事例です。",
         "altBefore": "木目調の扉の下端に欠けと擦れが見える補修前の写真",
         "altAfter": "扉の下端を補修後として撮影した写真",
         "confirmed": false,
         "publicationCleared": false,
-        "beforeSha256": null,
-        "afterSha256": null,
+        "beforeSha256": "d74224ddb0ba92fdd64ee6cfc5fc7bee1519904bc7a26dc76be9195d4215d57c",
+        "afterSha256": "4129ead9cbb2065d0d480acbc954ea871c4064aa945ab3fd976f8ca3883f87b4",
         "title": "扉下端の欠け補修"
       }
     ],

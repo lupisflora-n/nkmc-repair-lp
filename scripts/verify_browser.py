@@ -22,7 +22,7 @@ thread = threading.Thread(target=server.serve_forever, daemon=True)
 thread.start()
 origin = f'http://127.0.0.1:{server.server_port}'
 report = {'pageErrors': [], 'failedRequests': [], 'viewports': [], 'checks': {}, 'limits': [
-    '元写真ファイルが未取得のため、実写真の表示・ハッシュ検証・拡大表示の実動作は未検証。',
+    '施工写真6枚の表示・元ファイル一致・拡大表示を検証。施工の詳細と掲載条件の最終確認は別途必要。',
     'Instagramの外部通信はテストで代替し、遷移先URLを確認した。実アカウントの表示、DM画面と送受信は未検証。',
     'ローカルの確認版を検証。GitHubや他ホスティングへは未公開。',
     'file://の直接起動は実行環境の管理ポリシーで遮断されるため、単体HTMLの内容をブラウザへ読み込んで確認。'
@@ -41,7 +41,10 @@ try:
                 assert response.status == 200
                 assert page.locator('h1').count() == 1
                 assert page.locator('.case').count() == 3
-                assert page.locator('.photo-placeholder').count() == 6
+                assert page.locator('.photo-placeholder').count() == 0
+                for photo in page.locator('.original-photo').all():
+                    photo.scroll_into_view_if_needed()
+                page.evaluate('window.scrollTo(0, 0)')
                 page.wait_for_function('Array.from(document.querySelectorAll("img[src]")).every(img => img.complete && img.naturalWidth > 0)')
                 for selector in ['.brand-image', '.footer-logo']:
                     dimensions = page.locator(selector).evaluate('(img) => ({width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height, ratio: img.naturalWidth / img.naturalHeight})')
@@ -52,13 +55,25 @@ try:
                 assert not overflow, f'horizontal overflow at {width}px'
                 assert page.locator('#pricing').count() == 0
                 assert page.locator('.partner-section').count() == 0
-                assert page.locator('.original-photo').count() == 0
+                assert page.locator('.original-photo').count() == 6
+                for photo in page.locator('.original-photo').all():
+                    dimensions = photo.evaluate('(img) => ({width: img.clientWidth, height: img.clientHeight, ratio: img.naturalWidth / img.naturalHeight, fit: getComputedStyle(img).objectFit, filter: getComputedStyle(img).filter})')
+                    assert abs(dimensions['width'] / dimensions['height'] - dimensions['ratio']) < .02
+                    assert dimensions['fit'] == 'contain' and dimensions['filter'] == 'none'
                 if width in (390, 1440):
                     page.screenshot(path=str(QA / f'preview-{width}.png'), full_page=True)
                     page.screenshot(path=str(QA / f'preview-top-{width}.png'))
                 report['viewports'].append({'width': width, 'height': height, 'http': response.status, 'horizontalOverflow': overflow})
             page.set_viewport_size({'width': 390, 'height': 844})
             page.goto(origin + '/', wait_until='networkidle')
+            for trigger in page.locator('.photo-button').all():
+                trigger.click()
+                assert page.locator('#photo-dialog').evaluate('(el) => el.open')
+                page.wait_for_function('document.querySelector("#dialog-image").complete && document.querySelector("#dialog-image").naturalWidth > 0')
+                assert page.locator('#dialog-image').get_attribute('src') == trigger.get_attribute('data-photo-src')
+                page.keyboard.press('Escape')
+                assert trigger.evaluate('(el) => document.activeElement === el')
+            report['checks']['allSixPhotosOpenOriginalAndReturnFocus'] = True
             page.locator('.hero .button').click()
             assert page.evaluate('location.hash') == '#contact'
             report['checks']['heroToContact'] = True
@@ -95,7 +110,9 @@ try:
             fallback.close()
             offline = browser.new_context(java_script_enabled=False)
             offline_page = offline.new_page()
-            offline_page.set_content((ROOT / 'design/preview.html').read_text(encoding='utf-8'), wait_until='load')
+            offline_page.set_content((ROOT / 'design/preview.html').read_text(encoding='utf-8').replace('<head>', '<head><base href="' + origin + '/">'), wait_until='load')
+            for photo in offline_page.locator('.original-photo').all():
+                photo.scroll_into_view_if_needed()
             assert offline_page.locator('h1').is_visible()
             assert offline_page.locator('.instagram-link').get_attribute('href') == 'https://www.instagram.com/libright_chiba/'
             assert offline_page.locator('#message-template').input_value()
