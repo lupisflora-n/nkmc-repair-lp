@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="{{ROBOTS}}">
   <meta name="description" content="{{META_DESCRIPTION}}">
-  <meta name="theme-color" content="#173e4b">
+  <meta name="theme-color" content="#151515">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{TITLE}}">
   <meta property="og:description" content="{{META_DESCRIPTION}}">
   <meta property="og:locale" content="ja_JP">
   <title>{{TITLE}}</title>
-  <link rel="icon" href="data:,">
+  {{FAVICONS}}
   {{STYLE}}
 </head>
 <body>
@@ -22,12 +22,12 @@
     <nav class="navigation" aria-label="ページ内メニュー">
       {{WORKS_NAV}}
       <a class="nav-detail" href="#services">対応内容</a>
-      <a class="nav-cta" href="#contact">ご相談</a>
+      <a class="nav-cta" href="#contact" aria-label="補修のご相談"><span>ご相談</span><b aria-hidden="true">↗</b></a>
     </nav>
   </header>
   <main id="main">
     <div class="wrap hero">
-      <div>
+      <div class="hero-copy">
         <p class="eyebrow">工務店・建築会社のみなさまへ</p>
         <h1>{{HERO_HEADLINE}}</h1>
         <p class="hero-description">{{HERO_DESCRIPTION}}</p>
@@ -38,7 +38,7 @@
       </div>
       {{HERO_VISUAL}}
     </div>
-    <div class="wrap scope-line"><strong>{{AREA_SUMMARY}}</strong>{{MATERIALS_LINE}}</div>
+    <div class="scope-band"><div class="wrap scope-line"><strong>{{AREA_SUMMARY}}</strong><div class="scope-materials">{{MATERIALS_LINE}}</div><span class="scope-caption">住宅リペア・キズ補修</span></div></div>
     {{WORKS_SECTION}}
     <section class="services-section" id="services">
       <div class="wrap">
@@ -69,7 +69,7 @@
       </div>
     </section>
   </main>
-  <footer class="wrap footer"><div class="brand"><span class="brand-name">{{BRAND_NAME}}</span><small>{{BRAND_NAME_JA}}｜住宅リペア・キズ補修</small></div>{{BUSINESS_DETAILS}}<span>© {{BRAND_NAME}}</span></footer>
+  <footer class="footer-shell"><div class="wrap footer"><a class="brand" href="#main" aria-label="リブライト ページ先頭へ">{{FOOTER_BRAND}}</a><span class="footer-service">{{BRAND_NAME_JA}}｜住宅リペア・キズ補修</span>{{BUSINESS_DETAILS}}<span class="copyright">© {{BRAND_NAME}}</span></div></footer>
   <div class="mobile-contact"><span>引渡し前の補修・継続取引<br>現場のご相談はこちら</span><a class="button" href="#contact">補修を相談する<span class="button-arrow" aria-hidden="true">↗</span></a></div>
   <dialog class="photo-dialog" id="photo-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><span id="dialog-title">施工写真</span><button class="dialog-close" type="button" data-close-dialog autofocus>閉じる</button></div><img class="dialog-image" id="dialog-image" alt=""><p class="dialog-caption" id="dialog-caption"></p></dialog>
   <noscript><p class="wrap no-script">相談文は選択してコピーできます。写真は通常の表示でご確認ください。</p></noscript>

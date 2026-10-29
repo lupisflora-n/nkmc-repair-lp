@@ -29,8 +29,8 @@ case-02、case-03も同様。元ファイルのバイト列を変更せず、`si
 
 ## ロゴ
 
-正式ロゴのWeb用SVGとアイコンは `site/assets/brand/libright/` に保存済み。主要ファイルは `logos/svg/horizontal-jp-color.svg`、`logos/svg/symbol-color.svg`、`icons/favicon.svg`。編集資料は `design/brand/libright/`。LPへ組み込むときに、実ファイル、利用条件、スマホ/PC表示を確認し、`brand.assets.*` と `brand.assetsReady` を更新する。
-差し替え前は通常の屋号テキストを使う。テキスト表示を正式な文字ロゴの納品として扱わない。
+正式ロゴのWeb用SVGとアイコンは `site/assets/brand/libright/` に保存済み。主要ファイルは `logos/svg/horizontal-jp-color.svg`、`logos/svg/symbol-color.svg`、`icons/favicon.svg`。編集資料は `design/brand/libright/`。現在は`brand.assets.*`を設定し、`brand.assetsReady`をtrueとして反映済み。横組みカラー、シンボル、白抜き、faviconを使い、スマホ/PC表示を確認した。
+元のSVG・PNGは変更しない。単体HTMLではブランド素材だけをdata URIへ可逆に埋め込む。施工写真はファイルのまま使用する。ロゴの色・形・最小幅・余白はブランドガイドを引き継ぐ。
 
 ## 料金
 

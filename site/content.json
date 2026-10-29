@@ -5,12 +5,20 @@
     "nameJa": "リブライト",
     "nameEn": "LIBRIGHT",
     "assets": {
-      "wordmark": null,
-      "symbol": null,
-      "horizontal": null,
-      "favicon": null
+      "wordmark": "assets/brand/libright/logos/svg/wordmark-color.svg",
+      "symbol": "assets/brand/libright/logos/svg/symbol-color.svg",
+      "horizontal": "assets/brand/libright/logos/svg/horizontal-jp-color.svg",
+      "favicon": "assets/brand/libright/icons/favicon.svg",
+      "horizontalWhite": "assets/brand/libright/logos/svg/horizontal-jp-white.svg",
+      "faviconPng": "assets/brand/libright/icons/favicon-32.png"
     },
-    "assetsReady": false
+    "assetsReady": true,
+    "designTokens": {
+      "black": "#151515",
+      "yellow": "#F3C63A",
+      "red": "#C54136",
+      "white": "#FFFFFF"
+    }
   },
   "audience": {
     "primary": [

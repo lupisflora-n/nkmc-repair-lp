@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Build the review or release site without changing supplied image bytes."""
 import argparse
+import base64
 import hashlib
 import html
 import json
+import mimetypes
 from pathlib import Path
 import re
 import shutil
@@ -117,6 +119,25 @@ def render(data, review):
     else:
         brand = f'<span class="brand-name">{esc(data["brand"]["nameEn"])}</span><small>{esc(data["brand"]["nameJa"])}｜住宅リペア・キズ補修</small>'
 
+    def brand_image(key, class_name, alt):
+        value = assets.get(key)
+        if not data['brand'].get('assetsReady') or not value:
+            return ''
+        asset_path(value)
+        used_assets.add(value)
+        return f'<img class="{class_name}" src="{esc(value)}" alt="{esc(alt)}" decoding="async">'
+
+    footer_brand = brand_image('horizontalWhite', 'footer-logo', 'LIBRIGHT リブライト') or brand
+    symbol = brand_image('symbol', 'hero-symbol', '')
+    if symbol:
+        hero = '<div class="hero-emblem"><span class="emblem-index">LIBRIGHT / HOUSING REPAIR</span>' + symbol + '<div class="emblem-caption"><span>仕上げの一筆。</span><p>その先の、晴れやかな暮らしへ。</p></div></div>'
+    favicon = ''
+    for key, mime, sizes in [('favicon', 'image/svg+xml', 'any'), ('faviconPng', 'image/png', '32x32')]:
+        if data['brand'].get('assetsReady') and assets.get(key):
+            asset_path(assets[key])
+            used_assets.add(assets[key])
+            favicon += f'<link rel="icon" type="{mime}" sizes="{sizes}" href="{esc(assets[key])}">'
+
     copy = data['copy']
     about = ''
     if copy.get('aboutText') and (review or copy.get('aboutConfirmed')):
@@ -124,7 +145,7 @@ def render(data, review):
         bridge = f'<p class="contractor-bridge">{esc(copy["contractorBridge"])}</p>' if copy.get('contractorBridge') else ''
         origin = f'<div class="brand-origin"><h3>LIBRIGHTの名前に重ねる思い</h3><p>{esc(copy["brandOriginText"])}</p></div>' if copy.get('brandOriginText') else ''
         about = '<section class="wrap about-grid" id="brand-concept"><div><span class="section-label">ABOUT LIBRIGHT</span><h2>' + lines(copy['aboutHeadline']) + '</h2>' + bridge + '</div><div class="about-text">' + paragraphs + origin + '</div></section>'
-    service_rows = ''.join(f'<div class="service-row"><span class="service-number">{i:02}</span><h3>{esc(name)}</h3><p>{esc(text)}</p></div>' for i, (name, text) in enumerate(zip(data['services'].get('titles', data['services']['requests']), data['services']['descriptions']), 1))
+    service_rows = '<div class="service-grid">' + ''.join(f'<div class="service-row"><span class="service-number">{i:02}</span><h3>{esc(name)}</h3><p>{esc(text)}</p></div>' for i, (name, text) in enumerate(zip(data['services'].get('titles', data['services']['requests']), data['services']['descriptions']), 1)) + '</div>'
     steps = ''
     if copy.get('processSteps') and (review or copy.get('processConfirmed')):
         steps = '<section class="wrap" id="process"><span class="section-label">HOW TO REQUEST</span><h2>ご相談から施工まで。</h2><ol class="steps">' + ''.join(f'<li><h3>{esc(step["title"])}</h3><p>{esc(step["text"])}</p></li>' for step in copy['processSteps']) + '</ol></section>'
@@ -152,12 +173,13 @@ def render(data, review):
     business_html = ''
     if business.get('publishDetails'):
         business_html = '<div class="business-details">' + '<br>'.join(esc(business[key]) for key in ['publicRepresentativeName', 'publicAddress'] if business.get(key)) + '</div>'
-    review_bar = '<div class="review-bar">制作確認版・未公開｜写真原本・正式ロゴは差し込み前。事例の説明・施工の流れは確認用の案です。</div>' if review else ''
+    review_bar = '<div class="review-bar"><span>DESIGN PREVIEW</span> 制作確認版・未公開｜施工写真は配置枠です。</div>' if review else ''
     values = {
         'ROBOTS': 'noindex,nofollow' if review else 'index,follow',
         'TITLE': esc('工務店・建築会社向け住宅リペア｜千葉・関東｜LIBRIGHT'),
         'META_DESCRIPTION': esc('リブライトは千葉県を中心に関東エリアの住宅のキズ補修に対応。木部・フローリング・アルミサッシ、引渡し前のまとめ補修や緊急補修、継続的なお取引をご相談いただけます。'),
         'REVIEW_BAR': review_bar, 'BRAND': brand,
+        'FOOTER_BRAND': footer_brand, 'FAVICONS': favicon or '<link rel="icon" href="data:,">',
         'BRAND_NAME': esc(data['brand']['nameEn']), 'BRAND_NAME_JA': esc(data['brand']['nameJa']),
         'WORKS_NAV': '<a class="nav-detail" href="#works">施工事例</a>' if cards else '',
         'WORKS_LINK': '<a class="text-link" href="#works">施工前後の写真を見る ↓</a>' if cards else '',
@@ -195,6 +217,14 @@ def main():
         v['STYLE'] = '<style>\n' + css + '\n</style>' if standalone else '<link rel="stylesheet" href="styles.css">'
         v['SCRIPT'] = '<script>\n' + js + '\n</script>' if standalone else '<script src="app.js" defer></script>'
         result = re.sub(r'\{\{([A-Z_]+)\}\}', lambda match: v[match.group(1)], template)
+        if standalone:
+            # Brand assets only: lossless data URIs. Construction photos stay original files.
+            for value in sorted(assets):
+                if not value.startswith('assets/brand/'):
+                    continue
+                mime = mimetypes.guess_type(value)[0] or 'application/octet-stream'
+                encoded = base64.b64encode(asset_path(value).read_bytes()).decode('ascii')
+                result = result.replace('"' + esc(value) + '"', '"data:' + mime + ';base64,' + encoded + '"')
         return result
 
     out = ROOT / ('dist-review' if args.mode == 'review' else 'dist')
@@ -217,6 +247,8 @@ def main():
         preview.parent.mkdir(exist_ok=True)
         preview.write_text(compile_page(True), encoding='utf-8')
         for value in assets:
+            if value.startswith('assets/brand/'):
+                continue
             target = preview.parent / value
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(asset_path(value), target)

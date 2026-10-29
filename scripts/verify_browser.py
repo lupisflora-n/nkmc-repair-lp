@@ -41,7 +41,13 @@ try:
                 assert response.status == 200
                 assert page.locator('h1').count() == 1
                 assert page.locator('.case').count() == 3
-                assert page.locator('.photo-placeholder').count() == 7
+                assert page.locator('.photo-placeholder').count() == 6
+                page.wait_for_function('Array.from(document.querySelectorAll("img[src]")).every(img => img.complete && img.naturalWidth > 0)')
+                for selector in ['.brand-image', '.footer-logo']:
+                    dimensions = page.locator(selector).evaluate('(img) => ({width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height, ratio: img.naturalWidth / img.naturalHeight})')
+                    assert dimensions['width'] >= 220, (selector, width, dimensions)
+                    assert abs(dimensions['width'] / dimensions['height'] - dimensions['ratio']) < .02
+                assert page.locator('.hero-symbol').count() == 1
                 overflow = page.evaluate('document.documentElement.scrollWidth > window.innerWidth')
                 assert not overflow, f'horizontal overflow at {width}px'
                 assert page.locator('#pricing').count() == 0
@@ -49,6 +55,7 @@ try:
                 assert page.locator('.original-photo').count() == 0
                 if width in (390, 1440):
                     page.screenshot(path=str(QA / f'preview-{width}.png'), full_page=True)
+                    page.screenshot(path=str(QA / f'preview-top-{width}.png'))
                 report['viewports'].append({'width': width, 'height': height, 'http': response.status, 'horizontalOverflow': overflow})
             page.set_viewport_size({'width': 390, 'height': 844})
             page.goto(origin + '/', wait_until='networkidle')
@@ -76,6 +83,7 @@ try:
                 target = link.get_attribute('href')[1:]
                 assert page.locator('[id="' + target + '"]').count() == 1
             report['checks']['allInternalAnchors'] = True
+            report['checks']['brandAssetsLoadedAndProportionsPreserved'] = True
             fallback = browser.new_context(viewport={'width': 390, 'height': 844})
             fallback.add_init_script('Object.defineProperty(navigator, "clipboard", {get: () => undefined});')
             fallback_page = fallback.new_page()
@@ -91,6 +99,8 @@ try:
             assert offline_page.locator('h1').is_visible()
             assert offline_page.locator('.instagram-link').get_attribute('href') == 'https://www.instagram.com/libright_chiba/'
             assert offline_page.locator('#message-template').input_value()
+            offline_page.wait_for_function('Array.from(document.querySelectorAll("img[src]")).every(img => img.complete && img.naturalWidth > 0)')
+            assert offline_page.locator('.brand-image').get_attribute('src').startswith('data:image/svg+xml;base64,')
             offline.close()
             report['checks']['standaloneHtmlAndNoJsContent'] = True
             assert not report['pageErrors'], report['pageErrors']

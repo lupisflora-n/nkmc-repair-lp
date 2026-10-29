@@ -18,4 +18,4 @@
 
 ロゴの縦横比・色を勝手に変更しないこと。推奨最小幅や余白は`design/brand/libright/brand-guide.pdf`を参照してください。編集可能なSVGとフォント使用情報は`design/brand/libright/`にあります。
 
-**実装状況：** 素材のGit保管は完了。LP本体のロゴ差し替えと表示検証は別工程です。現時点で`site/content.json`の `brand.assetsReady` は変更していません。
+**実装状況：** ヘッダーに横組みカラー、冒頭にシンボル、濃色フッターに横組み白抜き、ブラウザタブに専用faviconを反映済み。`brand.assetsReady` はtrue。320〜1440pxで画像読み込み、横ロゴ幅220px以上、元の縦横比を確認済み。元のロゴファイルは変更していません。

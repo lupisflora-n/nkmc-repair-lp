@@ -6,7 +6,8 @@ LIBRIGHT（リブライト）のLP制作案件。工務店・建築会社から�
 - 工程・現在地・次の作業: [docs/WORKFLOW.md](docs/WORKFLOW.md)
 - 法人向け構成・原稿の初稿: [docs/COPY_DRAFT.md](docs/COPY_DRAFT.md)
 - 施工写真の受領・観察台帳: [docs/PHOTO_REGISTER.md](docs/PHOTO_REGISTER.md)
-- 最新の操作できる確認版（単体HTML）: [design/preview.html](design/preview.html)
+- 最新の操作できる確認版（ロゴ反映済み・単体HTML）: [design/preview.html](design/preview.html)
+- GitHubで見られるスマホ・PCプレビュー画像: [design/previews/](design/previews/README.md)
 - 初期の画面ラフ: [design/review.html](design/review.html)
 - 検証結果と残る項目: [docs/QA_REPORT.md](docs/QA_REPORT.md)
 - 差し替え・公開準備の引き継ぎ: [docs/UPDATE_GUIDE.md](docs/UPDATE_GUIDE.md)
@@ -18,7 +19,7 @@ LIBRIGHT（リブライト）のLP制作案件。工務店・建築会社から�
 現段階は静的LPの確認版実装と表示・基本操作の検証まで完了。写真3組・計6枚は会話内で目視確認済みだが、サイトへ組み込む元画像の実ファイルは未取得のため配置枠を表示。
 対外ブランドの軸は「傷を直す。その先の、晴れやかな暮らしまで。」。創業者の私的な背景は公開用ファイルや配布用ZIPへ含めない。
 写真はユーザー指示により編集・変更禁止。元ファイルのまま、全体と縦横比を保って表示する。
-正式ロゴ素材はGitへ保管済み（LPへの組み込み・表示確認は未実施）。Web公開URLは未確定。GitHub管理リポジトリは非公開で用意済み。公開用ビルドは確認事項がそろうまで停止する。
+正式ロゴをLPへ組み込み、黒白・黄色・赤のブランド配色でレイアウトを再構成。SVGとfaviconの読み込み、320〜1440px幅での表示・操作を確認済み。Web公開URLは未確定。GitHub管理リポジトリは非公開で用意済み。公開用ビルドは確認事項がそろうまで停止する。
 GitHubでのソース管理と無料公開が希望。GitHub Pagesの利用条件への適合性は確認事項として残す。
 
 `docs/`、`design/` と `AGENTS.md` は内部制作記録・確認用資料。公開サイトにはそのまま配信しない。
