@@ -1,0 +1,33 @@
+LIBRIGHT | 使用書体・素材・生成方法一覧 (2026-10-30)
+
+1. シンボル図形
+種類: オリジナルの手作業によるSVGパス再構成。
+元資料: クライアント採用画像（ChatGPT内で生成したロゴ案「仕上げの一筆」）。
+外部素材: なし。ストックアイコン、無断転載図形なし。
+注意: 登録商標・第三者ロゴとの類似性の網羅調査は未実施。
+
+2. 英文書体
+名称: Montserrat (weight 800)
+配布元: https://github.com/google/fonts/tree/main/ofl/montserrat
+取得元: https://raw.githubusercontent.com/google/fonts/main/ofl/montserrat/Montserrat%5Bwght%5D.ttf
+ライセンス: SIL Open Font License 1.1
+同梱: fonts/Montserrat-variable.ttf, licenses/OFL-Montserrat.txt
+
+3. 日本語書体
+名称: Noto Sans JP (weight 700)
+配布元: https://github.com/google/fonts/tree/main/ofl/notosansjp
+取得元: https://raw.githubusercontent.com/google/fonts/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf
+ライセンス: SIL Open Font License 1.1
+同梱: fonts/NotoSansJP-variable.ttf, licenses/OFL-NotoSansJP.txt
+
+4. 利用条件
+OFL書体はロゴ・商用デザインでの利用可。
+文字アウトラインをデザインとして使用する限り、原フォントの追加インストールは不要。
+フォントファイルを配布する場合のため、OFL原文を同梱。
+書体への独占権の主張はできない。ロゴ全体の商標登録可能性は別途確認が必要。
+
+5. 生成・検証方法
+手作業SVGパス + fontToolsにより文字アウトラインを生成。
+InkscapeでPNG/PDFへ変換。JPEGとICOはPillowで書き出し。
+PDFはRGBベクター、CMYK/EPS/AIの代替ではない。
+完成後にSVG要素、透明PNG、PDF内のベクター図形、文字を検証。

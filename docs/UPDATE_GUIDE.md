@@ -29,8 +29,8 @@ case-02、case-03も同様。元ファイルのバイト列を変更せず、`si
 
 ## ロゴ
 
-別チャットから受領した正式データを `site/assets/brand/` に置く。ファイルの実体、利用条件、表示を確認し、`brand.assets.horizontal` と `brand.assetsReady` を更新する。
-それまでは通常の屋号テキストを使う。テキスト表示を正式な文字ロゴの納品として扱わない。
+正式ロゴのWeb用SVGとアイコンは `site/assets/brand/libright/` に保存済み。主要ファイルは `logos/svg/horizontal-jp-color.svg`、`logos/svg/symbol-color.svg`、`icons/favicon.svg`。編集資料は `design/brand/libright/`。LPへ組み込むときに、実ファイル、利用条件、スマホ/PC表示を確認し、`brand.assets.*` と `brand.assetsReady` を更新する。
+差し替え前は通常の屋号テキストを使う。テキスト表示を正式な文字ロゴの納品として扱わない。
 
 ## 料金
 
