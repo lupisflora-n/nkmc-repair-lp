@@ -84,6 +84,7 @@ def release_issues(data):
 
 def render(data, review):
     used_assets = set()
+    copy = data['copy']
     cases = data['cases']['items']
     visible_cases = cases if review else [case for case in cases if data['cases'].get('publish') and ready(case)]
 
@@ -107,7 +108,7 @@ def render(data, review):
         cards.append(f'<article class="case"><div class="case-heading"><span>CASE {index:02}</span><h3>{esc(case.get("title"))}</h3></div><div class="photo-pair">{pair}</div><p class="case-description">{esc(case.get("description"))}</p></article>')
     works = ''
     if cards:
-        works = '<section class="wrap" id="works"><div class="section-heading"><div><span class="section-label">REPAIR WORKS</span><h2>補修前と補修後を、<br>写真でご覧ください。</h2></div><p>部材やキズの状態とあわせて、補修前後の変化をご紹介します。</p></div><div class="case-list">' + ''.join(cards) + '</div><p class="photo-note">※補修前後で、撮影位置・距離・光の条件が異なります。</p></section>'
+        works = '<section class="wrap" id="works"><div class="section-heading"><div><span class="section-label">REPAIR WORKS</span><h2>' + lines(copy['worksHeadline']) + '</h2></div><p>' + esc(copy['worksDescription']) + '</p></div><div class="case-list">' + ''.join(cards) + '</div><p class="photo-note">' + esc(copy['worksNote']) + '</p></section>'
     hero = '<div class="hero-text-panel"><p>木部・フローリング・<br>アルミサッシのキズ補修</p><small>引渡し前のまとめ補修・緊急補修のご相談</small></div>'
     if visible_cases:
         hero = '<figure class="hero-visual">' + photo(visible_cases[0], 'after', review) + '<figcaption>施工事例01｜縦枠の欠け補修・補修後</figcaption></figure>'
@@ -138,21 +139,28 @@ def render(data, review):
             used_assets.add(assets[key])
             favicon += f'<link rel="icon" type="{mime}" sizes="{sizes}" href="{esc(assets[key])}">'
 
-    copy = data['copy']
     about = ''
     if copy.get('aboutText') and (review or copy.get('aboutConfirmed')):
         paragraphs = ''.join(f'<p>{lines(p)}</p>' for p in copy['aboutText'].split('\n\n'))
         bridge = f'<p class="contractor-bridge">{esc(copy["contractorBridge"])}</p>' if copy.get('contractorBridge') else ''
         origin = f'<div class="brand-origin"><h3>LIBRIGHTの名前に重ねる思い</h3><p>{esc(copy["brandOriginText"])}</p></div>' if copy.get('brandOriginText') else ''
-        about = '<section class="wrap about-grid" id="brand-concept"><div><span class="section-label">ABOUT LIBRIGHT</span><h2>' + lines(copy['aboutHeadline']) + '</h2>' + bridge + '</div><div class="about-text">' + paragraphs + origin + '</div></section>'
+        narrative = paragraphs + origin
+        if copy.get('storyText') and (review or copy.get('storyConfirmed')):
+            story = ''.join(f'<p>{lines(p)}</p>' for p in copy['storyText'].split('\n\n'))
+            narrative = '<h3 class="story-heading">' + lines(copy['storyHeadline']) + '</h3>' + story + '<details class="concept-details"><summary>リブライトが大切にしていること</summary><div>' + paragraphs + origin + '</div></details>'
+        about = '<section class="wrap about-grid" id="brand-concept"><div><span class="section-label">OUR STORY</span><h2>' + lines(copy['aboutHeadline']) + '</h2>' + bridge + '</div><div class="about-text">' + narrative + '</div></section>'
+    practice = ''
+    if copy.get('practiceItems') and (review or copy.get('practiceConfirmed')):
+        items = ''.join(f'<li><span class="practice-number">{i:02}</span><h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></li>' for i, item in enumerate(copy['practiceItems'], 1))
+        practice = '<section class="practice-section" id="approach"><div class="wrap"><span class="section-label">OUR APPROACH</span><h2>' + lines(copy['practiceHeadline']) + '</h2><ol class="practice-list">' + items + '</ol></div></section>'
     service_rows = '<div class="service-grid">' + ''.join(f'<div class="service-row"><span class="service-number">{i:02}</span><h3>{esc(name)}</h3><p>{esc(text)}</p></div>' for i, (name, text) in enumerate(zip(data['services'].get('titles', data['services']['requests']), data['services']['descriptions']), 1)) + '</div>'
     steps = ''
     if copy.get('processSteps') and (review or copy.get('processConfirmed')):
-        steps = '<section class="wrap" id="process"><span class="section-label">HOW TO REQUEST</span><h2>ご相談から施工まで。</h2><ol class="steps">' + ''.join(f'<li><h3>{esc(step["title"])}</h3><p>{esc(step["text"])}</p></li>' for step in copy['processSteps']) + '</ol></section>'
+        steps = '<section class="wrap" id="process"><span class="section-label">HOW TO REQUEST</span><h2>' + lines(copy['processHeadline']) + '</h2><ol class="steps">' + ''.join(f'<li><h3>{esc(step["title"])}</h3><p>{esc(step["text"])}</p></li>' for step in copy['processSteps']) + '</ol></section>'
     faq = [item for item in copy.get('faq') or [] if review or item.get('confirmed')]
     faq_section = ''
     if faq:
-        faq_section = '<section class="faq-section"><div class="wrap"><span class="section-label">QUESTIONS</span><h2>ご相談の前に。</h2><div class="faq-list">' + ''.join(f'<details class="faq-item"><summary>{esc(item["question"])}</summary><p>{esc(item["answer"])}</p></details>' for item in faq) + '</div></div></section>'
+        faq_section = '<section class="faq-section"><div class="wrap"><span class="section-label">QUESTIONS</span><h2>' + lines(copy['faqHeadline']) + '</h2><div class="faq-list">' + ''.join(f'<details class="faq-item"><summary>{esc(item["question"])}</summary><p>{esc(item["answer"])}</p></details>' for item in faq) + '</div></div></section>'
     pricing = ''
     price = data['pricing']
     if price.get('publish'):
@@ -187,6 +195,9 @@ def render(data, review):
         'BRAND_PROMISE': f'<p class="brand-promise">{esc(copy["brandPromise"])}</p>' if copy.get('brandPromise') else '',
         'PRIMARY_CTA': esc(copy['primaryCta']), 'HERO_VISUAL': hero,
         'AREA_SUMMARY': esc(data['area']['summary']),
+        'PRACTICE_SECTION': practice,
+        **{key: lines(copy[name]) for key, name in [('HERO_SUBNOTE', 'heroSubnote'), ('SERVICES_HEADLINE', 'servicesHeadline'), ('AREA_HEADLINE', 'areaHeadline'), ('AREA_DESCRIPTION', 'areaDescription'), ('CONTACT_HEADLINE', 'contactHeadline'), ('CONTACT_INTRO', 'contactIntro'), ('CONTACT_PROMPT', 'contactPrompt'), ('CONTACT_BUTTON', 'contactButton'), ('CONTACT_HELP', 'contactHelp'), ('SECONDARY_AUDIENCE', 'secondaryAudience')]},
+        'CONTACT_FIELDS': ''.join(f'<li>{esc(field)}</li>' for field in copy['contactFields']),
         'MATERIALS_LINE': ''.join(f'<span>{esc(value)}</span>' for value in data['services']['materials']),
         'WORKS_SECTION': works, 'SERVICE_ROWS': service_rows, 'ABOUT_SECTION': about,
         'PRICING_SECTION': pricing, 'PROCESS_SECTION': steps, 'FAQ_SECTION': faq_section,
@@ -225,7 +236,7 @@ def main():
                 mime = mimetypes.guess_type(value)[0] or 'application/octet-stream'
                 encoded = base64.b64encode(asset_path(value).read_bytes()).decode('ascii')
                 result = result.replace('"' + esc(value) + '"', '"data:' + mime + ';base64,' + encoded + '"')
-        return result
+        return '\n'.join(line.rstrip() for line in result.split('\n'))
 
     out = ROOT / ('dist-review' if args.mode == 'review' else 'dist')
     if out.exists():

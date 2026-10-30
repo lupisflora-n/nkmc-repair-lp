@@ -106,6 +106,16 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
 .brand-origin { border-top:1px solid var(--line); margin-top:29px; padding-top:23px; }
 .brand-origin h3 { font-size:12px; margin-bottom:9px; }
 .brand-origin p { font-size:11px; margin:0; line-height:2.1; color:var(--muted); }
+.story-heading { font-size:20px; margin-bottom:20px; line-height:1.8; color:var(--black); }
+.concept-details { border-top:1px solid var(--line); margin-top:26px; }
+.concept-details summary { padding-block:17px; font-size:12px; color:var(--black); font-weight:650; cursor:pointer; }
+.concept-details > div > p { margin:0 0 18px; }
+.practice-section { padding-top:0; }
+.practice-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:38px; list-style:none; margin:34px 0 0; padding:0; }
+.practice-list li { border-top:1px solid var(--line); padding-top:21px; }
+.practice-number { display:block; color:var(--red); font-size:11px; margin-bottom:13px; font-weight:750; }
+.practice-list h3 { font-size:17px; }
+.practice-list p { font-size:12px; color:var(--muted); line-height:2.1; margin:13px 0 0; }
 .area-section { background:var(--paper); }
 .area-grid { display:grid; grid-template-columns:1fr 1fr; gap:90px; }
 .area-copy { align-self:center; }
@@ -232,6 +242,10 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
   .about-grid h2 { font-size:27px; }
   .contractor-bridge { font-size:11px; margin-top:20px; }
   .about-text { padding-top:0; font-size:12px; }
+  .story-heading { font-size:19px; margin-bottom:16px; }
+  .practice-list { grid-template-columns:1fr; gap:24px; margin-top:25px; }
+  .practice-list li { padding-top:17px; }
+  .practice-list h3 { font-size:16px; }
   .brand-origin { padding-top:20px; margin-top:24px; }
   .brand-origin p { font-size:10px; }
   .area-copy p { font-size:12px; margin-bottom:18px; }
@@ -293,40 +307,41 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
     <div class="wrap hero">
       <div class="hero-copy">
         <p class="eyebrow">工務店・建築会社のみなさまへ</p>
-        <h1>引渡し前のキズ補修から、<br>急な補修のご相談まで。</h1>
-        <p class="hero-description">木部・フローリング・アルミサッシのキズ補修は、リブライトへ。<br>千葉県を中心に、関東エリアの現場に対応しています。</p>
+        <h1>引渡し前のキズ補修から、<br>継続的な現場のご依頼まで。</h1>
+        <p class="hero-description">木部・フローリング・アルミサッシのキズ補修。<br>千葉県を中心に、関東エリアの工務店・建築会社さまからのご相談を承ります。</p>
         <p class="brand-promise">傷を直す。その先の、晴れやかな暮らしまで。</p>
         <a class="button" href="#contact">現場の補修を相談する<span class="button-arrow" aria-hidden="true">↗</span></a>
-        <p class="hero-subnote">引渡し前のまとめ補修・継続的なお取引のご相談</p>
+        <p class="hero-subnote">引渡し前のまとめ補修・急な補修のご相談に。</p>
         <a class="text-link" href="#works">施工前後の写真を見る ↓</a>
       </div>
       <div class="hero-emblem"><span class="emblem-index">LIBRIGHT / HOUSING REPAIR</span><img class="hero-symbol" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MzAiIGhlaWdodD0iNDQ1IiB2aWV3Qm94PSIwIDAgNTMwIDQ0NSIgdmVyc2lvbj0iMS4xIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkxJQlJJR0hUIj48dGl0bGU+TElCUklHSFQ8L3RpdGxlPjxnIGRhdGEtc3ltYm9sPSJMSUJSSUdIVCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjcgMzApIHNjYWxlKDEuMDAwMDAwKSI+PHBhdGggZGF0YS1wYXJ0PSJiYXNlIiBkPSJNMjAgMTE4IEwxMzIgNDUgTDEzMiAyODMgTDQ1OCAyODMgTDQ1OCAzNjUgTDIwIDM2NSBaIiBmaWxsPSIjMTUxNTE1Ii8+PHBhdGggZGF0YS1wYXJ0PSJ3YWxsIiBkPSJNMTQ2IDQ1IEwyMzMgNzUgTDIzMyAyMzcgTDE0NiAyNzYgWiIgZmlsbD0iI0YzQzYzQSIvPjxwYXRoIGRhdGEtcGFydD0iZmxvb3IiIGQ9Ik0xNjMgMjc2IEwyNTAgMjM5IEwzNTggMjM5IEw0NTEgMjc2IFoiIGZpbGw9IiNGM0M2M0EiLz48cGF0aCBkYXRhLXBhcnQ9InRpcCIgZD0iTTMwMCAyMzkgTDMzNyAxODUgTDM1NiAyMDEgWiIgZmlsbD0iI0M1NDEzNiIvPjxwYXRoIGRhdGEtcGFydD0iaGFuZGxlIiBkPSJNMzQ2IDE3MyBMNDE0IDEwMCBMNDU0IDEwMCBMMzY3IDE5MSBaIiBmaWxsPSIjMTUxNTE1Ii8+PC9nPjwvc3ZnPgo=" alt="" decoding="async"><div class="emblem-caption"><span>仕上げの一筆。</span><p>その先の、晴れやかな暮らしへ。</p></div></div>
     </div>
     <div class="scope-band"><div class="wrap scope-line"><strong>千葉県中心・関東エリア対応</strong><div class="scope-materials"><span>木部</span><span>フローリング</span><span>アルミサッシ</span></div><span class="scope-caption">住宅リペア・キズ補修</span></div></div>
-    <section class="wrap" id="works"><div class="section-heading"><div><span class="section-label">REPAIR WORKS</span><h2>補修前と補修後を、<br>写真でご覧ください。</h2></div><p>部材やキズの状態とあわせて、補修前後の変化をご紹介します。</p></div><div class="case-list"><article class="case"><div class="case-heading"><span>CASE 01</span><h3>縦枠の欠け補修</h3></div><div class="photo-pair"><figure><button class="photo-button" type="button" aria-label="縦枠の欠け補修｜補修前の写真全体を拡大" data-photo-src="assets/cases/case-01-before.jpg" data-photo-alt="縦枠の化粧面に欠けが見える補修前の写真" data-photo-caption="縦枠の欠け補修｜補修前"><img class="original-photo" src="assets/cases/case-01-before.jpg" alt="縦枠の化粧面に欠けが見える補修前の写真" loading="lazy" decoding="async"></button><figcaption>補修前<span>BEFORE</span></figcaption></figure><figure><button class="photo-button" type="button" aria-label="縦枠の欠け補修｜補修後の写真全体を拡大" data-photo-src="assets/cases/case-01-after.jpg" data-photo-alt="同じ縦枠を補修後として撮影した写真" data-photo-caption="縦枠の欠け補修｜補修後"><img class="original-photo" src="assets/cases/case-01-after.jpg" alt="同じ縦枠を補修後として撮影した写真" loading="lazy" decoding="async"></button><figcaption>補修後<span>AFTER</span></figcaption></figure></div><p class="case-description">室内建具の縦枠に生じた欠けの補修事例です。</p></article><article class="case"><div class="case-heading"><span>CASE 02</span><h3>上枠の角・接合部の補修</h3></div><div class="photo-pair"><figure><button class="photo-button" type="button" aria-label="上枠の角・接合部の補修｜補修前の写真全体を拡大" data-photo-src="assets/cases/case-02-before.jpg" data-photo-alt="木目調の上枠の角・接合部を写した補修前の写真" data-photo-caption="上枠の角・接合部の補修｜補修前"><img class="original-photo" src="assets/cases/case-02-before.jpg" alt="木目調の上枠の角・接合部を写した補修前の写真" loading="lazy" decoding="async"></button><figcaption>補修前<span>BEFORE</span></figcaption></figure><figure><button class="photo-button" type="button" aria-label="上枠の角・接合部の補修｜補修後の写真全体を拡大" data-photo-src="assets/cases/case-02-after.jpg" data-photo-alt="同じ上枠の角・接合部を補修後として撮影した写真" data-photo-caption="上枠の角・接合部の補修｜補修後"><img class="original-photo" src="assets/cases/case-02-after.jpg" alt="同じ上枠の角・接合部を補修後として撮影した写真" loading="lazy" decoding="async"></button><figcaption>補修後<span>AFTER</span></figcaption></figure></div><p class="case-description">室内建具の上枠の角・接合部に関する補修事例です。</p></article><article class="case"><div class="case-heading"><span>CASE 03</span><h3>扉下端の欠け補修</h3></div><div class="photo-pair"><figure><button class="photo-button" type="button" aria-label="扉下端の欠け補修｜補修前の写真全体を拡大" data-photo-src="assets/cases/case-03-before.jpg" data-photo-alt="木目調の扉の下端に欠けと擦れが見える補修前の写真" data-photo-caption="扉下端の欠け補修｜補修前"><img class="original-photo" src="assets/cases/case-03-before.jpg" alt="木目調の扉の下端に欠けと擦れが見える補修前の写真" loading="lazy" decoding="async"></button><figcaption>補修前<span>BEFORE</span></figcaption></figure><figure><button class="photo-button" type="button" aria-label="扉下端の欠け補修｜補修後の写真全体を拡大" data-photo-src="assets/cases/case-03-after.jpg" data-photo-alt="扉の下端を補修後として撮影した写真" data-photo-caption="扉下端の欠け補修｜補修後"><img class="original-photo" src="assets/cases/case-03-after.jpg" alt="扉の下端を補修後として撮影した写真" loading="lazy" decoding="async"></button><figcaption>補修後<span>AFTER</span></figcaption></figure></div><p class="case-description">木目調の扉の下端に見られる欠け・傷の補修事例です。</p></article></div><p class="photo-note">※補修前後で、撮影位置・距離・光の条件が異なります。</p></section>
+    <section class="wrap" id="works"><div class="section-heading"><div><span class="section-label">REPAIR WORKS</span><h2>補修前と補修後を、<br>写真でご覧ください。</h2></div><p>縦枠、上枠、扉の下端。実際の補修事例をご紹介します。</p></div><div class="case-list"><article class="case"><div class="case-heading"><span>CASE 01</span><h3>縦枠の欠け補修</h3></div><div class="photo-pair"><figure><button class="photo-button" type="button" aria-label="縦枠の欠け補修｜補修前の写真全体を拡大" data-photo-src="assets/cases/case-01-before.jpg" data-photo-alt="縦枠の化粧面に欠けが見える補修前の写真" data-photo-caption="縦枠の欠け補修｜補修前"><img class="original-photo" src="assets/cases/case-01-before.jpg" alt="縦枠の化粧面に欠けが見える補修前の写真" loading="lazy" decoding="async"></button><figcaption>補修前<span>BEFORE</span></figcaption></figure><figure><button class="photo-button" type="button" aria-label="縦枠の欠け補修｜補修後の写真全体を拡大" data-photo-src="assets/cases/case-01-after.jpg" data-photo-alt="同じ縦枠を補修後として撮影した写真" data-photo-caption="縦枠の欠け補修｜補修後"><img class="original-photo" src="assets/cases/case-01-after.jpg" alt="同じ縦枠を補修後として撮影した写真" loading="lazy" decoding="async"></button><figcaption>補修後<span>AFTER</span></figcaption></figure></div><p class="case-description">室内建具の縦枠に生じた欠けの補修事例です。</p></article><article class="case"><div class="case-heading"><span>CASE 02</span><h3>上枠の角・接合部の補修</h3></div><div class="photo-pair"><figure><button class="photo-button" type="button" aria-label="上枠の角・接合部の補修｜補修前の写真全体を拡大" data-photo-src="assets/cases/case-02-before.jpg" data-photo-alt="木目調の上枠の角・接合部を写した補修前の写真" data-photo-caption="上枠の角・接合部の補修｜補修前"><img class="original-photo" src="assets/cases/case-02-before.jpg" alt="木目調の上枠の角・接合部を写した補修前の写真" loading="lazy" decoding="async"></button><figcaption>補修前<span>BEFORE</span></figcaption></figure><figure><button class="photo-button" type="button" aria-label="上枠の角・接合部の補修｜補修後の写真全体を拡大" data-photo-src="assets/cases/case-02-after.jpg" data-photo-alt="同じ上枠の角・接合部を補修後として撮影した写真" data-photo-caption="上枠の角・接合部の補修｜補修後"><img class="original-photo" src="assets/cases/case-02-after.jpg" alt="同じ上枠の角・接合部を補修後として撮影した写真" loading="lazy" decoding="async"></button><figcaption>補修後<span>AFTER</span></figcaption></figure></div><p class="case-description">室内建具の上枠の角・接合部に関する補修事例です。</p></article><article class="case"><div class="case-heading"><span>CASE 03</span><h3>扉下端の欠け補修</h3></div><div class="photo-pair"><figure><button class="photo-button" type="button" aria-label="扉下端の欠け補修｜補修前の写真全体を拡大" data-photo-src="assets/cases/case-03-before.jpg" data-photo-alt="木目調の扉の下端に欠けと擦れが見える補修前の写真" data-photo-caption="扉下端の欠け補修｜補修前"><img class="original-photo" src="assets/cases/case-03-before.jpg" alt="木目調の扉の下端に欠けと擦れが見える補修前の写真" loading="lazy" decoding="async"></button><figcaption>補修前<span>BEFORE</span></figcaption></figure><figure><button class="photo-button" type="button" aria-label="扉下端の欠け補修｜補修後の写真全体を拡大" data-photo-src="assets/cases/case-03-after.jpg" data-photo-alt="扉の下端を補修後として撮影した写真" data-photo-caption="扉下端の欠け補修｜補修後"><img class="original-photo" src="assets/cases/case-03-after.jpg" alt="扉の下端を補修後として撮影した写真" loading="lazy" decoding="async"></button><figcaption>補修後<span>AFTER</span></figcaption></figure></div><p class="case-description">木目調の扉の下端に見られる欠け・傷の補修事例です。</p></article></div><p class="photo-note">※補修前後で、撮影位置・距離・光の条件が異なります。写真を押すと全体を拡大してご覧いただけます。</p></section>
     <section class="services-section" id="services">
       <div class="wrap">
-        <div class="section-heading"><div><span class="section-label">FOR YOUR SITE</span><h2>現場の補修を、<br>まとめて相談できる窓口に。</h2></div></div>
-        <div class="service-grid"><div class="service-row"><span class="service-number">01</span><h3>引渡し前のまとめ補修</h3><p>現場内にある複数のキズについて、まとめてご相談いただけます。</p></div><div class="service-row"><span class="service-number">02</span><h3>継続的な現場のご依頼</h3><p>今後の現場での補修先をお探しの工務店・建築会社さまも、お問い合わせください。</p></div><div class="service-row"><span class="service-number">03</span><h3>緊急補修のご相談</h3><p>現場の地域、キズの状態、ご希望の日時をお知らせください。対応の可否を含め、日程をご相談します。</p></div></div>
+        <div class="section-heading"><div><span class="section-label">FOR YOUR SITE</span><h2>まとめ補修も、<br>急なキズのご相談も。</h2></div></div>
+        <div class="service-grid"><div class="service-row"><span class="service-number">01</span><h3>引渡し前のまとめ補修</h3><p>引渡し前に見つかった複数のキズを、まとめてご相談いただけます。箇所数や写真、引渡し予定日をお知らせください。</p></div><div class="service-row"><span class="service-number">02</span><h3>継続的な現場のご依頼</h3><p>現場ごとの補修はもちろん、今後の継続的なお取引についてもご相談ください。</p></div><div class="service-row"><span class="service-number">03</span><h3>緊急補修のご相談</h3><p>急なキズの補修もご相談いただけます。現場の地域とキズの状態、ご希望の日程を伺い、対応できるか確認します。</p></div></div>
       </div>
     </section>
-    <section class="wrap about-grid" id="brand-concept"><div><span class="section-label">ABOUT LIBRIGHT</span><h2>傷を直す。その先の、<br>晴れやかな暮らしまで。</h2><p class="contractor-bridge">引渡しの先にある、晴れやかな暮らしを支えるために。</p></div><div class="about-text"><p>住まいについた傷だけでなく、その傷を見るたびに生まれる気がかりにも目を向ける。</p><p>丁寧な補修で住まいの本来の美しさを取り戻し、安心して毎日を過ごせるように。</p><p>かつて補修技術に感動した人が、今度はその技術で人に喜びを届けていく。</p><div class="brand-origin"><h3>LIBRIGHTの名前に重ねる思い</h3><p>フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、晴れやかな暮らしへ向かうお手伝いを目指しています。</p></div></div></section>
+    <section class="wrap about-grid" id="brand-concept"><div><span class="section-label">OUR STORY</span><h2>傷を直す。その先の、<br>晴れやかな暮らしまで。</h2><p class="contractor-bridge">引渡しの先にある、晴れやかな暮らしを支えるために。</p></div><div class="about-text"><h3 class="story-heading">傷が直る驚きを、<br>喜びを届ける仕事へ。</h3><p>傷のあった場所が、住まいになじんでいく。その変化に心を動かされたことが、リブライトの原点です。</p><p>技術を学び、自分の手で直せる喜びを知った先にあったのは、誰かに喜んでもらえる仕事でした。現場での経験を重ねながら、その思いを一つひとつの補修につなげています。</p><details class="concept-details"><summary>リブライトが大切にしていること</summary><div><p>住まいについた傷だけでなく、その傷を見るたびに生まれる気がかりにも目を向ける。</p><p>丁寧な補修で住まいの本来の美しさを取り戻し、安心して毎日を過ごせるように。</p><p>かつて補修技術に感動した人が、今度はその技術で人に喜びを届けていく。</p><div class="brand-origin"><h3>LIBRIGHTの名前に重ねる思い</h3><p>フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、晴れやかな暮らしへ向かうお手伝いを目指しています。</p></div></div></details></div></section>
+    <section class="practice-section" id="approach"><div class="wrap"><span class="section-label">OUR APPROACH</span><h2>仕上がりと、<br>現場の進めやすさを大切に。</h2><ol class="practice-list"><li><span class="practice-number">01</span><h3>補修する箇所を確かめる</h3><p>写真や箇所数を伺い、キズの状態と補修する範囲、ご希望を確かめます。</p></li><li><span class="practice-number">02</span><h3>引渡しまでの予定を共有する</h3><p>引渡し予定日や現場の状況も伺い、補修内容と日程をご相談します。</p></li><li><span class="practice-number">03</span><h3>仕上がりを一緒に確認する</h3><p>施工後は補修した箇所を一緒に確認。気になる点もお聞かせください。</p></li></ol></div></section>
+
     <section class="area-section" id="area"><div class="wrap area-grid">
       <div><span class="section-label">SERVICE AREA</span><h2>千葉県を中心に、<br>関東エリアへ。</h2></div>
-      <div class="area-copy"><p>現場の市区町村とご希望の日程をお知らせください。</p><div class="materials"><span>木部</span><span>フローリング</span><span>アルミサッシ</span></div></div>
+      <div class="area-copy"><p>現場の市区町村と、ご希望の日程をお知らせください。対応できるか確認します。</p><div class="materials"><span>木部</span><span>フローリング</span><span>アルミサッシ</span></div></div>
     </div></section>
-    
-    <section class="wrap" id="process"><span class="section-label">HOW TO REQUEST</span><h2>ご相談から施工まで。</h2><ol class="steps"><li><h3>ご相談</h3><p>現場の地域、ご希望の日程、キズの写真や箇所数をお知らせください。</p></li><li><h3>内容確認・お見積もり</h3><p>補修内容と条件を確認し、お見積もりをご案内します。</p></li><li><h3>日程調整・施工</h3><p>内容と日程を確認のうえ、施工へ進みます。</p></li><li><h3>仕上がりの確認</h3><p>施工した箇所の仕上がりをご確認いただきます。</p></li></ol></section>
-    <section class="faq-section"><div class="wrap"><span class="section-label">QUESTIONS</span><h2>ご相談の前に。</h2><div class="faq-list"><details class="faq-item"><summary>複数のキズをまとめて相談できますか？</summary><p>引渡し前のまとめ補修を承っています。現場の地域と、キズの箇所数・写真、ご希望の日程をお知らせください。</p></details><details class="faq-item"><summary>急ぎの補修も相談できますか？</summary><p>緊急補修もご相談いただけます。希望日時と現場の状況をお知らせください。対応の可否を含めて確認します。</p></details><details class="faq-item"><summary>継続的な現場の依頼について相談できますか？</summary><p>工務店・建築会社さまからの継続的なお取引も承っています。今後のご依頼について、まずはご相談ください。</p></details><details class="faq-item"><summary>一般の住宅のキズ補修も相談できますか？</summary><p>一般のお客様からの住宅のキズ補修も、ご相談いただけます。現場の市区町村と、キズの写真、ご希望の日程をお知らせください。</p></details></div></div></section>
-    
+
+    <section class="wrap" id="process"><span class="section-label">HOW TO REQUEST</span><h2>ご相談から施工まで。</h2><ol class="steps"><li><h3>写真と日程を送る</h3><p>現場の市区町村、キズの写真・箇所数、ご希望の日程をお知らせください。</p></li><li><h3>内容と見積もりを確認</h3><p>補修内容や現場の条件を確認し、お見積もりをご案内します。</p></li><li><h3>日程を決めて施工</h3><p>内容と日程について合意したうえで、施工へ進みます。</p></li><li><h3>仕上がりを確認</h3><p>補修した箇所の仕上がりをご確認いただきます。</p></li></ol></section>
+    <section class="faq-section"><div class="wrap"><span class="section-label">QUESTIONS</span><h2>よくあるご質問。</h2><div class="faq-list"><details class="faq-item"><summary>複数のキズをまとめて相談できますか？</summary><p>はい。引渡し前のまとめ補修をご相談いただけます。キズの写真と箇所数、現場の市区町村、引渡し予定日をお知らせください。</p></details><details class="faq-item"><summary>急ぎの補修も相談できますか？</summary><p>はい。緊急補修もご相談いただけます。ご希望の日時と現場の状況を伺い、対応できるか確認します。</p></details><details class="faq-item"><summary>今後の現場も継続して依頼できますか？</summary><p>継続的なお取引を希望しています。今後の現場で補修先をお探しの工務店・建築会社さまも、まずはご相談ください。</p></details><details class="faq-item"><summary>一般の住宅のキズ補修も相談できますか？</summary><p>はい。一般のお客様からの住宅のキズ補修もご相談いただけます。お住まいの市区町村、キズの写真、ご希望の日程をお知らせください。</p></details></div></div></section>
     <section class="contact-section" id="contact">
       <div class="wrap contact-grid">
-        <div><span class="section-label">CONTACT</span><h2>現場の補修先を<br>お探しでしたら、<br>ご相談ください。</h2><p>引渡し前のまとめ補修から、<br>継続的な現場のご依頼まで。</p></div>
+        <div><span class="section-label">CONTACT</span><h2>次の現場の補修も、<br>リブライトへご相談ください。</h2><p>引渡し前のまとめ補修、急なキズ、<br>これからの継続的なお取引について。</p></div>
         <div>
-          <p>次の内容が分かると、確認を進めやすくなります。</p>
-          <ul class="contact-list"><li>会社名・ご担当者名</li><li>現場の市区町村</li><li>希望する日程・引渡し予定日</li><li>キズの箇所数と写真（全体・近くから）</li></ul>
-          <a class="button instagram-link" href="https://www.instagram.com/libright_chiba/" target="_blank" rel="noopener noreferrer">Instagramで補修を相談する<span class="button-arrow" aria-hidden="true">↗</span></a>
-          <p class="contact-help">Instagramのプロフィールにある「メッセージ」から、DMをお送りください。</p>
+          <p>写真とあわせて、分かる範囲でお知らせください。</p>
+          <ul class="contact-list"><li>会社名・ご担当者名</li><li>現場の市区町村</li><li>希望日程・引渡し予定日</li><li>キズの箇所数と写真（全体・近くから）</li></ul>
+          <a class="button instagram-link" href="https://www.instagram.com/libright_chiba/" target="_blank" rel="noopener noreferrer">Instagramから相談する<span class="button-arrow" aria-hidden="true">↗</span></a>
+          <p class="contact-help">Instagramのプロフィールを開き、「メッセージ」からDMをお送りください。</p>
           <div class="copy-panel"><h3><label for="message-template">相談文のひな形</label></h3><textarea class="message-template" id="message-template" readonly spellcheck="false">会社名・ご担当者名：
 現場の市区町村：
 希望日程・引渡し予定日：
@@ -334,7 +349,7 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
 気になる点：
 
 （全体とキズが分かる写真を添付）</textarea><button class="copy-button" type="button" data-copy-message>相談文をコピーする</button><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></div>
-          <p class="secondary-audience">一般のお客様からの住宅のキズ補修も、ご相談いただけます。<br>会社名の代わりに、お名前をお知らせください。</p>
+          <p class="secondary-audience">一般のお客様もご相談いただけます。会社名の代わりに、お名前をお知らせください。</p>
         </div>
       </div>
     </section>

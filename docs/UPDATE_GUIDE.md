@@ -62,3 +62,7 @@ TRCを紹介する場合は `partnerIntroduction` に実際の関係、同社の
 
 `python scripts/package.py` で作成する。内部限定の創業背景ファイルは自動除外される。
 ZIPには制作記録と確認用の原稿を含むため、ZIP全体を公開サイトへ配置しない。公開物は `dist/` だけを使う。
+
+## 文章のレビュー
+
+`python scripts/build.py --mode review` の後に `python scripts/review_copy.py` を実行すると、LP本体から文章を取り出しdesign/copy-review.htmlとdocs/COPY_DRAFT.mdを更新する。画像を省略し、開閉内の文章を含めて一覧で読める。文章の修正はsite/content.jsonへ戻し、再生成する。storyConfirmed/practiceConfirmedは新規の原点・業務姿勢の確認状態。確認前はfalseを維持する。

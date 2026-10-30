@@ -51,6 +51,9 @@ try:
                     assert dimensions['width'] >= 220, (selector, width, dimensions)
                     assert abs(dimensions['width'] / dimensions['height'] - dimensions['ratio']) < .02
                 assert page.locator('.hero-symbol').count() == 1
+                order = page.locator('main > section').evaluate_all('(sections) => sections.map(section => section.id).filter(Boolean)')
+                assert order == ['works', 'services', 'brand-concept', 'approach', 'area', 'process', 'contact'], order
+                assert page.locator('.practice-list li').count() == 3
                 overflow = page.evaluate('document.documentElement.scrollWidth > window.innerWidth')
                 assert not overflow, f'horizontal overflow at {width}px'
                 assert page.locator('#pricing').count() == 0
@@ -86,6 +89,11 @@ try:
             page.locator('.faq-item').first.locator('summary').click()
             assert page.locator('.faq-item').first.get_attribute('open') is not None
             report['checks']['faqExpanded'] = True
+            page.locator('.concept-details summary').click()
+            assert page.locator('.concept-details').get_attribute('open') is not None
+            assert page.locator('.brand-origin').is_visible()
+            report['checks']['approvedConceptAndNameOriginExpandable'] = True
+            report['checks']['restructuredSectionOrder'] = True
             context.route('https://www.instagram.com/**', lambda route: route.fulfill(status=200, content_type='text/html', body='<title>External navigation check</title>'))
             with page.expect_popup() as popup_info:
                 page.locator('.instagram-link').click()

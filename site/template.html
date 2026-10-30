@@ -33,7 +33,7 @@
         <p class="hero-description">{{HERO_DESCRIPTION}}</p>
         {{BRAND_PROMISE}}
         <a class="button" href="#contact">{{PRIMARY_CTA}}<span class="button-arrow" aria-hidden="true">↗</span></a>
-        <p class="hero-subnote">引渡し前のまとめ補修・継続的なお取引のご相談</p>
+        <p class="hero-subnote">{{HERO_SUBNOTE}}</p>
         {{WORKS_LINK}}
       </div>
       {{HERO_VISUAL}}
@@ -42,29 +42,30 @@
     {{WORKS_SECTION}}
     <section class="services-section" id="services">
       <div class="wrap">
-        <div class="section-heading"><div><span class="section-label">FOR YOUR SITE</span><h2>現場の補修を、<br>まとめて相談できる窓口に。</h2></div></div>
+        <div class="section-heading"><div><span class="section-label">FOR YOUR SITE</span><h2>{{SERVICES_HEADLINE}}</h2></div></div>
         {{SERVICE_ROWS}}
       </div>
     </section>
     {{ABOUT_SECTION}}
+    {{PRACTICE_SECTION}}
+    {{PARTNER_SECTION}}
     <section class="area-section" id="area"><div class="wrap area-grid">
-      <div><span class="section-label">SERVICE AREA</span><h2>千葉県を中心に、<br>関東エリアへ。</h2></div>
-      <div class="area-copy"><p>現場の市区町村とご希望の日程をお知らせください。</p><div class="materials">{{MATERIALS_LINE}}</div></div>
+      <div><span class="section-label">SERVICE AREA</span><h2>{{AREA_HEADLINE}}</h2></div>
+      <div class="area-copy"><p>{{AREA_DESCRIPTION}}</p><div class="materials">{{MATERIALS_LINE}}</div></div>
     </div></section>
     {{PRICING_SECTION}}
     {{PROCESS_SECTION}}
     {{FAQ_SECTION}}
-    {{PARTNER_SECTION}}
     <section class="contact-section" id="contact">
       <div class="wrap contact-grid">
-        <div><span class="section-label">CONTACT</span><h2>現場の補修先を<br>お探しでしたら、<br>ご相談ください。</h2><p>引渡し前のまとめ補修から、<br>継続的な現場のご依頼まで。</p></div>
+        <div><span class="section-label">CONTACT</span><h2>{{CONTACT_HEADLINE}}</h2><p>{{CONTACT_INTRO}}</p></div>
         <div>
-          <p>次の内容が分かると、確認を進めやすくなります。</p>
-          <ul class="contact-list"><li>会社名・ご担当者名</li><li>現場の市区町村</li><li>希望する日程・引渡し予定日</li><li>キズの箇所数と写真（全体・近くから）</li></ul>
-          <a class="button instagram-link" href="{{INSTAGRAM_URL}}" target="_blank" rel="noopener noreferrer">Instagramで補修を相談する<span class="button-arrow" aria-hidden="true">↗</span></a>
-          <p class="contact-help">Instagramのプロフィールにある「メッセージ」から、DMをお送りください。</p>
+          <p>{{CONTACT_PROMPT}}</p>
+          <ul class="contact-list">{{CONTACT_FIELDS}}</ul>
+          <a class="button instagram-link" href="{{INSTAGRAM_URL}}" target="_blank" rel="noopener noreferrer">{{CONTACT_BUTTON}}<span class="button-arrow" aria-hidden="true">↗</span></a>
+          <p class="contact-help">{{CONTACT_HELP}}</p>
           <div class="copy-panel"><h3><label for="message-template">相談文のひな形</label></h3><textarea class="message-template" id="message-template" readonly spellcheck="false">{{MESSAGE_TEMPLATE}}</textarea><button class="copy-button" type="button" data-copy-message>相談文をコピーする</button><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></div>
-          <p class="secondary-audience">一般のお客様からの住宅のキズ補修も、ご相談いただけます。<br>会社名の代わりに、お名前をお知らせください。</p>
+          <p class="secondary-audience">{{SECONDARY_AUDIENCE}}</p>
         </div>
       </div>
     </section>

@@ -38,3 +38,11 @@ GitHubでのソース管理と無料公開が希望。GitHub Pagesの利用条�
 - Web用素材: [site/assets/brand/libright/](site/assets/brand/libright/README.md)
 - ブランドガイド・再編集データ: [design/brand/libright/](design/brand/libright/README.md)
 - 今後のアイコン・画像の管理ルール: [site/assets/](site/assets/README.md)
+
+## v0.2 構成と文章の確認
+
+- [文章を一覧で読む](docs/COPY_DRAFT.md)
+- [文章確認用HTML](design/copy-review.html)
+- [専門担当への再構成指示](docs/RESTRUCTURE_BRIEF.txt)
+
+施工写真→対応内容→短い原点の物語→現場の姿勢→任意のTRC紹介→地域・流れ・FAQ→問い合わせへ再構成。TRC紹介は確認条件が整うまで非表示。新しい物語と姿勢は確認版の案。

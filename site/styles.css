@@ -91,6 +91,16 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
 .brand-origin { border-top:1px solid var(--line); margin-top:29px; padding-top:23px; }
 .brand-origin h3 { font-size:12px; margin-bottom:9px; }
 .brand-origin p { font-size:11px; margin:0; line-height:2.1; color:var(--muted); }
+.story-heading { font-size:20px; margin-bottom:20px; line-height:1.8; color:var(--black); }
+.concept-details { border-top:1px solid var(--line); margin-top:26px; }
+.concept-details summary { padding-block:17px; font-size:12px; color:var(--black); font-weight:650; cursor:pointer; }
+.concept-details > div > p { margin:0 0 18px; }
+.practice-section { padding-top:0; }
+.practice-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:38px; list-style:none; margin:34px 0 0; padding:0; }
+.practice-list li { border-top:1px solid var(--line); padding-top:21px; }
+.practice-number { display:block; color:var(--red); font-size:11px; margin-bottom:13px; font-weight:750; }
+.practice-list h3 { font-size:17px; }
+.practice-list p { font-size:12px; color:var(--muted); line-height:2.1; margin:13px 0 0; }
 .area-section { background:var(--paper); }
 .area-grid { display:grid; grid-template-columns:1fr 1fr; gap:90px; }
 .area-copy { align-self:center; }
@@ -217,6 +227,10 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
   .about-grid h2 { font-size:27px; }
   .contractor-bridge { font-size:11px; margin-top:20px; }
   .about-text { padding-top:0; font-size:12px; }
+  .story-heading { font-size:19px; margin-bottom:16px; }
+  .practice-list { grid-template-columns:1fr; gap:24px; margin-top:25px; }
+  .practice-list li { padding-top:17px; }
+  .practice-list h3 { font-size:16px; }
   .brand-origin { padding-top:20px; margin-top:24px; }
   .brand-origin p { font-size:10px; }
   .area-copy p { font-size:12px; margin-bottom:18px; }
