@@ -158,7 +158,15 @@
     "description": null,
     "officialUrl": null,
     "confirmed": false,
-    "publicationCleared": false
+    "publicationCleared": false,
+    "reviewDraft": {
+      "show": true,
+      "headline": "技術を学び、\n現場で磨き続ける。",
+      "name": "株式会社TRC",
+      "relationship": "リブライトの代表は、株式会社TRCが運営するリペアスクールで技術を学び、卒業後も同社の現場協力者として、住宅の引渡し前のキズ補修に携わっています。",
+      "approach": "さまざまなキズに向き合いながら、仕上がりと現場に合わせた対応を磨いています。",
+      "description": "株式会社TRCは、住宅のキズ補修と、リペアスクールを通じた技術者の育成に取り組んでいます。補修の依頼先をお探しの方、技術を学びたい方へ、同社の取り組みもご紹介します。"
+    }
   },
   "copy": {
     "heroHeadline": "引渡し前のキズ補修から、\n継続的な現場のご依頼まで。",

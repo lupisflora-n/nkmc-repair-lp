@@ -148,7 +148,11 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
 .footer-service { font-size:10px; color:#cfcec6; }
 .copyright { margin-left:auto; color:#b1b0a8; font-size:9px; }
 .business-details { font-size:11px; }
-.partner-section { border-top:1px solid var(--line); }
+.partner-section { border-top:1px solid var(--line); background:var(--paper); }
+.partner-grid { display:grid; grid-template-columns:1fr 1fr; gap:94px; }
+.partner-company { border-top:1px solid var(--line); margin-top:25px; padding-top:22px; }
+.partner-company h3 { font-size:17px; }
+.partner-section .partner-draft-note { font-size:10px; color:var(--muted); }
 .partner-section p { font-size:13px; max-width:720px; color:var(--muted); }
 .mobile-contact { display:none; }
 .photo-dialog { border:0; padding:20px; background:var(--white); color:var(--black); max-width:96vw; max-height:94dvh; }
@@ -167,7 +171,7 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
   .scope-caption { display:none; }
   .case { grid-template-columns:210px minmax(0,1fr); column-gap:35px; }
   .case-heading h3 { font-size:18px; }
-  .about-grid,.area-grid,.contact-grid { gap:50px; }
+  .about-grid,.area-grid,.contact-grid,.partner-grid { gap:50px; }
   .about-grid h2 { font-size:29px; }
   .service-grid { gap:25px; }
   .service-row h3 { font-size:16px; }
@@ -223,7 +227,7 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
   .service-number { margin:4px 0 0; font-size:10px; }
   .service-row h3 { font-size:17px; }
   .service-row p { grid-column:2; margin-top:11px; font-size:12px; }
-  .about-grid,.area-grid,.contact-grid { grid-template-columns:1fr; gap:25px; }
+  .about-grid,.area-grid,.contact-grid,.partner-grid { grid-template-columns:1fr; gap:25px; }
   .about-grid h2 { font-size:27px; }
   .contractor-bridge { font-size:11px; margin-top:20px; }
   .about-text { padding-top:0; font-size:12px; }

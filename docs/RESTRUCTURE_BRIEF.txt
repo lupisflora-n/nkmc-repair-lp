@@ -30,3 +30,5 @@ TRCの任意紹介（紹介文・関係・公式URL・掲載条件がそろう�
 design/preview.html と design/assets: 見た目と操作の確認。
 design/copy-review.html: LP本体から抽出した文章。写真省略、開閉内の文章も全文表示。
 docs/COPY_DRAFT.md: 同じ内容をGitHubで読める文章一覧。
+
+追記: TRC紹介が欠落しているとの指摘を受け、確認版にはreviewDraftの文章案を表示するよう修正。正式公開の条件とレビュー用の原稿表示を分ける。関係と同社の補修・育成事業を分けて書き、公式URLは確認後にリンクを追加する。

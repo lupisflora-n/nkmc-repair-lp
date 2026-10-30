@@ -52,12 +52,14 @@ try:
                     assert abs(dimensions['width'] / dimensions['height'] - dimensions['ratio']) < .02
                 assert page.locator('.hero-symbol').count() == 1
                 order = page.locator('main > section').evaluate_all('(sections) => sections.map(section => section.id).filter(Boolean)')
-                assert order == ['works', 'services', 'brand-concept', 'approach', 'area', 'process', 'contact'], order
+                assert order == ['works', 'services', 'brand-concept', 'approach', 'partner', 'area', 'process', 'contact'], order
                 assert page.locator('.practice-list li').count() == 3
                 overflow = page.evaluate('document.documentElement.scrollWidth > window.innerWidth')
                 assert not overflow, f'horizontal overflow at {width}px'
                 assert page.locator('#pricing').count() == 0
-                assert page.locator('.partner-section').count() == 0
+                assert page.locator('.partner-section').count() == 1
+                assert page.locator('#partner').inner_text().count('株式会社TRC') >= 2
+                assert page.locator('#partner a').count() == 0
                 assert page.locator('.original-photo').count() == 6
                 for photo in page.locator('.original-photo').all():
                     dimensions = photo.evaluate('(img) => ({width: img.clientWidth, height: img.clientHeight, ratio: img.naturalWidth / img.naturalHeight, fit: getComputedStyle(img).objectFit, filter: getComputedStyle(img).filter})')
