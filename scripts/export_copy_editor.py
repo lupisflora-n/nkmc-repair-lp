@@ -101,8 +101,11 @@ for i in range(len(data['cases']['items'])):
     field(f'事例{i+1}・補修前の説明',f'cases.items.{i}.altBefore')
     field(f'事例{i+1}・補修後の説明',f'cases.items.{i}.altAfter')
 
+if not data['copy'].get('showAboutSection', True):
+    records = [record for record in records if record.get('id') not in {'E02', 'E03', 'E05', 'E06', 'E07', 'E08'}]
+
 intro = '''LIBRIGHT｜掲載文 一括編集用原稿
-基準版：v0.4／2026-10-31
+基準版：v0.5／2026-10-31
 
 使い方
 ・【A01｜…】などの項目番号と項目名は残し、その下の文章を直接書き換えてください。
@@ -126,7 +129,7 @@ for record in records:
 parts.append('\n==================== 原稿ここまで ====================\n\n【追加指示】\n（必要があれば記入してください）\n')
 text='\n'.join(parts)
 (ROOT/'docs/COPY_EDIT.txt').write_text(text,encoding='utf-8')
-(ROOT/'design/copy-edit-map.json').write_text(json.dumps({'baseline':'v0.4','sourceSha256':hashlib.sha256((ROOT/'site/content.json').read_bytes()).hexdigest(),'fields':records},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+(ROOT/'design/copy-edit-map.json').write_text(json.dumps({'baseline':'v0.5','sourceSha256':hashlib.sha256((ROOT/'site/content.json').read_bytes()).hexdigest(),'fields':records},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 style='*{box-sizing:border-box}body{margin:0;background:#f8f7f3;color:#151515;font:16px/1.8 sans-serif}main{max-width:1000px;margin:auto;padding:28px 20px}h1{font-size:24px}p{margin:12px 0}.actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}button{font:inherit;padding:12px 18px;border:1px solid #151515;background:#f3c63a;color:#151515;cursor:pointer}textarea{width:100%;height:65vh;min-height:360px;padding:18px;border:1px solid #888;border-radius:0;font:16px/1.9 sans-serif;resize:vertical;background:white;color:#151515}label{display:block;font-weight:bold;margin:16px 0 8px}#status{min-height:2em}a,button,textarea{outline-offset:3px}'
 js='''const editor=document.querySelector('#editor');const status=document.querySelector('#status');
 document.querySelector('#save').addEventListener('click',()=>{const blob=new Blob([editor.value],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='LIBRIGHT-掲載文-編集済み.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='保存したファイルを、このチャットへ添付してください。';});

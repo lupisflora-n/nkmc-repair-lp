@@ -1,6 +1,6 @@
 {
-  "baseline": "v0.4",
-  "sourceSha256": "d31baa432a98ffbe4f5e375ade5972525c451ca79108b6012bab0219cba82512",
+  "baseline": "v0.5",
+  "sourceSha256": "bdf1ba559d1a62ac0b18a4ebd27ace838b299b913db6cd17190a4437dd848d98",
   "fields": [
     {
       "section": "A｜冒頭"
@@ -216,46 +216,10 @@
       "source": "site/content.json:copy.aboutHeadline"
     },
     {
-      "id": "E02",
-      "label": "工務店向けの接続文",
-      "text": "",
-      "source": "site/content.json:copy.contractorBridge"
-    },
-    {
-      "id": "E03",
-      "label": "物語の小見出し",
-      "text": "傷が直る驚きを、\n喜びを届ける仕事へ。",
-      "source": "site/content.json:copy.storyHeadline"
-    },
-    {
       "id": "E04",
       "label": "物語の本文",
       "text": "傷のあった場所が、住まいになじんでいく。その変化に心を動かされたことが、リブライトの原点です。\n\n技術を学び、自分の手で直せる喜びを知った先にあったのは、誰かに喜んでもらえる仕事でした。現場での経験を重ねながら、その思いを一つひとつの補修につなげています。",
       "source": "site/content.json:copy.storyText"
-    },
-    {
-      "id": "E05",
-      "label": "詳細を開く文",
-      "text": "リブライトが大切にしていること",
-      "source": "scripts/build.py"
-    },
-    {
-      "id": "E06",
-      "label": "コンセプト本文",
-      "text": "住まいについた傷だけでなく、その傷を見るたびに生まれる気がかりにも目を向ける。\n\n丁寧な補修で住まいの本来の美しさを取り戻し、安心して毎日を過ごせるように。\n\nかつて補修技術に感動した人が、今度はその技術で人に喜びを届けていく。",
-      "source": "site/content.json:copy.aboutText"
-    },
-    {
-      "id": "E07",
-      "label": "名前の由来の小見出し",
-      "text": "LIBRIGHTの名前に重ねる思い",
-      "source": "scripts/build.py"
-    },
-    {
-      "id": "E08",
-      "label": "名前の由来の本文",
-      "text": "フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、暮らしの輝かしさを取り戻すお手伝いをしています。",
-      "source": "site/content.json:copy.brandOriginText"
     },
     {
       "section": "F｜現在の実務・TRC／RBS紹介"

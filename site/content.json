@@ -276,11 +276,17 @@
     "secondaryAudience": "◎一般のお客様もご相談いただけます。会社名の代わりに、お名前をお知らせください。",
     "heroEyebrow": "",
     "storyPlacement": "hero",
-    "mobileContactNote": "引渡し前の補修・お取引・現場のご相談はこちら"
+    "mobileContactNote": "引渡し前の補修・お取引・現場のご相談はこちら",
+    "showAboutSection": false
   },
   "publication": {
     "hostingConditionsChecked": false,
     "repository": "lupisflora-n/nkmc-repair-lp",
     "siteUrl": null
+  },
+  "seo": {
+    "title": "千葉の住宅リペア・キズ補修｜関東対応｜リブライト LIBRIGHT",
+    "description": "千葉県を中心に関東エリアの住宅リペア・キズ補修に対応するリブライト。木部・樹脂材・アルミサッシの補修、引渡し前のまとめ補修や急なご依頼をご相談いただけます。工務店・建築会社、一般のお客様からのご相談を承ります。",
+    "businessType": "Organization"
   }
 }

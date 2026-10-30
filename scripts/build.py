@@ -9,7 +9,8 @@ import mimetypes
 from pathlib import Path
 import re
 import shutil
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
+from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'site'
@@ -41,6 +42,73 @@ def web_url(value):
     return value
 
 
+
+def canonical_url(data):
+    value = data.get('publication', {}).get('siteUrl')
+    if not value:
+        return None
+    parsed = urlparse(web_url(value))
+    if parsed.query or parsed.fragment:
+        raise ValueError('公開URLに共有パラメータやページ内位置を含めないでください。')
+    return value if parsed.path.endswith('/') or Path(parsed.path).suffix else value + '/'
+
+
+def seo_head(data, review):
+    seo = data['seo']
+    url = canonical_url(data) if not review else None
+    business = {'@context': 'https://schema.org', '@type': seo['businessType'],
+                'name': data['brand']['nameJa'], 'alternateName': data['brand']['nameEn'],
+                'description': seo['description'],
+                'areaServed': [{'@type': 'Place', 'name': name} for name in ['千葉県', '関東地方']],
+                'sameAs': [web_url(data['contact']['profileUrl'])]}
+    tags = [f'<meta property="og:site_name" content="{esc(data["brand"]["nameJa"])} LIBRIGHT">',
+            '<meta name="twitter:card" content="summary">',
+            f'<meta name="twitter:title" content="{esc(seo["title"])}">',
+            f'<meta name="twitter:description" content="{esc(seo["description"])}">']
+    if url:
+        business.update({'url': url, '@id': url + '#business',
+                         'logo': urljoin(url, data['brand']['assets']['horizontal'])})
+        tags += [f'<link rel="canonical" href="{esc(url)}">', f'<meta property="og:url" content="{esc(url)}">']
+    payload = json.dumps(business, ensure_ascii=False).replace('<', chr(92) + 'u003c')
+    tags.append('<script type="application/ld+json">' + payload + '</script>')
+    return '\n  '.join(tags)
+
+
+def write_indexing_files(out, data):
+    url = canonical_url(data)
+    if not url:
+        raise ValueError('公開URLを確定してから検索エンジン向けファイルを生成してください。')
+    tree = ET.Element('urlset', xmlns='http://www.sitemaps.org/schemas/sitemap/0.9')
+    ET.SubElement(ET.SubElement(tree, 'url'), 'loc').text = url
+    ET.ElementTree(tree).write(out / 'sitemap.xml', encoding='utf-8', xml_declaration=True)
+    # robots.txt is read at the origin root; the deployment checklist covers subdirectory hosting.
+    (out / 'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: ' + urljoin(url, 'sitemap.xml') + '\n', encoding='utf-8')
+
+
+def raster_dimensions(path):
+    raw = path.read_bytes()
+    if raw[:8] == b'\x89PNG\r\n\x1a\n':
+        return int.from_bytes(raw[16:20], 'big'), int.from_bytes(raw[20:24], 'big')
+    if raw[:2] == b'\xff\xd8':
+        pos = 2
+        while pos + 9 < len(raw):
+            if raw[pos] != 255:
+                break
+            while raw[pos] == 255:
+                pos += 1
+            marker = raw[pos]
+            pos += 1
+            if marker in {1, 216, 217} or 208 <= marker <= 215:
+                continue
+            length = int.from_bytes(raw[pos:pos + 2], 'big')
+            if marker in {192, 193, 194, 195, 197, 198, 199, 201, 202, 203, 205, 206, 207}:
+                return int.from_bytes(raw[pos + 5:pos + 7], 'big'), int.from_bytes(raw[pos + 3:pos + 5], 'big')
+            if length < 2:
+                break
+            pos += length
+    return None
+
+
 def check_image_policy(data):
     policy = data['cases']['imagePolicy']
     required = {'useOriginalFiles': True, 'allowEditing': False, 'allowCompression': False,
@@ -69,6 +137,8 @@ def ready(case):
 
 def release_issues(data):
     issues = []
+    if not canonical_url(data):
+        issues.append('正式な公開URLを設定する')
     if not data['cases'].get('publish') or not all(ready(case) for case in data['cases']['items']):
         issues.append('施工写真3組の元ファイル・内容・掲載条件を確認する')
     if not data['contact'].get('linkVerified'):
@@ -94,9 +164,11 @@ def render(data, review):
         if value:
             asset_path(value)
             used_assets.add(value)
+            dimensions = raster_dimensions(asset_path(value))
+            size = f' width="{dimensions[0]}" height="{dimensions[1]}"' if dimensions else ''
             alt = case.get('altBefore' if side == 'before' else 'altAfter') or f'{case["title"]} {side_ja}'
             caption = f'{case["title"]}｜{side_ja}'
-            return f'<button class="photo-button" type="button" aria-label="{esc(caption)}の写真全体を拡大" data-photo-src="{esc(value)}" data-photo-alt="{esc(alt)}" data-photo-caption="{esc(caption)}"><img class="original-photo" src="{esc(value)}" alt="{esc(alt)}" loading="lazy" decoding="async"></button>'
+            return f'<button class="photo-button" type="button" aria-label="{esc(caption)}の写真全体を拡大" data-photo-src="{esc(value)}" data-photo-alt="{esc(alt)}" data-photo-caption="{esc(caption)}"><img class="original-photo" src="{esc(value)}" alt="{esc(alt)}"{size} loading="lazy" decoding="async"></button>'
         if placeholder:
             ratio = '4/3' if case['id'] == 'case-03' and side == 'before' else '3/4'
             return f'<div class="photo-placeholder" style="--ratio:{ratio}"><span>{esc(case["id"].upper())} / {side.upper()}</span>元写真の差し込み位置</div>'
@@ -146,7 +218,7 @@ def render(data, review):
             favicon += f'<link rel="icon" type="{mime}" sizes="{sizes}" href="{esc(assets[key])}">'
 
     about = ''
-    if copy.get('aboutText') and (review or copy.get('aboutConfirmed')):
+    if copy.get('showAboutSection', True) and copy.get('aboutText') and (review or copy.get('aboutConfirmed')):
         paragraphs = ''.join(f'<p>{lines(p)}</p>' for p in copy['aboutText'].split('\n\n'))
         bridge = f'<p class="contractor-bridge">{esc(copy["contractorBridge"])}</p>' if copy.get('contractorBridge') else ''
         origin = f'<div class="brand-origin"><h3>LIBRIGHTの名前に重ねる思い</h3><p>{esc(copy["brandOriginText"])}</p></div>' if copy.get('brandOriginText') else ''
@@ -198,8 +270,9 @@ def render(data, review):
     review_bar = '<div class="review-bar"><span>DESIGN PREVIEW</span> 制作確認版・未公開｜掲載内容は最終確認前です。</div>' if review else ''
     values = {
         'ROBOTS': 'noindex,nofollow' if review else 'index,follow',
-        'TITLE': esc('工務店・建築会社向け住宅リペア｜千葉・関東｜LIBRIGHT'),
-        'META_DESCRIPTION': esc('リブライトは千葉県を中心に関東エリアの住宅のキズ補修に対応。木部・樹脂材・アルミサッシ、引渡し前のまとめ補修や緊急補修、継続的なお取引をご相談いただけます。'),
+        'TITLE': esc(data['seo']['title']),
+        'SEO_HEAD': seo_head(data, review),
+        'META_DESCRIPTION': esc(data['seo']['description']),
         'REVIEW_BAR': review_bar, 'BRAND': brand,
         'FOOTER_BRAND': footer_brand, 'FAVICONS': favicon or '<link rel="icon" href="data:,">',
         'BRAND_NAME': esc(data['brand']['nameEn']), 'BRAND_NAME_JA': esc(data['brand']['nameJa']),
@@ -270,6 +343,8 @@ def main():
         shutil.copy2(source, target)
         if hashlib.sha256(source.read_bytes()).digest() != hashlib.sha256(target.read_bytes()).digest():
             raise ValueError(f'元画像と配信ファイルが一致しません: {value}')
+    if args.mode == 'release':
+        write_indexing_files(out, data)
     if args.mode == 'review':
         preview = ROOT / 'design' / 'preview.html'
         preview.parent.mkdir(exist_ok=True)

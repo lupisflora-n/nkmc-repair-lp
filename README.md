@@ -63,3 +63,7 @@ TRCとRBSの紹介根拠・採用情報は[公式調査メモ](docs/TRC_RESEARCH
 ## v0.4：ユーザー編集原稿の反映
 
 2026-10-31受領の原稿を反映。44項目の文言変更・削除・移動・リンク変更を実施。最新はdesign/preview.html、全文はdocs/COPY_DRAFT.md。一括編集用原稿もv0.4へ更新済みです。
+
+## v0.5：OUR STORY削除・SEO
+
+中段OUR STORYを削除し、[基本SEO](docs/SEO.md)を実装。公開URLとWeb公開は未確定。[0.7秒の演出10案](design/effect-options.html)はダウンロードして比較できます。実LPへの演出適用は番号選択待ちです。

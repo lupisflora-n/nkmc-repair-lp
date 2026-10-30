@@ -55,9 +55,16 @@ try:
                 assert page.locator('.hero .brand-promise').count() == 0
                 assert '傷を直す。その先の、' in page.locator('.hero-story h2').inner_text()
                 assert 'リブライトの原点です。' in page.locator('.hero-story').inner_text()
-                assert 'リブライトの原点です。' not in page.locator('#brand-concept').inner_text()
+                assert page.locator('#brand-concept').count() == 0
+                assert 'OUR STORY' not in page.locator('main').inner_text()
+                assert page.locator('meta[name="robots"]').get_attribute('content') == 'noindex,nofollow'
+                assert page.locator('link[rel="canonical"]').count() == 0
+                structured = json.loads(page.locator('script[type="application/ld+json"]').text_content())
+                assert structured['name'] == 'リブライト'
+                assert '住所' not in structured
+                assert '千葉' in page.title()
                 order = page.locator('main > section').evaluate_all('(sections) => sections.map(section => section.id).filter(Boolean)')
-                assert order == ['works', 'services', 'brand-concept', 'partner', 'approach', 'area', 'process', 'contact'], order
+                assert order == ['works', 'services', 'partner', 'approach', 'area', 'process', 'contact'], order
                 assert page.locator('.practice-list li').count() == 3
                 overflow = page.evaluate('document.documentElement.scrollWidth > window.innerWidth')
                 assert not overflow, f'horizontal overflow at {width}px'
@@ -97,10 +104,7 @@ try:
             page.locator('.faq-item').first.locator('summary').click()
             assert page.locator('.faq-item').first.get_attribute('open') is not None
             report['checks']['faqExpanded'] = True
-            page.locator('.concept-details summary').click()
-            assert page.locator('.concept-details').get_attribute('open') is not None
-            assert page.locator('.brand-origin').is_visible()
-            report['checks']['approvedConceptAndNameOriginExpandable'] = True
+            report['checks']['ourStorySectionRemoved'] = True
             report['checks']['restructuredSectionOrder'] = True
             context.route('https://www.instagram.com/**', lambda route: route.fulfill(status=200, content_type='text/html', body='<title>External navigation check</title>'))
             with page.expect_popup() as popup_info:

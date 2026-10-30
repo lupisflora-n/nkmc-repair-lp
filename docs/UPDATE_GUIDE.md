@@ -72,3 +72,9 @@ ZIPには制作記録と確認用の原稿を含むため、ZIP全体を公開�
 `python scripts/export_copy_editor.py` でdocs/COPY_EDIT.txt、design/copy-editor.html、design/copy-edit-map.jsonを生成する。番号と項目名を残して本文を編集し、全文をチャットへ返送する。削除希望は本文を「【削除】」にする。
 
 編集用HTMLはローカルで完結し、保存ボタンから編集済み全文をTXTでダウンロードする。自動保存・通信・LPへの自動反映はない。ユーザーから返送された編集済みファイルを生成処理で上書きしない。対応表と基準版を使って原文との差分を確認し、本文・固定文言の掲載箇所へ反映してプレビューを更新する。原稿の変更だけで掲載条件の確認フラグを変更しない。
+
+## SEOと初回演出
+
+SEO設定はcontent.jsonのseoとpublication.siteUrl。公開URLが決まると公開版だけcanonical・OG URL・サイトマップ・robotsを生成する。SEO.mdを参照。
+
+showAboutSection=falseで中段OUR STORYは非表示。冒頭のブランド文はstoryPlacement=heroで継続。初回演出は候補選択待ちで未実装。候補番号と内容はEFFECT_OPTIONS.txtへ記録し、実装時に選択番号を工程へ追記する。
