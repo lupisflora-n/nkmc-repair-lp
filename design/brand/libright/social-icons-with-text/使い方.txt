@@ -1,0 +1,9 @@
+liBright｜文字入りアカウントアイコン
+
+LINE：liBright-LINE-icon.png
+Instagram：liBright-Instagram-icon.png
+
+どちらも同じデザインの1254×1254px PNGです。マークの下に、ユーザー指定の表記「liBright」を加えた文字入り版です。
+アップロード時は拡大せず、正方形の画像全体を収めてください。
+文字を含むこの版は生成画像のPNGで、アウトラインSVGではありません。
+アカウントの実アイコン変更は行っていません。

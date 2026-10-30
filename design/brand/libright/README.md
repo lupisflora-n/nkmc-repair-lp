@@ -16,3 +16,7 @@ Web・LPで表示する実ベクターSVGは `site/assets/brand/libright/logos/s
 ## LINE・Instagramアイコン
 
 [アップロード用データ](social-icons/)に、同じSNSデザインの1024px PNGをLINE用・Instagram用の名前で保存しています。SVGと通常カラー透過素材も同梱。正式納品済み素材のバイト列を維持した複製で、使い方とSHA-256を添えています。
+
+## liBright文字入りアイコン
+
+[文字入りPNG](social-icons-with-text/)はユーザー指定でマークの下にliBright表記を加えた別バリエーション。LINE・Instagram用、1254px正方形。生成PNGで、アウトラインSVGではありません。既存の正式SVGとマークのみのアイコンはそのまま保管しています。
