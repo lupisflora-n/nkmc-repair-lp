@@ -73,3 +73,7 @@ TRCとRBSの紹介根拠・採用情報は[公式調査メモ](docs/TRC_RESEARCH
 [演出比較のGIF・MP4](design/previews/effects/)は1〜5と6〜10に分けて提供。MP4はH.264 Baseline/yuv420p/faststart、各5.4秒（0.7秒の演出＋確認の間隔を3回繰り返す）。実LPの演出は選択待ち。
 
 今後のLPプレビューは写真を含む単体HTMLを主に渡す。元の写真・ロゴのバイト列を可逆に埋め込み、画像の加工・再エンコードは行わない。
+
+## 最新の初回演出候補
+
+ユーザー指示により、マーク自体が合体・変化する[1.2秒版](docs/EFFECT_OPTIONS_V2.txt)へ更新。チャット内確認用はdesign/previews/mark-effects-12s/のGIF・コマ送りPNGです。旧0.7秒案とは別の新版で、実LPへの適用は番号選択後です。

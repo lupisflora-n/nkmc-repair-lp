@@ -82,3 +82,7 @@ showAboutSection=falseで中段OUR STORYは非表示。冒頭のブランド文�
 ## スマホでの演出比較
 
 HTMLの演出ボタンが動かない場合はscripts/render_effect_videos.pyでMP4とGIFを書き出す。MP4はH.264 Baseline/yuv420p/faststartで提供。チャットのGIF表示と動画リンクを併用し、ユーザー端末での実再生が確認できたとは説明しない。比較動画とLP本体のプレビューは区別し、LPプレビューはHTMLを主に渡す。
+
+## 最新のマーク演出候補
+
+旧0.7秒案はEFFECT_OPTIONS_V2.txtの新版1.2秒案へ更新。scripts/render_mark_effects.pyでマーク自体を動かす比較用HTMLと、チャット内用GIF・コマ送りPNGを生成する。0.8秒で正式形状へ戻し、1.2秒で本文へ完全に切り替える。候補番号が選ばれるまで実LPへ適用しない。

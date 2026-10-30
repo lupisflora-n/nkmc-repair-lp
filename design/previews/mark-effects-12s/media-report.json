@@ -1,0 +1,18 @@
+[
+  {
+    "options": "01-05",
+    "gif": "LIBRIGHT-mark-12s-01-05.gif",
+    "bytes": 355371,
+    "storyboard": "LIBRIGHT-mark-12s-01-05-storyboard.png",
+    "transitionSeconds": 1.2,
+    "gifLoopSeconds": 1.8
+  },
+  {
+    "options": "06-10",
+    "gif": "LIBRIGHT-mark-12s-06-10.gif",
+    "bytes": 332550,
+    "storyboard": "LIBRIGHT-mark-12s-06-10-storyboard.png",
+    "transitionSeconds": 1.2,
+    "gifLoopSeconds": 1.8
+  }
+]
