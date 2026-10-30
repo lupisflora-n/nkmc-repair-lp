@@ -59,7 +59,8 @@ try:
                 assert page.locator('#pricing').count() == 0
                 assert page.locator('.partner-section').count() == 1
                 assert page.locator('#partner').inner_text().count('株式会社TRC') >= 2
-                assert page.locator('#partner a').count() == 0
+                assert page.locator('#partner a').count() == 3
+                assert page.locator('#partner a').last.get_attribute('href') == 'https://www.youtube.com/@rbs-ch'
                 assert page.locator('.original-photo').count() == 6
                 for photo in page.locator('.original-photo').all():
                     dimensions = photo.evaluate('(img) => ({width: img.clientWidth, height: img.clientHeight, ratio: img.naturalWidth / img.naturalHeight, fit: getComputedStyle(img).objectFit, filter: getComputedStyle(img).filter})')

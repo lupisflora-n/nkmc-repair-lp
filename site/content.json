@@ -156,16 +156,30 @@
     "name": null,
     "relationship": null,
     "description": null,
-    "officialUrl": null,
+    "officialUrl": "https://total-repair-circle.com/",
     "confirmed": false,
     "publicationCleared": false,
     "reviewDraft": {
       "show": true,
       "headline": "技術を学び、\n現場で磨き続ける。",
       "name": "株式会社TRC",
-      "relationship": "リブライトの代表は、株式会社TRCが運営するリペアスクールで技術を学び、卒業後も同社の現場協力者として、住宅の引渡し前のキズ補修に携わっています。",
+      "relationship": "リブライトの代表は、株式会社TRCが運営するリペアビジネススクール（RBS）で技術を学び、卒業後も同社の現場協力者として、住宅の引渡し前のキズ補修に携わっています。",
       "approach": "さまざまなキズに向き合いながら、仕上がりと現場に合わせた対応を磨いています。",
-      "description": "株式会社TRCは、住宅のキズ補修と、リペアスクールを通じた技術者の育成に取り組んでいます。補修の依頼先をお探しの方、技術を学びたい方へ、同社の取り組みもご紹介します。"
+      "description": "株式会社TRCは、神奈川県相模原市を拠点に、住宅のキズ補修・リフォームと、リペアビジネススクール（RBS）による技術者育成に取り組む会社です。RBSでは、補修や調色の技術に加え、営業・経営も学べる環境を提供しています。",
+      "links": [
+        {
+          "label": "TRCの公式サイトを見る",
+          "url": "https://total-repair-circle.com/"
+        },
+        {
+          "label": "RBSのスクール案内を見る",
+          "url": "https://lp.repair-business-school.com"
+        },
+        {
+          "label": "RBSのYouTubeチャンネルを見る",
+          "url": "https://www.youtube.com/@rbs-ch"
+        }
+      ]
     }
   },
   "copy": {

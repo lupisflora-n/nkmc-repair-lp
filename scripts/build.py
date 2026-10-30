@@ -179,7 +179,8 @@ def render(data, review):
         partner = f'<section class="partner-section" id="partner"><div class="wrap"><span class="section-label">PARTNER</span><h2>{esc(p["name"])}</h2><p>{esc(p["relationship"])}</p><p>{esc(p["description"])}</p><a href="{esc(web_url(p["officialUrl"]))}" target="_blank" rel="noopener noreferrer">{esc(p["name"])}の公式サイトを見る</a></div></section>'
     elif review and p.get('reviewDraft', {}).get('show'):
         draft = p['reviewDraft']
-        partner = '<section class="partner-section" id="partner"><div class="wrap partner-grid"><div><span class="section-label">FIELD EXPERIENCE</span><h2>' + lines(draft['headline']) + '</h2><p class="partner-draft-note">紹介文案｜関係・紹介内容・掲載条件は最終確認前です。</p></div><div><p>' + esc(draft['relationship']) + '</p><p>' + esc(draft['approach']) + '</p><div class="partner-company"><h3>' + esc(draft['name']) + 'について</h3><p>' + esc(draft['description']) + '</p><p class="partner-draft-note">公式サイトへの案内は、URL確認後に追加します。</p></div></div></div></section>'
+        draft_links = '<nav class="partner-links" aria-label="TRC・RBSのご紹介">' + ''.join(f'<a href="{esc(web_url(link["url"]))}" target="_blank" rel="noopener noreferrer">{esc(link["label"])}</a>' for link in draft.get('links', [])) + '</nav>' if draft.get('links') else ''
+        partner = '<section class="partner-section" id="partner"><div class="wrap partner-grid"><div><span class="section-label">FIELD EXPERIENCE</span><h2>' + lines(draft['headline']) + '</h2><p class="partner-draft-note">紹介文案｜関係・紹介内容・掲載条件は最終確認前です。</p></div><div><p>' + esc(draft['relationship']) + '</p><p>' + esc(draft['approach']) + '</p><div class="partner-company"><h3>' + esc(draft['name']) + 'について</h3><p>' + esc(draft['description']) + '</p>' + draft_links + '</div></div></div></section>'
     business = data['business']
     business_html = ''
     if business.get('publishDetails'):

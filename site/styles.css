@@ -152,6 +152,8 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
 .partner-grid { display:grid; grid-template-columns:1fr 1fr; gap:94px; }
 .partner-company { border-top:1px solid var(--line); margin-top:25px; padding-top:22px; }
 .partner-company h3 { font-size:17px; }
+.partner-links { display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-top:22px; font-size:12px; }
+.partner-links a { padding-block:5px; }
 .partner-section .partner-draft-note { font-size:10px; color:var(--muted); }
 .partner-section p { font-size:13px; max-width:720px; color:var(--muted); }
 .mobile-contact { display:none; }
