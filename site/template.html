@@ -28,7 +28,7 @@
   <main id="main">
     <div class="wrap hero">
       <div class="hero-copy">
-        <p class="eyebrow">工務店・建築会社のみなさまへ</p>
+        {{HERO_EYEBROW}}
         <h1>{{HERO_HEADLINE}}</h1>
         <p class="hero-description">{{HERO_DESCRIPTION}}</p>
         {{BRAND_PROMISE}}
@@ -58,7 +58,7 @@
     {{FAQ_SECTION}}
     <section class="contact-section" id="contact">
       <div class="wrap contact-grid">
-        <div><span class="section-label">CONTACT</span><h2>{{CONTACT_HEADLINE}}</h2><p>{{CONTACT_INTRO}}</p></div>
+        <div><span class="section-label">CONTACT</span><h2>{{CONTACT_HEADLINE}}</h2>{{CONTACT_INTRO}}</div>
         <div>
           <p>{{CONTACT_PROMPT}}</p>
           <ul class="contact-list">{{CONTACT_FIELDS}}</ul>
@@ -71,7 +71,7 @@
     </section>
   </main>
   <footer class="footer-shell"><div class="wrap footer"><a class="brand" href="#main" aria-label="リブライト ページ先頭へ">{{FOOTER_BRAND}}</a><span class="footer-service">{{BRAND_NAME_JA}}｜住宅リペア・キズ補修</span>{{BUSINESS_DETAILS}}<span class="copyright">© {{BRAND_NAME}}</span></div></footer>
-  <div class="mobile-contact"><span>引渡し前の補修・継続取引<br>現場のご相談はこちら</span><a class="button" href="#contact">補修を相談する<span class="button-arrow" aria-hidden="true">↗</span></a></div>
+  <div class="mobile-contact"><span>{{MOBILE_CONTACT_NOTE}}</span><a class="button" href="#contact">補修を相談する<span class="button-arrow" aria-hidden="true">↗</span></a></div>
   <dialog class="photo-dialog" id="photo-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><span id="dialog-title">施工写真</span><button class="dialog-close" type="button" data-close-dialog autofocus>閉じる</button></div><img class="dialog-image" id="dialog-image" alt=""><p class="dialog-caption" id="dialog-caption"></p></dialog>
   <noscript><p class="wrap no-script">相談文は選択してコピーできます。写真は通常の表示でご確認ください。</p></noscript>
   {{SCRIPT}}

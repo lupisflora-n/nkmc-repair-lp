@@ -51,6 +51,11 @@ try:
                     assert dimensions['width'] >= 220, (selector, width, dimensions)
                     assert abs(dimensions['width'] / dimensions['height'] - dimensions['ratio']) < .02
                 assert page.locator('.hero-symbol').count() == 1
+                assert page.locator('.hero .eyebrow').count() == 0
+                assert page.locator('.hero .brand-promise').count() == 0
+                assert '傷を直す。その先の、' in page.locator('.hero-story h2').inner_text()
+                assert 'リブライトの原点です。' in page.locator('.hero-story').inner_text()
+                assert 'リブライトの原点です。' not in page.locator('#brand-concept').inner_text()
                 order = page.locator('main > section').evaluate_all('(sections) => sections.map(section => section.id).filter(Boolean)')
                 assert order == ['works', 'services', 'brand-concept', 'partner', 'approach', 'area', 'process', 'contact'], order
                 assert page.locator('.practice-list li').count() == 3
@@ -58,9 +63,9 @@ try:
                 assert not overflow, f'horizontal overflow at {width}px'
                 assert page.locator('#pricing').count() == 0
                 assert page.locator('.partner-section').count() == 1
-                assert page.locator('#partner').inner_text().count('株式会社TRC') >= 2
-                assert page.locator('#partner a').count() == 3
-                assert page.locator('#partner a').last.get_attribute('href') == 'https://www.youtube.com/@rbs-ch'
+                assert '株式会社TRC' in page.locator('#partner').inner_text()
+                assert page.locator('#partner a').count() == 2
+                assert page.locator('#partner a').last.get_attribute('href') == 'https://total-repair-circle.com/'
                 assert page.locator('.original-photo').count() == 6
                 for photo in page.locator('.original-photo').all():
                     dimensions = photo.evaluate('(img) => ({width: img.clientWidth, height: img.clientHeight, ratio: img.naturalWidth / img.naturalHeight, fit: getComputedStyle(img).objectFit, filter: getComputedStyle(img).filter})')

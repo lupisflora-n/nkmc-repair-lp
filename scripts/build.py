@@ -131,7 +131,13 @@ def render(data, review):
     footer_brand = brand_image('horizontalWhite', 'footer-logo', 'LIBRIGHT リブライト') or brand
     symbol = brand_image('symbol', 'hero-symbol', '')
     if symbol:
-        hero = '<div class="hero-emblem"><span class="emblem-index">LIBRIGHT / HOUSING REPAIR</span>' + symbol + '<div class="emblem-caption"><span>仕上げの一筆。</span><p>その先の、晴れやかな暮らしへ。</p></div></div>'
+        if copy.get('storyPlacement') == 'hero':
+            caption = '<h2>' + lines(copy['aboutHeadline']) + '</h2>' if review or copy.get('aboutConfirmed') else ''
+            if review or copy.get('storyConfirmed'):
+                caption += ''.join(f'<p>{lines(paragraph)}</p>' for paragraph in copy['storyText'].split('\n\n'))
+            hero = '<div class="hero-emblem hero-story"><span class="emblem-index">LIBRIGHT / HOUSING REPAIR</span>' + symbol + '<div class="emblem-caption">' + caption + '</div></div>'
+        else:
+            hero = '<div class="hero-emblem"><span class="emblem-index">LIBRIGHT / HOUSING REPAIR</span>' + symbol + '<div class="emblem-caption"><span>仕上げの一筆。</span><p>その先の、晴れやかな暮らしへ。</p></div></div>'
     favicon = ''
     for key, mime, sizes in [('favicon', 'image/svg+xml', 'any'), ('faviconPng', 'image/png', '32x32')]:
         if data['brand'].get('assetsReady') and assets.get(key):
@@ -148,7 +154,11 @@ def render(data, review):
         if copy.get('storyText') and (review or copy.get('storyConfirmed')):
             story = ''.join(f'<p>{lines(p)}</p>' for p in copy['storyText'].split('\n\n'))
             narrative = '<h3 class="story-heading">' + lines(copy['storyHeadline']) + '</h3>' + story + '<details class="concept-details"><summary>リブライトが大切にしていること</summary><div>' + paragraphs + origin + '</div></details>'
-        about = '<section class="wrap about-grid" id="brand-concept"><div><span class="section-label">OUR STORY</span><h2>' + lines(copy['aboutHeadline']) + '</h2>' + bridge + '</div><div class="about-text">' + narrative + '</div></section>'
+        about_title = copy['aboutHeadline']
+        if copy.get('storyPlacement') == 'hero':
+            about_title = copy['storyHeadline']
+            narrative = '<details class="concept-details"><summary>リブライトが大切にしていること</summary><div>' + paragraphs + origin + '</div></details>'
+        about = '<section class="wrap about-grid" id="brand-concept"><div><span class="section-label">OUR STORY</span><h2>' + lines(about_title) + '</h2>' + bridge + '</div><div class="about-text">' + narrative + '</div></section>'
     practice = ''
     if copy.get('practiceItems') and (review or copy.get('practiceConfirmed')):
         items = ''.join(f'<li><span class="practice-number">{i:02}</span><h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></li>' for i, item in enumerate(copy['practiceItems'], 1))
@@ -179,8 +189,8 @@ def render(data, review):
         partner = f'<section class="partner-section" id="partner"><div class="wrap"><span class="section-label">PARTNER</span><h2>{esc(p["name"])}</h2><p>{esc(p["relationship"])}</p><p>{esc(p["description"])}</p><a href="{esc(web_url(p["officialUrl"]))}" target="_blank" rel="noopener noreferrer">{esc(p["name"])}の公式サイトを見る</a></div></section>'
     elif review and p.get('reviewDraft', {}).get('show'):
         draft = p['reviewDraft']
-        draft_links = '<nav class="partner-links" aria-label="TRC・RBSのご紹介">' + ''.join(f'<a href="{esc(web_url(link["url"]))}" target="_blank" rel="noopener noreferrer">{esc(link["label"])}</a>' for link in draft.get('links', [])) + '</nav>' if draft.get('links') else ''
-        partner = '<section class="partner-section" id="partner"><div class="wrap partner-grid"><div><span class="section-label">FIELD WORK</span><h2>' + lines(draft['headline']) + '</h2><p class="partner-draft-note">紹介文案｜関係・紹介内容・掲載条件は最終確認前です。</p></div><div><p>' + esc(draft['relationship']) + '</p><p>' + esc(draft['approach']) + '</p></div><aside class="partner-company" aria-labelledby="partner-company-title"><div><h3 id="partner-company-title">' + esc(draft['companyHeadline']) + '</h3><p>' + esc(draft['description']) + '</p></div>' + draft_links + '</aside></div></section>'
+        draft_links = '<nav class="partner-links" aria-label="TRC・RBSのご紹介">' + ''.join(f'<a href="{esc(web_url(link["url"]))}" target="_blank" rel="noopener noreferrer">{esc(link["label"])}</a>' for link in draft.get('links', []) if link.get('label')) + '</nav>' if draft.get('links') else ''
+        partner = '<section class="partner-section" id="partner"><div class="wrap partner-grid"><div><span class="section-label">FIELD WORK</span><h2>' + lines(draft['headline']) + '</h2><p class="partner-draft-note">紹介文案｜関係・紹介内容・掲載条件は最終確認前です。</p></div><div><p>' + esc(draft['relationship']) + '</p>' + (('<p>' + esc(draft['approach']) + '</p>') if draft.get('approach') else '') + '</div><aside class="partner-company" aria-labelledby="partner-company-title"><div><h3 id="partner-company-title">' + esc(draft['companyHeadline']) + '</h3><p>' + lines(draft['description']) + '</p></div>' + draft_links + '</aside></div></section>'
     business = data['business']
     business_html = ''
     if business.get('publishDetails'):
@@ -189,7 +199,7 @@ def render(data, review):
     values = {
         'ROBOTS': 'noindex,nofollow' if review else 'index,follow',
         'TITLE': esc('工務店・建築会社向け住宅リペア｜千葉・関東｜LIBRIGHT'),
-        'META_DESCRIPTION': esc('リブライトは千葉県を中心に関東エリアの住宅のキズ補修に対応。木部・フローリング・アルミサッシ、引渡し前のまとめ補修や緊急補修、継続的なお取引をご相談いただけます。'),
+        'META_DESCRIPTION': esc('リブライトは千葉県を中心に関東エリアの住宅のキズ補修に対応。木部・樹脂材・アルミサッシ、引渡し前のまとめ補修や緊急補修、継続的なお取引をご相談いただけます。'),
         'REVIEW_BAR': review_bar, 'BRAND': brand,
         'FOOTER_BRAND': footer_brand, 'FAVICONS': favicon or '<link rel="icon" href="data:,">',
         'BRAND_NAME': esc(data['brand']['nameEn']), 'BRAND_NAME_JA': esc(data['brand']['nameJa']),
@@ -199,8 +209,11 @@ def render(data, review):
         'BRAND_PROMISE': f'<p class="brand-promise">{esc(copy["brandPromise"])}</p>' if copy.get('brandPromise') else '',
         'PRIMARY_CTA': esc(copy['primaryCta']), 'HERO_VISUAL': hero,
         'AREA_SUMMARY': esc(data['area']['summary']),
+        'HERO_EYEBROW': ('<p class="eyebrow">' + esc(copy['heroEyebrow']) + '</p>') if copy.get('heroEyebrow') else '',
+        'MOBILE_CONTACT_NOTE': lines(copy['mobileContactNote']),
         'PRACTICE_SECTION': practice,
-        **{key: lines(copy[name]) for key, name in [('HERO_SUBNOTE', 'heroSubnote'), ('SERVICES_HEADLINE', 'servicesHeadline'), ('AREA_HEADLINE', 'areaHeadline'), ('AREA_DESCRIPTION', 'areaDescription'), ('CONTACT_HEADLINE', 'contactHeadline'), ('CONTACT_INTRO', 'contactIntro'), ('CONTACT_PROMPT', 'contactPrompt'), ('CONTACT_BUTTON', 'contactButton'), ('CONTACT_HELP', 'contactHelp'), ('SECONDARY_AUDIENCE', 'secondaryAudience')]},
+        **{key: lines(copy[name]) for key, name in [('HERO_SUBNOTE', 'heroSubnote'), ('SERVICES_HEADLINE', 'servicesHeadline'), ('AREA_HEADLINE', 'areaHeadline'), ('AREA_DESCRIPTION', 'areaDescription'), ('CONTACT_HEADLINE', 'contactHeadline'), ('CONTACT_PROMPT', 'contactPrompt'), ('CONTACT_BUTTON', 'contactButton'), ('CONTACT_HELP', 'contactHelp'), ('SECONDARY_AUDIENCE', 'secondaryAudience')]},
+        'CONTACT_INTRO': ('<p>' + lines(copy['contactIntro']) + '</p>') if copy.get('contactIntro') else '',
         'CONTACT_FIELDS': ''.join(f'<li>{esc(field)}</li>' for field in copy['contactFields']),
         'MATERIALS_LINE': ''.join(f'<span>{esc(value)}</span>' for value in data['services']['materials']),
         'WORKS_SECTION': works, 'SERVICE_ROWS': service_rows, 'ABOUT_SECTION': about,

@@ -284,3 +284,14 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
   html { scroll-behavior:auto; }
   *,*::before,*::after { transition:none!important; }
 }
+
+/* 編集原稿で指定されたブランド文・原点本文の冒頭配置。 */
+.hero-story .hero-symbol { width:160px; margin-inline:auto; padding:20px 0; }
+.hero-story .emblem-caption h2 { font-size:24px; line-height:1.8; }
+.hero-story .emblem-caption p { font-size:12px; line-height:2; margin-top:18px; }
+@media (max-width:760px) {
+  .hero-story .hero-symbol { width:120px; }
+  .hero-story .emblem-caption h2 { font-size:22px; }
+  .mobile-contact > span { flex:1; min-width:0; }
+  .mobile-contact .button { flex-shrink:0; }
+}

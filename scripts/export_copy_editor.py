@@ -28,16 +28,16 @@ def field(label, path=None, value=None, source=None):
         source = 'site/content.json:' + path
     else:
         assert value in (ROOT / source).read_text(encoding='utf-8'), (label, value)
-    assert isinstance(value, str) and value
+    assert isinstance(value, str)
     records.append({'id': f'{group}{counter:02}', 'label': label, 'text': value, 'source': source})
 
 
 section('A', '冒頭')
-field('対象のお客様', value='工務店・建築会社のみなさまへ', source='site/template.html')
+field('対象のお客様（削除済み）', 'copy.heroEyebrow')
 for label,key in [('主見出し','heroHeadline'),('説明文','heroDescription'),('ブランドの一文','brandPromise'),('相談ボタン','primaryCta'),('相談ボタン下の補足','heroSubnote')]: field(label,'copy.'+key)
 field('施工写真へのリンク', value='施工前後の写真を見る ↓',source='scripts/build.py')
-field('マーク横の短い言葉',value='仕上げの一筆。',source='scripts/build.py')
-field('マーク横の補足',value='その先の、晴れやかな暮らしへ。',source='scripts/build.py')
+field('旧マーク横の短い言葉（削除済み・E01が冒頭に移動）',value='',source='scripts/build.py')
+field('旧マーク横の補足（削除済み・E04が冒頭に移動）',value='',source='scripts/build.py')
 section('B','対応地域・部材の帯（部材名は地域欄にも共通）')
 field('地域の要約','area.summary')
 for i in range(len(data['services']['materials'])):field(f'対応部材{i+1}','services.materials.'+str(i))
@@ -91,15 +91,18 @@ field('手動コピー時の案内',value='文面を選択しました。端末�
 field('一般のお客様への案内','copy.secondaryAudience')
 section('L','メニュー・スマホ下部のボタン・写真拡大画面')
 for label,text in [('メニュー1','施工事例'),('メニュー2','対応内容'),('メニューの相談ボタン','ご相談'),('スマホ下部の補足','引渡し前の補修・継続取引<br>現場のご相談はこちら'),('スマホ下部のボタン','補修を相談する'),('写真拡大の見出し','施工写真'),('写真拡大を閉じるボタン','閉じる'),('JavaScript無効時の案内','相談文は選択してコピーできます。写真は通常の表示でご確認ください。')]:
-    field(label,value=text,source='scripts/build.py' if label == 'メニュー1' else 'site/template.html')
-    records[-1]['text']=text.replace('<br>','\n')
+    if label == 'スマホ下部の補足':
+        field(label,'copy.mobileContactNote')
+    else:
+        field(label,value=text,source='scripts/build.py' if label == 'メニュー1' else 'site/template.html')
+        records[-1]['text']=text.replace('<br>','\n')
 section('M','写真の代替説明（通常は画像が表示できない場合等に使う文章）')
 for i in range(len(data['cases']['items'])):
     field(f'事例{i+1}・補修前の説明',f'cases.items.{i}.altBefore')
     field(f'事例{i+1}・補修後の説明',f'cases.items.{i}.altAfter')
 
 intro = '''LIBRIGHT｜掲載文 一括編集用原稿
-基準版：v0.3／2026-10-30
+基準版：v0.4／2026-10-31
 
 使い方
 ・【A01｜…】などの項目番号と項目名は残し、その下の文章を直接書き換えてください。
@@ -109,6 +112,7 @@ intro = '''LIBRIGHT｜掲載文 一括編集用原稿
 ・編集したファイル全体をこのチャットへ添付するか、全文を貼り付けて「この原稿に差し替え」と送ってください。
 ・編集だけではLPは変わりません。受け取り後に差分を確認し、LPとプレビューへ反映します。
 
+配置：E01とE04は冒頭のマーク欄へ移動済みです。空欄・削除済みの項目を再掲載したい場合は追加指示へ記入してください。
 対象：現在の確認版の日本語の見出し・本文・ボタン等。TRC紹介、FAQ、開閉内の本文も含みます。
 ロゴ内の文字、写真自体、装飾の英字・番号、制作確認用の注意表示、未掲載の料金欄は対象外です。
 同じ意味の文章が別項目にもある場合は、各項目を編集してください。Bの部材名だけは同じデータを複数箇所で共用しています。
@@ -118,11 +122,11 @@ intro = '''LIBRIGHT｜掲載文 一括編集用原稿
 parts=[intro]
 for record in records:
     if 'section' in record:parts.append('\n──────── '+record['section']+' ────────\n')
-    else:parts.append('\n【'+record['id']+'｜'+record['label']+'】\n'+record['text']+'\n')
+    else:parts.append('\n【'+record['id']+'｜'+record['label']+'】\n'+(record['text'] or '【削除】')+'\n')
 parts.append('\n==================== 原稿ここまで ====================\n\n【追加指示】\n（必要があれば記入してください）\n')
 text='\n'.join(parts)
 (ROOT/'docs/COPY_EDIT.txt').write_text(text,encoding='utf-8')
-(ROOT/'design/copy-edit-map.json').write_text(json.dumps({'baseline':'v0.3','sourceSha256':hashlib.sha256((ROOT/'site/content.json').read_bytes()).hexdigest(),'fields':records},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+(ROOT/'design/copy-edit-map.json').write_text(json.dumps({'baseline':'v0.4','sourceSha256':hashlib.sha256((ROOT/'site/content.json').read_bytes()).hexdigest(),'fields':records},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 style='*{box-sizing:border-box}body{margin:0;background:#f8f7f3;color:#151515;font:16px/1.8 sans-serif}main{max-width:1000px;margin:auto;padding:28px 20px}h1{font-size:24px}p{margin:12px 0}.actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}button{font:inherit;padding:12px 18px;border:1px solid #151515;background:#f3c63a;color:#151515;cursor:pointer}textarea{width:100%;height:65vh;min-height:360px;padding:18px;border:1px solid #888;border-radius:0;font:16px/1.9 sans-serif;resize:vertical;background:white;color:#151515}label{display:block;font-weight:bold;margin:16px 0 8px}#status{min-height:2em}a,button,textarea{outline-offset:3px}'
 js='''const editor=document.querySelector('#editor');const status=document.querySelector('#status');
 document.querySelector('#save').addEventListener('click',()=>{const blob=new Blob([editor.value],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='LIBRIGHT-掲載文-編集済み.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='保存したファイルを、このチャットへ添付してください。';});

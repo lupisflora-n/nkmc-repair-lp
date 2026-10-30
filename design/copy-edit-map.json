@@ -1,32 +1,32 @@
 {
-  "baseline": "v0.3",
-  "sourceSha256": "51f00548f56e8f34a52801080f70e6ea0b3c9cdb1101a0328598ea6fb870ae80",
+  "baseline": "v0.4",
+  "sourceSha256": "d31baa432a98ffbe4f5e375ade5972525c451ca79108b6012bab0219cba82512",
   "fields": [
     {
       "section": "A｜冒頭"
     },
     {
       "id": "A01",
-      "label": "対象のお客様",
-      "text": "工務店・建築会社のみなさまへ",
-      "source": "site/template.html"
+      "label": "対象のお客様（削除済み）",
+      "text": "",
+      "source": "site/content.json:copy.heroEyebrow"
     },
     {
       "id": "A02",
       "label": "主見出し",
-      "text": "引渡し前のキズ補修から、\n継続的な現場のご依頼まで。",
+      "text": "引渡し前のキズ補修から、\n急な依頼のご相談まで。",
       "source": "site/content.json:copy.heroHeadline"
     },
     {
       "id": "A03",
       "label": "説明文",
-      "text": "木部・フローリング・アルミサッシのキズ補修。\n千葉県を中心に、関東エリアの工務店・建築会社さまからのご相談を承ります。",
+      "text": "木部・樹脂材・アルミサッシのキズ補修。\n千葉県を中心に関東エリアのご依頼・ご相談を承ります。",
       "source": "site/content.json:copy.heroDescription"
     },
     {
       "id": "A04",
       "label": "ブランドの一文",
-      "text": "傷を直す。その先の、晴れやかな暮らしまで。",
+      "text": "",
       "source": "site/content.json:copy.brandPromise"
     },
     {
@@ -38,7 +38,7 @@
     {
       "id": "A06",
       "label": "相談ボタン下の補足",
-      "text": "引渡し前のまとめ補修・急な補修のご相談に。",
+      "text": "引渡し前のまとめ補修・急な補修、対応いたします。",
       "source": "site/content.json:copy.heroSubnote"
     },
     {
@@ -49,14 +49,14 @@
     },
     {
       "id": "A08",
-      "label": "マーク横の短い言葉",
-      "text": "仕上げの一筆。",
+      "label": "旧マーク横の短い言葉（削除済み・E01が冒頭に移動）",
+      "text": "",
       "source": "scripts/build.py"
     },
     {
       "id": "A09",
-      "label": "マーク横の補足",
-      "text": "その先の、晴れやかな暮らしへ。",
+      "label": "旧マーク横の補足（削除済み・E04が冒頭に移動）",
+      "text": "",
       "source": "scripts/build.py"
     },
     {
@@ -65,7 +65,7 @@
     {
       "id": "B01",
       "label": "地域の要約",
-      "text": "千葉県中心・関東エリア対応",
+      "text": "千葉県の補修屋・関東エリア対応",
       "source": "site/content.json:area.summary"
     },
     {
@@ -77,7 +77,7 @@
     {
       "id": "B03",
       "label": "対応部材2",
-      "text": "フローリング",
+      "text": "樹脂材",
       "source": "site/content.json:services.materials.1"
     },
     {
@@ -98,43 +98,43 @@
     {
       "id": "C01",
       "label": "見出し",
-      "text": "補修前と補修後を、\n写真でご覧ください。",
+      "text": "目立っていた傷が、元の暮らしに戻るまで",
       "source": "site/content.json:copy.worksHeadline"
     },
     {
       "id": "C02",
       "label": "導入文",
-      "text": "縦枠、上枠、扉の下端。実際の補修事例をご紹介します。",
+      "text": "よくある傷を実際の補修事例でご紹介します。",
       "source": "site/content.json:copy.worksDescription"
     },
     {
       "id": "C03",
       "label": "事例1の見出し",
-      "text": "縦枠の欠け補修",
+      "text": "木枠の欠け補修",
       "source": "site/content.json:cases.items.0.title"
     },
     {
       "id": "C04",
       "label": "事例1の説明",
-      "text": "室内建具の縦枠に生じた欠けの補修事例です。",
+      "text": "室内建具の木枠に生じた傷の補修事例です。",
       "source": "site/content.json:cases.items.0.description"
     },
     {
       "id": "C05",
       "label": "事例2の見出し",
-      "text": "上枠の角・接合部の補修",
+      "text": "木材継ぎ目の補修",
       "source": "site/content.json:cases.items.1.title"
     },
     {
       "id": "C06",
       "label": "事例2の説明",
-      "text": "室内建具の上枠の角・接合部に関する補修事例です。",
+      "text": "階段側板に生じた継ぎ目の補修事例です。",
       "source": "site/content.json:cases.items.1.description"
     },
     {
       "id": "C07",
       "label": "事例3の見出し",
-      "text": "扉下端の欠け補修",
+      "text": "扉下端の補修",
       "source": "site/content.json:cases.items.2.title"
     },
     {
@@ -179,25 +179,25 @@
     {
       "id": "D03",
       "label": "対応内容1の説明",
-      "text": "引渡し前に見つかった複数のキズを、まとめてご相談いただけます。箇所数や写真、引渡し予定日をお知らせください。",
+      "text": "引渡し前に見つかった複数のキズをまとめてご相談いただけます。箇所数や写真、引渡し予定日をお知らせください。",
       "source": "site/content.json:services.descriptions.0"
     },
     {
       "id": "D04",
       "label": "対応内容2の小見出し",
-      "text": "継続的な現場のご依頼",
+      "text": "住まいの小さなお悩みも。",
       "source": "site/content.json:services.titles.1"
     },
     {
       "id": "D05",
       "label": "対応内容2の説明",
-      "text": "現場ごとの補修はもちろん、今後の継続的なお取引についてもご相談ください。",
+      "text": "気になる傷、小さな不具合、個人のお客様からのご相談もお任せください。",
       "source": "site/content.json:services.descriptions.1"
     },
     {
       "id": "D06",
       "label": "対応内容3の小見出し",
-      "text": "緊急補修のご相談",
+      "text": "思わぬトラブルによる緊急の補修にも",
       "source": "site/content.json:services.titles.2"
     },
     {
@@ -218,7 +218,7 @@
     {
       "id": "E02",
       "label": "工務店向けの接続文",
-      "text": "引渡しの先にある、晴れやかな暮らしを支えるために。",
+      "text": "",
       "source": "site/content.json:copy.contractorBridge"
     },
     {
@@ -254,7 +254,7 @@
     {
       "id": "E08",
       "label": "名前の由来の本文",
-      "text": "フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、晴れやかな暮らしへ向かうお手伝いを目指しています。",
+      "text": "フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、暮らしの輝かしさを取り戻すお手伝いをしています。",
       "source": "site/content.json:copy.brandOriginText"
     },
     {
@@ -263,49 +263,49 @@
     {
       "id": "F01",
       "label": "Nさんの実務の見出し",
-      "text": "学んだ技術を、\n引渡し前の現場へ。",
+      "text": "学んだ技術を、\n求められる形と価値へ。",
       "source": "site/content.json:partnerIntroduction.reviewDraft.headline"
     },
     {
       "id": "F02",
       "label": "学びと現場協力の説明",
-      "text": "リペアビジネススクール（RBS）で学んだ補修技術を土台に、リブライトとして活動しています。卒業後も、運営会社である株式会社TRCの現場協力者として、住宅の引渡し前のキズ補修に携わっています。",
+      "text": "リペアの専門スクールで学んだ補修技術を土台に、リブライトとして活動しています。修了後もスクール運営会社の現場協力者として、住宅引渡し前の種類数多の傷キズ補修に日々向き合っています。",
       "source": "site/content.json:partnerIntroduction.reviewDraft.relationship"
     },
     {
       "id": "F03",
       "label": "現在の取り組みの補足",
-      "text": "現場ごとに異なるキズや条件に向き合いながら、一つひとつの補修に経験を重ねています。",
+      "text": "",
       "source": "site/content.json:partnerIntroduction.reviewDraft.approach"
     },
     {
       "id": "F04",
       "label": "TRC紹介の小見出し",
-      "text": "住宅補修と、その技術を担う人を育てる株式会社TRC",
+      "text": "住宅補修、その技術を担う人を育てるスクールとの出会い",
       "source": "site/content.json:partnerIntroduction.reviewDraft.companyHeadline"
     },
     {
       "id": "F05",
       "label": "TRC・RBS紹介の本文",
-      "text": "神奈川県相模原市を拠点に、住宅補修・リフォームと、リペアビジネススクール（RBS）の運営に取り組む会社です。RBSでは、補修・調色の技術に加え、営業や経営も学べる環境を提供しています。",
+      "text": "「補修って何？」「どんな傷が直せるの？」\nそんな疑問が補修を始める前の私にもありました。\nその疑問を解決するリペアビジネススクール（RBS）との出会い、そこで得た学びと技術で、今度は私が千葉を拠店に皆様の疑問にお答えいたします。",
       "source": "site/content.json:partnerIntroduction.reviewDraft.description"
     },
     {
       "id": "F06",
       "label": "案内リンク1の表示文",
-      "text": "TRCの事業・施工事例を見る",
+      "text": "",
       "source": "site/content.json:partnerIntroduction.reviewDraft.links.0.label"
     },
     {
       "id": "F07",
       "label": "案内リンク2の表示文",
-      "text": "RBSの学びとスクール案内を見る",
+      "text": "私が学んだスクール（RBS）のご紹介",
       "source": "site/content.json:partnerIntroduction.reviewDraft.links.1.label"
     },
     {
       "id": "F08",
       "label": "案内リンク3の表示文",
-      "text": "RBSのYouTubeチャンネルを見る",
+      "text": "スクール運営元、株式会社TRCのご紹介",
       "source": "site/content.json:partnerIntroduction.reviewDraft.links.2.label"
     },
     {
@@ -467,7 +467,7 @@
     {
       "id": "J07",
       "label": "回答3",
-      "text": "継続的なお取引を希望しています。今後の現場で補修先をお探しの工務店・建築会社さまも、まずはご相談ください。",
+      "text": "継続的なお取引もお待ちしております。今後の現場で補修先をお探しの工務店・建築会社さまも、まずはご相談ください。",
       "source": "site/content.json:copy.faq.2.answer"
     },
     {
@@ -479,7 +479,7 @@
     {
       "id": "J09",
       "label": "回答4",
-      "text": "はい。一般のお客様からの住宅のキズ補修もご相談いただけます。お住まいの市区町村、キズの写真、ご希望の日程をお知らせください。",
+      "text": "一般のお客様からの住宅のキズ補修もご相談いただけます。小さな傷、気がかりな点もお聞かせください。お住まいの市区町村、キズの写真、ご希望の日程をお知らせください。",
       "source": "site/content.json:copy.faq.3.answer"
     },
     {
@@ -488,13 +488,13 @@
     {
       "id": "K01",
       "label": "見出し",
-      "text": "次の現場の補修も、\nリブライトへご相談ください。",
+      "text": "住まいのお悩み、\nリブライトが解決します。",
       "source": "site/content.json:copy.contactHeadline"
     },
     {
       "id": "K02",
       "label": "導入文",
-      "text": "引渡し前のまとめ補修、急なキズ、\nこれからの継続的なお取引について。",
+      "text": "",
       "source": "site/content.json:copy.contactIntro"
     },
     {
@@ -506,7 +506,7 @@
     {
       "id": "K04",
       "label": "お知らせいただく内容1",
-      "text": "会社名・ご担当者名",
+      "text": "会社名・ご担当者名・お客様のお名前",
       "source": "site/content.json:copy.contactFields.0"
     },
     {
@@ -548,7 +548,7 @@
     {
       "id": "K11",
       "label": "相談文のひな形",
-      "text": "会社名・ご担当者名：\n現場の市区町村：\n希望日程・引渡し予定日：\nキズの箇所数：\n気になる点：\n\n（全体とキズが分かる写真を添付）",
+      "text": "会社名・ご担当者名・お客様のお名前：\n現場の市区町村：\n希望日程・引渡し予定日：\nキズの箇所数：\n気になる点：\n\n（全体とキズが分かる写真を添付）",
       "source": "site/content.json:contact.suggestedMessage"
     },
     {
@@ -572,7 +572,7 @@
     {
       "id": "K15",
       "label": "一般のお客様への案内",
-      "text": "一般のお客様もご相談いただけます。会社名の代わりに、お名前をお知らせください。",
+      "text": "◎一般のお客様もご相談いただけます。会社名の代わりに、お名前をお知らせください。",
       "source": "site/content.json:copy.secondaryAudience"
     },
     {
@@ -599,8 +599,8 @@
     {
       "id": "L04",
       "label": "スマホ下部の補足",
-      "text": "引渡し前の補修・継続取引\n現場のご相談はこちら",
-      "source": "site/template.html"
+      "text": "引渡し前の補修・お取引・現場のご相談はこちら",
+      "source": "site/content.json:copy.mobileContactNote"
     },
     {
       "id": "L05",
@@ -632,37 +632,37 @@
     {
       "id": "M01",
       "label": "事例1・補修前の説明",
-      "text": "縦枠の化粧面に欠けが見える補修前の写真",
+      "text": "木枠",
       "source": "site/content.json:cases.items.0.altBefore"
     },
     {
       "id": "M02",
       "label": "事例1・補修後の説明",
-      "text": "同じ縦枠を補修後として撮影した写真",
+      "text": "木枠補修後",
       "source": "site/content.json:cases.items.0.altAfter"
     },
     {
       "id": "M03",
       "label": "事例2・補修前の説明",
-      "text": "木目調の上枠の角・接合部を写した補修前の写真",
+      "text": "階段側板",
       "source": "site/content.json:cases.items.1.altBefore"
     },
     {
       "id": "M04",
       "label": "事例2・補修後の説明",
-      "text": "同じ上枠の角・接合部を補修後として撮影した写真",
+      "text": "階段側板補修後",
       "source": "site/content.json:cases.items.1.altAfter"
     },
     {
       "id": "M05",
       "label": "事例3・補修前の説明",
-      "text": "木目調の扉の下端に欠けと擦れが見える補修前の写真",
+      "text": "扉下端",
       "source": "site/content.json:cases.items.2.altBefore"
     },
     {
       "id": "M06",
       "label": "事例3・補修後の説明",
-      "text": "扉の下端を補修後として撮影した写真",
+      "text": "扉下端補修後",
       "source": "site/content.json:cases.items.2.altAfter"
     }
   ]

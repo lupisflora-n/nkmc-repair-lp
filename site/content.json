@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-10-30",
+  "updatedAt": "2026-10-31",
   "brand": {
     "nameJa": "リブライト",
     "nameEn": "LIBRIGHT",
@@ -33,7 +33,7 @@
   "services": {
     "materials": [
       "木部",
-      "フローリング",
+      "樹脂材",
       "アルミサッシ"
     ],
     "requests": [
@@ -49,18 +49,18 @@
       "sameDayGuaranteed": null
     },
     "descriptions": [
-      "引渡し前に見つかった複数のキズを、まとめてご相談いただけます。箇所数や写真、引渡し予定日をお知らせください。",
-      "現場ごとの補修はもちろん、今後の継続的なお取引についてもご相談ください。",
+      "引渡し前に見つかった複数のキズをまとめてご相談いただけます。箇所数や写真、引渡し予定日をお知らせください。",
+      "気になる傷、小さな不具合、個人のお客様からのご相談もお任せください。",
       "急なキズの補修もご相談いただけます。現場の地域とキズの状態、ご希望の日程を伺い、対応できるか確認します。"
     ],
     "titles": [
       "引渡し前のまとめ補修",
-      "継続的な現場のご依頼",
-      "緊急補修のご相談"
+      "住まいの小さなお悩みも。",
+      "思わぬトラブルによる緊急の補修にも"
     ]
   },
   "area": {
-    "summary": "千葉県中心・関東エリア対応",
+    "summary": "千葉県の補修屋・関東エリア対応",
     "municipalities": null,
     "travelConditions": null
   },
@@ -82,12 +82,12 @@
         "before": "assets/cases/case-01-before.jpg",
         "after": "assets/cases/case-01-after.jpg",
         "material": null,
-        "description": "室内建具の縦枠に生じた欠けの補修事例です。",
-        "altBefore": "縦枠の化粧面に欠けが見える補修前の写真",
-        "altAfter": "同じ縦枠を補修後として撮影した写真",
+        "description": "室内建具の木枠に生じた傷の補修事例です。",
+        "altBefore": "木枠",
+        "altAfter": "木枠補修後",
         "confirmed": false,
         "publicationCleared": false,
-        "title": "縦枠の欠け補修",
+        "title": "木枠の欠け補修",
         "beforeSha256": "7cc39982cca1963739896d2afa3c3e7d6c2ddd3ab5f133bc04758dd2c0a4010e",
         "afterSha256": "f1d3c14328a4cc99bac4c2a59ae4d149ee991524e55bf5bf063d89d20b030f37"
       },
@@ -96,12 +96,12 @@
         "before": "assets/cases/case-02-before.jpg",
         "after": "assets/cases/case-02-after.jpg",
         "material": null,
-        "description": "室内建具の上枠の角・接合部に関する補修事例です。",
-        "altBefore": "木目調の上枠の角・接合部を写した補修前の写真",
-        "altAfter": "同じ上枠の角・接合部を補修後として撮影した写真",
+        "description": "階段側板に生じた継ぎ目の補修事例です。",
+        "altBefore": "階段側板",
+        "altAfter": "階段側板補修後",
         "confirmed": false,
         "publicationCleared": false,
-        "title": "上枠の角・接合部の補修",
+        "title": "木材継ぎ目の補修",
         "beforeSha256": "d6215bc905895c74e2cf82852cac8f7795a2b946afdbaaf6bd801db97671241c",
         "afterSha256": "632956ad6ac1cd60d4f5ebf6300f96ea853e386bc72cba5cb4577cf23b9f3aaf"
       },
@@ -111,13 +111,13 @@
         "after": "assets/cases/case-03-after.jpg",
         "material": null,
         "description": "木目調の扉の下端に見られる欠け・傷の補修事例です。",
-        "altBefore": "木目調の扉の下端に欠けと擦れが見える補修前の写真",
-        "altAfter": "扉の下端を補修後として撮影した写真",
+        "altBefore": "扉下端",
+        "altAfter": "扉下端補修後",
         "confirmed": false,
         "publicationCleared": false,
         "beforeSha256": "d74224ddb0ba92fdd64ee6cfc5fc7bee1519904bc7a26dc76be9195d4215d57c",
         "afterSha256": "4129ead9cbb2065d0d480acbc954ea871c4064aa945ab3fd976f8ca3883f87b4",
-        "title": "扉下端の欠け補修"
+        "title": "扉下端の補修"
       }
     ],
     "imagePolicy": {
@@ -142,7 +142,7 @@
     "phone": null,
     "email": null,
     "lineUrl": null,
-    "suggestedMessage": "会社名・ご担当者名：\n現場の市区町村：\n希望日程・引渡し予定日：\nキズの箇所数：\n気になる点：\n\n（全体とキズが分かる写真を添付）"
+    "suggestedMessage": "会社名・ご担当者名・お客様のお名前：\n現場の市区町村：\n希望日程・引渡し予定日：\nキズの箇所数：\n気になる点：\n\n（全体とキズが分かる写真を添付）"
   },
   "business": {
     "publishDetails": false,
@@ -161,31 +161,31 @@
     "publicationCleared": false,
     "reviewDraft": {
       "show": true,
-      "headline": "学んだ技術を、\n引渡し前の現場へ。",
+      "headline": "学んだ技術を、\n求められる形と価値へ。",
       "name": "株式会社TRC",
-      "relationship": "リペアビジネススクール（RBS）で学んだ補修技術を土台に、リブライトとして活動しています。卒業後も、運営会社である株式会社TRCの現場協力者として、住宅の引渡し前のキズ補修に携わっています。",
-      "approach": "現場ごとに異なるキズや条件に向き合いながら、一つひとつの補修に経験を重ねています。",
-      "description": "神奈川県相模原市を拠点に、住宅補修・リフォームと、リペアビジネススクール（RBS）の運営に取り組む会社です。RBSでは、補修・調色の技術に加え、営業や経営も学べる環境を提供しています。",
+      "relationship": "リペアの専門スクールで学んだ補修技術を土台に、リブライトとして活動しています。修了後もスクール運営会社の現場協力者として、住宅引渡し前の種類数多の傷キズ補修に日々向き合っています。",
+      "approach": "",
+      "description": "「補修って何？」「どんな傷が直せるの？」\nそんな疑問が補修を始める前の私にもありました。\nその疑問を解決するリペアビジネススクール（RBS）との出会い、そこで得た学びと技術で、今度は私が千葉を拠店に皆様の疑問にお答えいたします。",
       "links": [
         {
-          "label": "TRCの事業・施工事例を見る",
+          "label": "",
           "url": "https://total-repair-circle.com/"
         },
         {
-          "label": "RBSの学びとスクール案内を見る",
+          "label": "私が学んだスクール（RBS）のご紹介",
           "url": "https://lp.repair-business-school.com"
         },
         {
-          "label": "RBSのYouTubeチャンネルを見る",
-          "url": "https://www.youtube.com/@rbs-ch"
+          "label": "スクール運営元、株式会社TRCのご紹介",
+          "url": "https://total-repair-circle.com/"
         }
       ],
-      "companyHeadline": "住宅補修と、その技術を担う人を育てる株式会社TRC"
+      "companyHeadline": "住宅補修、その技術を担う人を育てるスクールとの出会い"
     }
   },
   "copy": {
-    "heroHeadline": "引渡し前のキズ補修から、\n継続的な現場のご依頼まで。",
-    "heroDescription": "木部・フローリング・アルミサッシのキズ補修。\n千葉県を中心に、関東エリアの工務店・建築会社さまからのご相談を承ります。",
+    "heroHeadline": "引渡し前のキズ補修から、\n急な依頼のご相談まで。",
+    "heroDescription": "木部・樹脂材・アルミサッシのキズ補修。\n千葉県を中心に関東エリアのご依頼・ご相談を承ります。",
     "primaryCta": "現場の補修を相談する",
     "processSteps": [
       {
@@ -218,12 +218,12 @@
       },
       {
         "question": "今後の現場も継続して依頼できますか？",
-        "answer": "継続的なお取引を希望しています。今後の現場で補修先をお探しの工務店・建築会社さまも、まずはご相談ください。",
+        "answer": "継続的なお取引もお待ちしております。今後の現場で補修先をお探しの工務店・建築会社さまも、まずはご相談ください。",
         "confirmed": true
       },
       {
         "question": "一般の住宅のキズ補修も相談できますか？",
-        "answer": "はい。一般のお客様からの住宅のキズ補修もご相談いただけます。お住まいの市区町村、キズの写真、ご希望の日程をお知らせください。",
+        "answer": "一般のお客様からの住宅のキズ補修もご相談いただけます。小さな傷、気がかりな点もお聞かせください。お住まいの市区町村、キズの写真、ご希望の日程をお知らせください。",
         "confirmed": true
       }
     ],
@@ -231,12 +231,12 @@
     "aboutText": "住まいについた傷だけでなく、その傷を見るたびに生まれる気がかりにも目を向ける。\n\n丁寧な補修で住まいの本来の美しさを取り戻し、安心して毎日を過ごせるように。\n\nかつて補修技術に感動した人が、今度はその技術で人に喜びを届けていく。",
     "aboutConfirmed": true,
     "processConfirmed": false,
-    "brandPromise": "傷を直す。その先の、晴れやかな暮らしまで。",
-    "contractorBridge": "引渡しの先にある、晴れやかな暮らしを支えるために。",
-    "brandOriginText": "フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、晴れやかな暮らしへ向かうお手伝いを目指しています。",
-    "heroSubnote": "引渡し前のまとめ補修・急な補修のご相談に。",
-    "worksHeadline": "補修前と補修後を、\n写真でご覧ください。",
-    "worksDescription": "縦枠、上枠、扉の下端。実際の補修事例をご紹介します。",
+    "brandPromise": "",
+    "contractorBridge": "",
+    "brandOriginText": "フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、暮らしの輝かしさを取り戻すお手伝いをしています。",
+    "heroSubnote": "引渡し前のまとめ補修・急な補修、対応いたします。",
+    "worksHeadline": "目立っていた傷が、元の暮らしに戻るまで",
+    "worksDescription": "よくある傷を実際の補修事例でご紹介します。",
     "worksNote": "※補修前後で、撮影位置・距離・光の条件が異なります。写真を押すと全体を拡大してご覧いただけます。",
     "servicesHeadline": "まとめ補修も、\n急なキズのご相談も。",
     "storyHeadline": "傷が直る驚きを、\n喜びを届ける仕事へ。",
@@ -262,18 +262,21 @@
     "areaDescription": "現場の市区町村と、ご希望の日程をお知らせください。対応できるか確認します。",
     "processHeadline": "ご相談から施工まで。",
     "faqHeadline": "よくあるご質問。",
-    "contactHeadline": "次の現場の補修も、\nリブライトへご相談ください。",
-    "contactIntro": "引渡し前のまとめ補修、急なキズ、\nこれからの継続的なお取引について。",
+    "contactHeadline": "住まいのお悩み、\nリブライトが解決します。",
+    "contactIntro": "",
     "contactPrompt": "写真とあわせて、分かる範囲でお知らせください。",
     "contactFields": [
-      "会社名・ご担当者名",
+      "会社名・ご担当者名・お客様のお名前",
       "現場の市区町村",
       "希望日程・引渡し予定日",
       "キズの箇所数と写真（全体・近くから）"
     ],
     "contactButton": "Instagramから相談する",
     "contactHelp": "Instagramのプロフィールを開き、「メッセージ」からDMをお送りください。",
-    "secondaryAudience": "一般のお客様もご相談いただけます。会社名の代わりに、お名前をお知らせください。"
+    "secondaryAudience": "◎一般のお客様もご相談いただけます。会社名の代わりに、お名前をお知らせください。",
+    "heroEyebrow": "",
+    "storyPlacement": "hero",
+    "mobileContactNote": "引渡し前の補修・お取引・現場のご相談はこちら"
   },
   "publication": {
     "hostingConditionsChecked": false,
