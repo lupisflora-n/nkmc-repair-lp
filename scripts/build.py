@@ -180,7 +180,7 @@ def render(data, review):
     elif review and p.get('reviewDraft', {}).get('show'):
         draft = p['reviewDraft']
         draft_links = '<nav class="partner-links" aria-label="TRC・RBSのご紹介">' + ''.join(f'<a href="{esc(web_url(link["url"]))}" target="_blank" rel="noopener noreferrer">{esc(link["label"])}</a>' for link in draft.get('links', [])) + '</nav>' if draft.get('links') else ''
-        partner = '<section class="partner-section" id="partner"><div class="wrap partner-grid"><div><span class="section-label">FIELD EXPERIENCE</span><h2>' + lines(draft['headline']) + '</h2><p class="partner-draft-note">紹介文案｜関係・紹介内容・掲載条件は最終確認前です。</p></div><div><p>' + esc(draft['relationship']) + '</p><p>' + esc(draft['approach']) + '</p><div class="partner-company"><h3>' + esc(draft['name']) + 'について</h3><p>' + esc(draft['description']) + '</p>' + draft_links + '</div></div></div></section>'
+        partner = '<section class="partner-section" id="partner"><div class="wrap partner-grid"><div><span class="section-label">FIELD WORK</span><h2>' + lines(draft['headline']) + '</h2><p class="partner-draft-note">紹介文案｜関係・紹介内容・掲載条件は最終確認前です。</p></div><div><p>' + esc(draft['relationship']) + '</p><p>' + esc(draft['approach']) + '</p></div><aside class="partner-company" aria-labelledby="partner-company-title"><div><h3 id="partner-company-title">' + esc(draft['companyHeadline']) + '</h3><p>' + esc(draft['description']) + '</p></div>' + draft_links + '</aside></div></section>'
     business = data['business']
     business_html = ''
     if business.get('publishDetails'):

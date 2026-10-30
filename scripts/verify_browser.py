@@ -52,7 +52,7 @@ try:
                     assert abs(dimensions['width'] / dimensions['height'] - dimensions['ratio']) < .02
                 assert page.locator('.hero-symbol').count() == 1
                 order = page.locator('main > section').evaluate_all('(sections) => sections.map(section => section.id).filter(Boolean)')
-                assert order == ['works', 'services', 'brand-concept', 'approach', 'partner', 'area', 'process', 'contact'], order
+                assert order == ['works', 'services', 'brand-concept', 'partner', 'approach', 'area', 'process', 'contact'], order
                 assert page.locator('.practice-list li').count() == 3
                 overflow = page.evaluate('document.documentElement.scrollWidth > window.innerWidth')
                 assert not overflow, f'horizontal overflow at {width}px'

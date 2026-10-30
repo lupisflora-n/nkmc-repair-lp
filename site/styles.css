@@ -149,10 +149,11 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
 .copyright { margin-left:auto; color:#b1b0a8; font-size:9px; }
 .business-details { font-size:11px; }
 .partner-section { border-top:1px solid var(--line); background:var(--paper); }
-.partner-grid { display:grid; grid-template-columns:1fr 1fr; gap:94px; }
-.partner-company { border-top:1px solid var(--line); margin-top:25px; padding-top:22px; }
+.partner-grid { display:grid; grid-template-columns:1fr 1fr; gap:38px 94px; }
+.partner-company { grid-column:1 / -1; display:grid; grid-template-columns:1fr 1fr; gap:70px; background:var(--white); border-top:2px solid var(--yellow); padding:28px; }
+#partner + .practice-section { padding-top:72px; }
 .partner-company h3 { font-size:17px; }
-.partner-links { display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-top:22px; font-size:12px; }
+.partner-links { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:12px; font-size:12px; }
 .partner-links a { padding-block:5px; }
 .partner-section .partner-draft-note { font-size:10px; color:var(--muted); }
 .partner-section p { font-size:13px; max-width:720px; color:var(--muted); }
@@ -234,6 +235,9 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
   .contractor-bridge { font-size:11px; margin-top:20px; }
   .about-text { padding-top:0; font-size:12px; }
   .story-heading { font-size:19px; margin-bottom:16px; }
+  .partner-company { grid-template-columns:1fr; gap:20px; padding:21px; }
+  .partner-company h3 { font-size:16px; }
+  #partner + .practice-section { padding-top:53px; }
   .practice-list { grid-template-columns:1fr; gap:24px; margin-top:25px; }
   .practice-list li { padding-top:17px; }
   .practice-list h3 { font-size:16px; }
