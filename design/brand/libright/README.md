@@ -20,3 +20,7 @@ Web・LPで表示する実ベクターSVGは `site/assets/brand/libright/logos/s
 ## liBright文字入りアイコン
 
 [文字入りPNG](social-icons-with-text/)はユーザー指定でマークの下にliBright表記を加えた別バリエーション。LINE・Instagram用、1254px正方形。生成PNGで、アウトラインSVGではありません。既存の正式SVGとマークのみのアイコンはそのまま保管しています。
+
+## SNSプロフィールアイコンのサイズ別書き出し
+
+LINE 640×640px、LINE 1024×1024px、Instagram 640×640pxのPNGと、LINE用SVGを`site/assets/brand/libright/icons/`へ追加。既存の1024pxマーク単体・「liBright」文字入り版はそのまま保持。使用サイズと仕様の確認メモ：`social-icon-guide.txt`。

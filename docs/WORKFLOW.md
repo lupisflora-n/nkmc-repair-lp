@@ -181,3 +181,9 @@ GitHubでのソース管理とWeb公開を分ける。GitHub Pages等の配信�
 - ユーザーがマークの下へliBright表記を加えるよう依頼。指定の大小文字を優先した文字入り版をimage_genで作成。正式のマークのみSVG/PNGやLPの屋号表記は変更していない。
 - social-icons-with-textにLINE・Instagram用PNGを保存。1254×1254pxの生成PNGであり、アウトラインSVGではない。既存SVGの完全な図形一致を保証するものとして扱わない。
 - PNGの寸法・文字の見た目・ZIP内バイト一致を確認。アカウントへのアップロードは行っていない。演出番号選択は引き続き待機。
+
+## LINE・Instagramプロフィール画像の追加サイズ（2026-10-31）
+
+- 既存の1024×1024px版と「liBright」文字入り版は変更せず、マーク単体のLINE公式アカウント用640×640px PNG、高解像度LINE 1024px PNG、Instagram 640px PNG、LINE用SVGを追加。
+- `site/assets/brand/libright/icons/` と `design/brand/libright/social-icon-guide.txt` へ配置。フォーマット・サイズ、元SVGとの図形の一致を確認。
+- 全納品ZIP側にもLINE/Instagramサイズ別データと使い方を追加。SNSアカウントへの設定・公開は未実施。
