@@ -1,0 +1,669 @@
+{
+  "baseline": "v0.3",
+  "sourceSha256": "51f00548f56e8f34a52801080f70e6ea0b3c9cdb1101a0328598ea6fb870ae80",
+  "fields": [
+    {
+      "section": "A｜冒頭"
+    },
+    {
+      "id": "A01",
+      "label": "対象のお客様",
+      "text": "工務店・建築会社のみなさまへ",
+      "source": "site/template.html"
+    },
+    {
+      "id": "A02",
+      "label": "主見出し",
+      "text": "引渡し前のキズ補修から、\n継続的な現場のご依頼まで。",
+      "source": "site/content.json:copy.heroHeadline"
+    },
+    {
+      "id": "A03",
+      "label": "説明文",
+      "text": "木部・フローリング・アルミサッシのキズ補修。\n千葉県を中心に、関東エリアの工務店・建築会社さまからのご相談を承ります。",
+      "source": "site/content.json:copy.heroDescription"
+    },
+    {
+      "id": "A04",
+      "label": "ブランドの一文",
+      "text": "傷を直す。その先の、晴れやかな暮らしまで。",
+      "source": "site/content.json:copy.brandPromise"
+    },
+    {
+      "id": "A05",
+      "label": "相談ボタン",
+      "text": "現場の補修を相談する",
+      "source": "site/content.json:copy.primaryCta"
+    },
+    {
+      "id": "A06",
+      "label": "相談ボタン下の補足",
+      "text": "引渡し前のまとめ補修・急な補修のご相談に。",
+      "source": "site/content.json:copy.heroSubnote"
+    },
+    {
+      "id": "A07",
+      "label": "施工写真へのリンク",
+      "text": "施工前後の写真を見る ↓",
+      "source": "scripts/build.py"
+    },
+    {
+      "id": "A08",
+      "label": "マーク横の短い言葉",
+      "text": "仕上げの一筆。",
+      "source": "scripts/build.py"
+    },
+    {
+      "id": "A09",
+      "label": "マーク横の補足",
+      "text": "その先の、晴れやかな暮らしへ。",
+      "source": "scripts/build.py"
+    },
+    {
+      "section": "B｜対応地域・部材の帯（部材名は地域欄にも共通）"
+    },
+    {
+      "id": "B01",
+      "label": "地域の要約",
+      "text": "千葉県中心・関東エリア対応",
+      "source": "site/content.json:area.summary"
+    },
+    {
+      "id": "B02",
+      "label": "対応部材1",
+      "text": "木部",
+      "source": "site/content.json:services.materials.0"
+    },
+    {
+      "id": "B03",
+      "label": "対応部材2",
+      "text": "フローリング",
+      "source": "site/content.json:services.materials.1"
+    },
+    {
+      "id": "B04",
+      "label": "対応部材3",
+      "text": "アルミサッシ",
+      "source": "site/content.json:services.materials.2"
+    },
+    {
+      "id": "B05",
+      "label": "業務の短い説明",
+      "text": "住宅リペア・キズ補修",
+      "source": "site/template.html"
+    },
+    {
+      "section": "C｜施工前後の写真・説明"
+    },
+    {
+      "id": "C01",
+      "label": "見出し",
+      "text": "補修前と補修後を、\n写真でご覧ください。",
+      "source": "site/content.json:copy.worksHeadline"
+    },
+    {
+      "id": "C02",
+      "label": "導入文",
+      "text": "縦枠、上枠、扉の下端。実際の補修事例をご紹介します。",
+      "source": "site/content.json:copy.worksDescription"
+    },
+    {
+      "id": "C03",
+      "label": "事例1の見出し",
+      "text": "縦枠の欠け補修",
+      "source": "site/content.json:cases.items.0.title"
+    },
+    {
+      "id": "C04",
+      "label": "事例1の説明",
+      "text": "室内建具の縦枠に生じた欠けの補修事例です。",
+      "source": "site/content.json:cases.items.0.description"
+    },
+    {
+      "id": "C05",
+      "label": "事例2の見出し",
+      "text": "上枠の角・接合部の補修",
+      "source": "site/content.json:cases.items.1.title"
+    },
+    {
+      "id": "C06",
+      "label": "事例2の説明",
+      "text": "室内建具の上枠の角・接合部に関する補修事例です。",
+      "source": "site/content.json:cases.items.1.description"
+    },
+    {
+      "id": "C07",
+      "label": "事例3の見出し",
+      "text": "扉下端の欠け補修",
+      "source": "site/content.json:cases.items.2.title"
+    },
+    {
+      "id": "C08",
+      "label": "事例3の説明",
+      "text": "木目調の扉の下端に見られる欠け・傷の補修事例です。",
+      "source": "site/content.json:cases.items.2.description"
+    },
+    {
+      "id": "C09",
+      "label": "写真外の共通ラベル",
+      "text": "補修前",
+      "source": "scripts/build.py"
+    },
+    {
+      "id": "C10",
+      "label": "写真外の共通ラベル",
+      "text": "補修後",
+      "source": "scripts/build.py"
+    },
+    {
+      "id": "C11",
+      "label": "撮影条件・拡大の注記",
+      "text": "※補修前後で、撮影位置・距離・光の条件が異なります。写真を押すと全体を拡大してご覧いただけます。",
+      "source": "site/content.json:copy.worksNote"
+    },
+    {
+      "section": "D｜対応内容"
+    },
+    {
+      "id": "D01",
+      "label": "見出し",
+      "text": "まとめ補修も、\n急なキズのご相談も。",
+      "source": "site/content.json:copy.servicesHeadline"
+    },
+    {
+      "id": "D02",
+      "label": "対応内容1の小見出し",
+      "text": "引渡し前のまとめ補修",
+      "source": "site/content.json:services.titles.0"
+    },
+    {
+      "id": "D03",
+      "label": "対応内容1の説明",
+      "text": "引渡し前に見つかった複数のキズを、まとめてご相談いただけます。箇所数や写真、引渡し予定日をお知らせください。",
+      "source": "site/content.json:services.descriptions.0"
+    },
+    {
+      "id": "D04",
+      "label": "対応内容2の小見出し",
+      "text": "継続的な現場のご依頼",
+      "source": "site/content.json:services.titles.1"
+    },
+    {
+      "id": "D05",
+      "label": "対応内容2の説明",
+      "text": "現場ごとの補修はもちろん、今後の継続的なお取引についてもご相談ください。",
+      "source": "site/content.json:services.descriptions.1"
+    },
+    {
+      "id": "D06",
+      "label": "対応内容3の小見出し",
+      "text": "緊急補修のご相談",
+      "source": "site/content.json:services.titles.2"
+    },
+    {
+      "id": "D07",
+      "label": "対応内容3の説明",
+      "text": "急なキズの補修もご相談いただけます。現場の地域とキズの状態、ご希望の日程を伺い、対応できるか確認します。",
+      "source": "site/content.json:services.descriptions.2"
+    },
+    {
+      "section": "E｜原点の物語・ブランドの思い（開閉内の文章を含む）"
+    },
+    {
+      "id": "E01",
+      "label": "ブランド見出し",
+      "text": "傷を直す。その先の、\n晴れやかな暮らしまで。",
+      "source": "site/content.json:copy.aboutHeadline"
+    },
+    {
+      "id": "E02",
+      "label": "工務店向けの接続文",
+      "text": "引渡しの先にある、晴れやかな暮らしを支えるために。",
+      "source": "site/content.json:copy.contractorBridge"
+    },
+    {
+      "id": "E03",
+      "label": "物語の小見出し",
+      "text": "傷が直る驚きを、\n喜びを届ける仕事へ。",
+      "source": "site/content.json:copy.storyHeadline"
+    },
+    {
+      "id": "E04",
+      "label": "物語の本文",
+      "text": "傷のあった場所が、住まいになじんでいく。その変化に心を動かされたことが、リブライトの原点です。\n\n技術を学び、自分の手で直せる喜びを知った先にあったのは、誰かに喜んでもらえる仕事でした。現場での経験を重ねながら、その思いを一つひとつの補修につなげています。",
+      "source": "site/content.json:copy.storyText"
+    },
+    {
+      "id": "E05",
+      "label": "詳細を開く文",
+      "text": "リブライトが大切にしていること",
+      "source": "scripts/build.py"
+    },
+    {
+      "id": "E06",
+      "label": "コンセプト本文",
+      "text": "住まいについた傷だけでなく、その傷を見るたびに生まれる気がかりにも目を向ける。\n\n丁寧な補修で住まいの本来の美しさを取り戻し、安心して毎日を過ごせるように。\n\nかつて補修技術に感動した人が、今度はその技術で人に喜びを届けていく。",
+      "source": "site/content.json:copy.aboutText"
+    },
+    {
+      "id": "E07",
+      "label": "名前の由来の小見出し",
+      "text": "LIBRIGHTの名前に重ねる思い",
+      "source": "scripts/build.py"
+    },
+    {
+      "id": "E08",
+      "label": "名前の由来の本文",
+      "text": "フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、晴れやかな暮らしへ向かうお手伝いを目指しています。",
+      "source": "site/content.json:copy.brandOriginText"
+    },
+    {
+      "section": "F｜現在の実務・TRC／RBS紹介"
+    },
+    {
+      "id": "F01",
+      "label": "Nさんの実務の見出し",
+      "text": "学んだ技術を、\n引渡し前の現場へ。",
+      "source": "site/content.json:partnerIntroduction.reviewDraft.headline"
+    },
+    {
+      "id": "F02",
+      "label": "学びと現場協力の説明",
+      "text": "リペアビジネススクール（RBS）で学んだ補修技術を土台に、リブライトとして活動しています。卒業後も、運営会社である株式会社TRCの現場協力者として、住宅の引渡し前のキズ補修に携わっています。",
+      "source": "site/content.json:partnerIntroduction.reviewDraft.relationship"
+    },
+    {
+      "id": "F03",
+      "label": "現在の取り組みの補足",
+      "text": "現場ごとに異なるキズや条件に向き合いながら、一つひとつの補修に経験を重ねています。",
+      "source": "site/content.json:partnerIntroduction.reviewDraft.approach"
+    },
+    {
+      "id": "F04",
+      "label": "TRC紹介の小見出し",
+      "text": "住宅補修と、その技術を担う人を育てる株式会社TRC",
+      "source": "site/content.json:partnerIntroduction.reviewDraft.companyHeadline"
+    },
+    {
+      "id": "F05",
+      "label": "TRC・RBS紹介の本文",
+      "text": "神奈川県相模原市を拠点に、住宅補修・リフォームと、リペアビジネススクール（RBS）の運営に取り組む会社です。RBSでは、補修・調色の技術に加え、営業や経営も学べる環境を提供しています。",
+      "source": "site/content.json:partnerIntroduction.reviewDraft.description"
+    },
+    {
+      "id": "F06",
+      "label": "案内リンク1の表示文",
+      "text": "TRCの事業・施工事例を見る",
+      "source": "site/content.json:partnerIntroduction.reviewDraft.links.0.label"
+    },
+    {
+      "id": "F07",
+      "label": "案内リンク2の表示文",
+      "text": "RBSの学びとスクール案内を見る",
+      "source": "site/content.json:partnerIntroduction.reviewDraft.links.1.label"
+    },
+    {
+      "id": "F08",
+      "label": "案内リンク3の表示文",
+      "text": "RBSのYouTubeチャンネルを見る",
+      "source": "site/content.json:partnerIntroduction.reviewDraft.links.2.label"
+    },
+    {
+      "section": "G｜現場で大切にすること"
+    },
+    {
+      "id": "G01",
+      "label": "見出し",
+      "text": "仕上がりと、\n現場の進めやすさを大切に。",
+      "source": "site/content.json:copy.practiceHeadline"
+    },
+    {
+      "id": "G02",
+      "label": "項目1の小見出し",
+      "text": "補修する箇所を確かめる",
+      "source": "site/content.json:copy.practiceItems.0.title"
+    },
+    {
+      "id": "G03",
+      "label": "項目1の説明",
+      "text": "写真や箇所数を伺い、キズの状態と補修する範囲、ご希望を確かめます。",
+      "source": "site/content.json:copy.practiceItems.0.text"
+    },
+    {
+      "id": "G04",
+      "label": "項目2の小見出し",
+      "text": "引渡しまでの予定を共有する",
+      "source": "site/content.json:copy.practiceItems.1.title"
+    },
+    {
+      "id": "G05",
+      "label": "項目2の説明",
+      "text": "引渡し予定日や現場の状況も伺い、補修内容と日程をご相談します。",
+      "source": "site/content.json:copy.practiceItems.1.text"
+    },
+    {
+      "id": "G06",
+      "label": "項目3の小見出し",
+      "text": "仕上がりを一緒に確認する",
+      "source": "site/content.json:copy.practiceItems.2.title"
+    },
+    {
+      "id": "G07",
+      "label": "項目3の説明",
+      "text": "施工後は補修した箇所を一緒に確認。気になる点もお聞かせください。",
+      "source": "site/content.json:copy.practiceItems.2.text"
+    },
+    {
+      "section": "H｜対応地域"
+    },
+    {
+      "id": "H01",
+      "label": "見出し",
+      "text": "千葉県を中心に、\n関東エリアへ。",
+      "source": "site/content.json:copy.areaHeadline"
+    },
+    {
+      "id": "H02",
+      "label": "説明",
+      "text": "現場の市区町村と、ご希望の日程をお知らせください。対応できるか確認します。",
+      "source": "site/content.json:copy.areaDescription"
+    },
+    {
+      "section": "I｜相談から施工まで"
+    },
+    {
+      "id": "I01",
+      "label": "見出し",
+      "text": "ご相談から施工まで。",
+      "source": "site/content.json:copy.processHeadline"
+    },
+    {
+      "id": "I02",
+      "label": "手順1の小見出し",
+      "text": "写真と日程を送る",
+      "source": "site/content.json:copy.processSteps.0.title"
+    },
+    {
+      "id": "I03",
+      "label": "手順1の説明",
+      "text": "現場の市区町村、キズの写真・箇所数、ご希望の日程をお知らせください。",
+      "source": "site/content.json:copy.processSteps.0.text"
+    },
+    {
+      "id": "I04",
+      "label": "手順2の小見出し",
+      "text": "内容と見積もりを確認",
+      "source": "site/content.json:copy.processSteps.1.title"
+    },
+    {
+      "id": "I05",
+      "label": "手順2の説明",
+      "text": "補修内容や現場の条件を確認し、お見積もりをご案内します。",
+      "source": "site/content.json:copy.processSteps.1.text"
+    },
+    {
+      "id": "I06",
+      "label": "手順3の小見出し",
+      "text": "日程を決めて施工",
+      "source": "site/content.json:copy.processSteps.2.title"
+    },
+    {
+      "id": "I07",
+      "label": "手順3の説明",
+      "text": "内容と日程について合意したうえで、施工へ進みます。",
+      "source": "site/content.json:copy.processSteps.2.text"
+    },
+    {
+      "id": "I08",
+      "label": "手順4の小見出し",
+      "text": "仕上がりを確認",
+      "source": "site/content.json:copy.processSteps.3.title"
+    },
+    {
+      "id": "I09",
+      "label": "手順4の説明",
+      "text": "補修した箇所の仕上がりをご確認いただきます。",
+      "source": "site/content.json:copy.processSteps.3.text"
+    },
+    {
+      "section": "J｜よくある質問"
+    },
+    {
+      "id": "J01",
+      "label": "見出し",
+      "text": "よくあるご質問。",
+      "source": "site/content.json:copy.faqHeadline"
+    },
+    {
+      "id": "J02",
+      "label": "質問1",
+      "text": "複数のキズをまとめて相談できますか？",
+      "source": "site/content.json:copy.faq.0.question"
+    },
+    {
+      "id": "J03",
+      "label": "回答1",
+      "text": "はい。引渡し前のまとめ補修をご相談いただけます。キズの写真と箇所数、現場の市区町村、引渡し予定日をお知らせください。",
+      "source": "site/content.json:copy.faq.0.answer"
+    },
+    {
+      "id": "J04",
+      "label": "質問2",
+      "text": "急ぎの補修も相談できますか？",
+      "source": "site/content.json:copy.faq.1.question"
+    },
+    {
+      "id": "J05",
+      "label": "回答2",
+      "text": "はい。緊急補修もご相談いただけます。ご希望の日時と現場の状況を伺い、対応できるか確認します。",
+      "source": "site/content.json:copy.faq.1.answer"
+    },
+    {
+      "id": "J06",
+      "label": "質問3",
+      "text": "今後の現場も継続して依頼できますか？",
+      "source": "site/content.json:copy.faq.2.question"
+    },
+    {
+      "id": "J07",
+      "label": "回答3",
+      "text": "継続的なお取引を希望しています。今後の現場で補修先をお探しの工務店・建築会社さまも、まずはご相談ください。",
+      "source": "site/content.json:copy.faq.2.answer"
+    },
+    {
+      "id": "J08",
+      "label": "質問4",
+      "text": "一般の住宅のキズ補修も相談できますか？",
+      "source": "site/content.json:copy.faq.3.question"
+    },
+    {
+      "id": "J09",
+      "label": "回答4",
+      "text": "はい。一般のお客様からの住宅のキズ補修もご相談いただけます。お住まいの市区町村、キズの写真、ご希望の日程をお知らせください。",
+      "source": "site/content.json:copy.faq.3.answer"
+    },
+    {
+      "section": "K｜問い合わせ"
+    },
+    {
+      "id": "K01",
+      "label": "見出し",
+      "text": "次の現場の補修も、\nリブライトへご相談ください。",
+      "source": "site/content.json:copy.contactHeadline"
+    },
+    {
+      "id": "K02",
+      "label": "導入文",
+      "text": "引渡し前のまとめ補修、急なキズ、\nこれからの継続的なお取引について。",
+      "source": "site/content.json:copy.contactIntro"
+    },
+    {
+      "id": "K03",
+      "label": "必要情報の案内",
+      "text": "写真とあわせて、分かる範囲でお知らせください。",
+      "source": "site/content.json:copy.contactPrompt"
+    },
+    {
+      "id": "K04",
+      "label": "お知らせいただく内容1",
+      "text": "会社名・ご担当者名",
+      "source": "site/content.json:copy.contactFields.0"
+    },
+    {
+      "id": "K05",
+      "label": "お知らせいただく内容2",
+      "text": "現場の市区町村",
+      "source": "site/content.json:copy.contactFields.1"
+    },
+    {
+      "id": "K06",
+      "label": "お知らせいただく内容3",
+      "text": "希望日程・引渡し予定日",
+      "source": "site/content.json:copy.contactFields.2"
+    },
+    {
+      "id": "K07",
+      "label": "お知らせいただく内容4",
+      "text": "キズの箇所数と写真（全体・近くから）",
+      "source": "site/content.json:copy.contactFields.3"
+    },
+    {
+      "id": "K08",
+      "label": "Instagramボタン",
+      "text": "Instagramから相談する",
+      "source": "site/content.json:copy.contactButton"
+    },
+    {
+      "id": "K09",
+      "label": "DMへの進み方",
+      "text": "Instagramのプロフィールを開き、「メッセージ」からDMをお送りください。",
+      "source": "site/content.json:copy.contactHelp"
+    },
+    {
+      "id": "K10",
+      "label": "相談文のひな形の見出し",
+      "text": "相談文のひな形",
+      "source": "site/template.html"
+    },
+    {
+      "id": "K11",
+      "label": "相談文のひな形",
+      "text": "会社名・ご担当者名：\n現場の市区町村：\n希望日程・引渡し予定日：\nキズの箇所数：\n気になる点：\n\n（全体とキズが分かる写真を添付）",
+      "source": "site/content.json:contact.suggestedMessage"
+    },
+    {
+      "id": "K12",
+      "label": "コピーのボタン",
+      "text": "相談文をコピーする",
+      "source": "site/template.html"
+    },
+    {
+      "id": "K13",
+      "label": "コピー成功時の案内",
+      "text": "コピーしました。Instagramの「メッセージ」から、DMに貼り付けてお使いください。",
+      "source": "site/app.js"
+    },
+    {
+      "id": "K14",
+      "label": "手動コピー時の案内",
+      "text": "文面を選択しました。端末の「コピー」を使い、InstagramのDMに貼り付けてください。",
+      "source": "site/app.js"
+    },
+    {
+      "id": "K15",
+      "label": "一般のお客様への案内",
+      "text": "一般のお客様もご相談いただけます。会社名の代わりに、お名前をお知らせください。",
+      "source": "site/content.json:copy.secondaryAudience"
+    },
+    {
+      "section": "L｜メニュー・スマホ下部のボタン・写真拡大画面"
+    },
+    {
+      "id": "L01",
+      "label": "メニュー1",
+      "text": "施工事例",
+      "source": "scripts/build.py"
+    },
+    {
+      "id": "L02",
+      "label": "メニュー2",
+      "text": "対応内容",
+      "source": "site/template.html"
+    },
+    {
+      "id": "L03",
+      "label": "メニューの相談ボタン",
+      "text": "ご相談",
+      "source": "site/template.html"
+    },
+    {
+      "id": "L04",
+      "label": "スマホ下部の補足",
+      "text": "引渡し前の補修・継続取引\n現場のご相談はこちら",
+      "source": "site/template.html"
+    },
+    {
+      "id": "L05",
+      "label": "スマホ下部のボタン",
+      "text": "補修を相談する",
+      "source": "site/template.html"
+    },
+    {
+      "id": "L06",
+      "label": "写真拡大の見出し",
+      "text": "施工写真",
+      "source": "site/template.html"
+    },
+    {
+      "id": "L07",
+      "label": "写真拡大を閉じるボタン",
+      "text": "閉じる",
+      "source": "site/template.html"
+    },
+    {
+      "id": "L08",
+      "label": "JavaScript無効時の案内",
+      "text": "相談文は選択してコピーできます。写真は通常の表示でご確認ください。",
+      "source": "site/template.html"
+    },
+    {
+      "section": "M｜写真の代替説明（通常は画像が表示できない場合等に使う文章）"
+    },
+    {
+      "id": "M01",
+      "label": "事例1・補修前の説明",
+      "text": "縦枠の化粧面に欠けが見える補修前の写真",
+      "source": "site/content.json:cases.items.0.altBefore"
+    },
+    {
+      "id": "M02",
+      "label": "事例1・補修後の説明",
+      "text": "同じ縦枠を補修後として撮影した写真",
+      "source": "site/content.json:cases.items.0.altAfter"
+    },
+    {
+      "id": "M03",
+      "label": "事例2・補修前の説明",
+      "text": "木目調の上枠の角・接合部を写した補修前の写真",
+      "source": "site/content.json:cases.items.1.altBefore"
+    },
+    {
+      "id": "M04",
+      "label": "事例2・補修後の説明",
+      "text": "同じ上枠の角・接合部を補修後として撮影した写真",
+      "source": "site/content.json:cases.items.1.altAfter"
+    },
+    {
+      "id": "M05",
+      "label": "事例3・補修前の説明",
+      "text": "木目調の扉の下端に欠けと擦れが見える補修前の写真",
+      "source": "site/content.json:cases.items.2.altBefore"
+    },
+    {
+      "id": "M06",
+      "label": "事例3・補修後の説明",
+      "text": "扉の下端を補修後として撮影した写真",
+      "source": "site/content.json:cases.items.2.altAfter"
+    }
+  ]
+}

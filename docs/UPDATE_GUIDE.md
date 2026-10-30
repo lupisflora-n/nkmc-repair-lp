@@ -66,3 +66,9 @@ ZIPには制作記録と確認用の原稿を含むため、ZIP全体を公開�
 ## 文章のレビュー
 
 `python scripts/build.py --mode review` の後に `python scripts/review_copy.py` を実行すると、LP本体から文章を取り出しdesign/copy-review.htmlとdocs/COPY_DRAFT.mdを更新する。画像を省略し、開閉内の文章を含めて一覧で読める。文章の修正はsite/content.jsonへ戻し、再生成する。storyConfirmed/practiceConfirmedは新規の原点・業務姿勢の確認状態。確認前はfalseを維持する。
+
+## 掲載文をまとめて編集する
+
+`python scripts/export_copy_editor.py` でdocs/COPY_EDIT.txt、design/copy-editor.html、design/copy-edit-map.jsonを生成する。番号と項目名を残して本文を編集し、全文をチャットへ返送する。削除希望は本文を「【削除】」にする。
+
+編集用HTMLはローカルで完結し、保存ボタンから編集済み全文をTXTでダウンロードする。自動保存・通信・LPへの自動反映はない。ユーザーから返送された編集済みファイルを生成処理で上書きしない。対応表と基準版を使って原文との差分を確認し、本文・固定文言の掲載箇所へ反映してプレビューを更新する。原稿の変更だけで掲載条件の確認フラグを変更しない。
