@@ -1,0 +1,28 @@
+LIBRIGHT | LINE・Instagramプロフィール用アイコン | 2026-10-31
+
+用途: LIBRIGHT事業者アカウントのプロフィール画像（公式プラットフォームのロゴではありません）。
+
+LINE公式アカウント:
+- 推奨ファイル: 05_social_and_favicon/LIBRIGHT_line_profile_640.png
+- サイズ: 640 × 640 px / PNG / 正方形
+- 高解像度予備: LIBRIGHT_line_profile_1024.png
+- 編集用: LIBRIGHT_line_profile.svg
+
+Instagram:
+- 推奨ファイル: 05_social_and_favicon/LIBRIGHT_instagram_1024.png
+- サイズ: 1024 × 1024 px / PNG / 正方形
+- 小さな予備: LIBRIGHT_instagram_640.png
+- 編集用: LIBRIGHT_instagram_1024.svg
+
+デザイン:
+- 両サービスとも同一のLIBRIGHTマークで統一。
+- 黒背景（#151515）、白・黄（#F3C63A）・赤（#C54136）のマーク。
+- 円形クロップを考慮してマーク外周に余白あり。重要部分は中心側に収まります。
+- 必要なら各SNSのアップロード画面でトリミング位置を中央に合わせてください。
+
+サイズの根拠:
+- LINEヤフー公式 LINE Official Account Manager マニュアル（プロフィール画像640px×640px）
+  https://www.lycbiz.com/jp/manual/OfficialAccountManager/profile/
+- Instagramの1024pxは本納品物の高解像度制作サイズであり、公式の必須最小値を意味しません。
+
+注意: SNSへの設定・送信・公開作業は行っていません。

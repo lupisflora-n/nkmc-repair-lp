@@ -188,3 +188,9 @@ GitHubでのソース管理とWeb公開を分ける。GitHub Pages等の配信�
 - 組立・変化0〜0.8秒、完成形0.8〜0.9秒、本文へのフェード0.9〜1.2秒。正式SVGを元に動かし、完成時は元の形状と配色へ戻す。
 - スマホCodexではMP4がダウンロードになるとの報告により、新版はチャット内GIFと0.0/0.4/0.8/1.2秒のコマ送りPNGで提示。スマホアプリのGIF再生成功は未確認。
 - 新版候補はdocs/EFFECT_OPTIONS_V2.txt、比較用HTMLはdesign/mark-effect-options.html。実LPの演出は新版の番号選択待ち。LP本体のプレビューは引き続き写真入りの単体HTMLを主に渡す。
+
+## LINE・Instagramプロフィール画像の追加サイズ（2026-10-31）
+
+- 既存の1024×1024px版と「liBright」文字入り版は変更せず、マーク単体のLINE公式アカウント用640×640px PNG、高解像度LINE 1024px PNG、Instagram 640px PNG、LINE用SVGを追加。
+- `site/assets/brand/libright/icons/` と `design/brand/libright/social-icon-guide.txt` へ配置。フォーマット・サイズ、元SVGとの図形の一致を確認。
+- 全納品ZIP側にもLINE/Instagramサイズ別データと使い方を追加。SNSアカウントへの設定・公開は未実施。
