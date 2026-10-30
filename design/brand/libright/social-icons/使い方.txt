@@ -1,0 +1,16 @@
+LIBRIGHT｜LINE・Instagram用アカウントアイコン
+
+アップロードするファイル
+・LINE：LIBRIGHT-LINE-icon-1024.png
+・Instagram：LIBRIGHT-Instagram-icon-1024.png
+
+両方とも同じ正式SNSデザインです。1024×1024px、PNG。黒背景に白・黄・赤のマークを使用。小さい表示での見やすさのため文字は入っていません。
+アプリ側で円形に表示してもマーク全体が収まる配置です。アップロード時は拡大せず、画像全体を使ってください。
+
+再利用用素材
+・LIBRIGHT-SNS-icon-master.svg：同じSNSデザインのベクター元データ
+・LIBRIGHT-symbol-transparent.png：透過の通常カラー版（白い背景等への配置用）
+・LIBRIGHT-symbol-master.svg：通常カラー版のベクター元データ
+
+正式納品済みの画像をそのまま複製しています。元データの形・色・画像内容は変更していません。ファイルの対応とSHA-256はSHA256.jsonに記載。
+アカウントへのアップロード・アイコン変更操作は行っていません。

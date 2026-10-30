@@ -1,0 +1,22 @@
+{
+  "LIBRIGHT-LINE-icon-1024.png": {
+    "source": "site/assets/brand/libright/icons/instagram-1024.png",
+    "sha256": "2c2ddbb8354c7fd387b02243cbf53918a0806441936a9726673c69c3c978c33f"
+  },
+  "LIBRIGHT-Instagram-icon-1024.png": {
+    "source": "site/assets/brand/libright/icons/instagram-1024.png",
+    "sha256": "2c2ddbb8354c7fd387b02243cbf53918a0806441936a9726673c69c3c978c33f"
+  },
+  "LIBRIGHT-SNS-icon-master.svg": {
+    "source": "site/assets/brand/libright/icons/instagram-1024.svg",
+    "sha256": "c801517c11a267ea9f91965a8061beb18e3743f811e9c075f516cf42e562fe93"
+  },
+  "LIBRIGHT-symbol-transparent.png": {
+    "source": "site/assets/brand/libright/logos/png/symbol-color.png",
+    "sha256": "47a3c14f2777629d61b09b3bc23a8f1868efc96625a427264cdebb1acac8f0dc"
+  },
+  "LIBRIGHT-symbol-master.svg": {
+    "source": "site/assets/brand/libright/logos/svg/symbol-color.svg",
+    "sha256": "3cc461eeb2c3736c2c109242216b2878ef7be41df85e52c286896b9f5d8b96b0"
+  }
+}
