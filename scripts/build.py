@@ -319,10 +319,8 @@ def main():
         v['SCRIPT'] = '<script>\n' + js + '\n</script>' if standalone else '<script src="app.js" defer></script>'
         result = re.sub(r'\{\{([A-Z_]+)\}\}', lambda match: v[match.group(1)], template)
         if standalone:
-            # Brand assets only: lossless data URIs. Construction photos stay original files.
+            # Single-file preview: reversible data URIs preserve every supplied asset byte.
             for value in sorted(assets):
-                if not value.startswith('assets/brand/'):
-                    continue
                 mime = mimetypes.guess_type(value)[0] or 'application/octet-stream'
                 encoded = base64.b64encode(asset_path(value).read_bytes()).decode('ascii')
                 result = result.replace('"' + esc(value) + '"', '"data:' + mime + ';base64,' + encoded + '"')

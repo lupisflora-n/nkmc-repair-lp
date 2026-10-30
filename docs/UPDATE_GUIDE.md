@@ -14,7 +14,7 @@
 
 `python scripts/build.py --mode review`
 
-`design/preview.html` と `dist-review/` を生成する。前者はCSS・JavaScriptを含む単体HTML。写真が入った後は相対参照のassetsフォルダも一緒に渡す。
+`design/preview.html` と `dist-review/` を生成する。前者はCSS・JavaScript・写真・ロゴを含む単体HTML。単体ファイルだけで表示でき、assetsフォルダを添える必要はない。
 確認版では写真の配置枠や未確定の原稿を表示できる。未公開表示とnoindexを付ける。確認版をそのまま公開用として扱わない。
 
 ## 施工写真
@@ -30,7 +30,7 @@ case-02、case-03も同様。元ファイルのバイト列を変更せず、`si
 ## ロゴ
 
 正式ロゴのWeb用SVGとアイコンは `site/assets/brand/libright/` に保存済み。主要ファイルは `logos/svg/horizontal-jp-color.svg`、`logos/svg/symbol-color.svg`、`icons/favicon.svg`。編集資料は `design/brand/libright/`。現在は`brand.assets.*`を設定し、`brand.assetsReady`をtrueとして反映済み。横組みカラー、シンボル、白抜き、faviconを使い、スマホ/PC表示を確認した。
-元のSVG・PNGは変更しない。単体HTMLではブランド素材だけをdata URIへ可逆に埋め込む。施工写真はファイルのまま使用する。ロゴの色・形・最小幅・余白はブランドガイドを引き継ぐ。
+元のSVG・PNGは変更しない。単体HTMLではブランド素材・施工写真を元バイト列のままdata URIへ可逆に埋め込む。復号した写真が原ファイルとSHA-256で一致することを確認する。通常の配信版は元画像ファイルを参照する。ロゴの色・形・最小幅・余白はブランドガイドを引き継ぐ。
 
 ## 料金
 
@@ -78,3 +78,7 @@ ZIPには制作記録と確認用の原稿を含むため、ZIP全体を公開�
 SEO設定はcontent.jsonのseoとpublication.siteUrl。公開URLが決まると公開版だけcanonical・OG URL・サイトマップ・robotsを生成する。SEO.mdを参照。
 
 showAboutSection=falseで中段OUR STORYは非表示。冒頭のブランド文はstoryPlacement=heroで継続。初回演出は候補選択待ちで未実装。候補番号と内容はEFFECT_OPTIONS.txtへ記録し、実装時に選択番号を工程へ追記する。
+
+## スマホでの演出比較
+
+HTMLの演出ボタンが動かない場合はscripts/render_effect_videos.pyでMP4とGIFを書き出す。MP4はH.264 Baseline/yuv420p/faststartで提供。チャットのGIF表示と動画リンクを併用し、ユーザー端末での実再生が確認できたとは説明しない。比較動画とLP本体のプレビューは区別し、LPプレビューはHTMLを主に渡す。

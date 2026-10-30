@@ -1,0 +1,30 @@
+[
+  {
+    "effects": "01-05",
+    "video": "LIBRIGHT-effects-01-05.mp4",
+    "gif": "LIBRIGHT-effects-01-05.gif",
+    "width": 480,
+    "height": 1214,
+    "duration": "5.400000",
+    "videoBytes": 387913,
+    "gifBytes": 334954,
+    "profile": "Constrained Baseline",
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "faststart": true
+  },
+  {
+    "effects": "06-10",
+    "video": "LIBRIGHT-effects-06-10.mp4",
+    "gif": "LIBRIGHT-effects-06-10.gif",
+    "width": 480,
+    "height": 1214,
+    "duration": "5.400000",
+    "videoBytes": 385735,
+    "gifBytes": 334293,
+    "profile": "Constrained Baseline",
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "faststart": true
+  }
+]
