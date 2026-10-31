@@ -38,6 +38,7 @@ try:
             for width, height in [(390, 844), (320, 740), (768, 1024), (1440, 1000)]:
                 page.set_viewport_size({'width': width, 'height': height})
                 response = page.goto(origin + '/', wait_until='networkidle')
+                page.wait_for_function('!document.documentElement.classList.contains("intro-pending")')
                 assert response.status == 200
                 assert page.locator('h1').count() == 1
                 assert page.locator('.case').count() == 3
@@ -92,6 +93,7 @@ try:
                 page.keyboard.press('Escape')
                 assert trigger.evaluate('(el) => document.activeElement === el')
             report['checks']['allSixPhotosOpenOriginalAndReturnFocus'] = True
+            page.wait_for_function('!document.documentElement.classList.contains("intro-pending")')
             page.locator('.hero .button').click()
             assert page.evaluate('location.hash') == '#contact'
             report['checks']['heroToContact'] = True

@@ -316,9 +316,18 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
   .mobile-contact .button { flex-shrink:0; }
 }
 
+/* 選択済み2番：パーツが復元して本文へ。写真や元SVGファイルは変更しない。 */
+.intro-screen { display:none; }
+.intro-pending .intro-screen { position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; background:#fff; touch-action:none; }
+.intro-pending { overflow:hidden; }
+.intro-mark { display:block; width:clamp(160px,36vw,260px); height:auto; overflow:visible; visibility:hidden; }
+@media (prefers-reduced-motion:reduce) { .intro-screen { display:none!important; } }
+
 </style>
+  <script>(function(){try{if(!location.hash&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro-pending');window.librightIntroFailsafe=setTimeout(function(){document.documentElement.classList.remove('intro-pending');},1600);}}catch(error){document.documentElement.classList.remove('intro-pending');}})();</script>
 </head>
 <body>
+  <div class="intro-screen" data-intro-effect="2" data-intro-duration="1200" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 445" version="1.1" role="img" aria-label="LIBRIGHT" class="intro-mark" aria-hidden="true" focusable="false"><title>LIBRIGHT</title><g data-symbol="LIBRIGHT" transform="translate(27 30) scale(1.000000)"><path data-part="base" d="M20 118 L132 45 L132 283 L458 283 L458 365 L20 365 Z" fill="#151515" /><path data-part="wall" d="M146 45 L233 75 L233 237 L146 276 Z" fill="#F3C63A" /><path data-part="floor" d="M163 276 L250 239 L358 239 L451 276 Z" fill="#F3C63A" /><path data-part="tip" d="M300 239 L337 185 L356 201 Z" fill="#C54136" /><path data-part="handle" d="M346 173 L414 100 L454 100 L367 191 Z" fill="#151515" /></g></svg></div>
   <a class="skip-link" href="#main">本文へ移動</a>
   <div class="review-bar"><span>DESIGN PREVIEW</span> 制作確認版・未公開｜掲載内容は最終確認前です。</div>
   <header class="wrap site-header">
@@ -386,6 +395,74 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
   <noscript><p class="wrap no-script">相談文は選択してコピーできます。写真は通常の表示でご確認ください。</p></noscript>
   <script>
 "use strict";
+
+// The selected mark restores in 0.8s, holds for 0.1s, and fades by 1.2s.
+(() => {
+  const screen = document.querySelector('.intro-screen');
+  if (!screen) return;
+  const root = document.documentElement;
+  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const paths = Array.from(screen.querySelectorAll('[data-part]'));
+  let frame = 0;
+  let deadline = 0;
+  let finished = false;
+  const clear = (state) => {
+    if (finished) return;
+    finished = true;
+    cancelAnimationFrame(frame);
+    clearTimeout(deadline);
+    clearTimeout(window.librightIntroFailsafe);
+    paths.forEach(path => path.removeAttribute('transform'));
+    root.classList.remove('intro-pending');
+    root.dataset.introState = state;
+    screen.remove();
+    document.removeEventListener('keydown', skip);
+    media.removeEventListener?.('change', reduce);
+  };
+  const skip = () => clear('skipped');
+  const reduce = () => { if (media.matches) clear('reduced-motion'); };
+  window.addEventListener('pageshow', event => { if (event.persisted) clear('restored'); });
+  if (!root.classList.contains('intro-pending') || media.matches) {
+    clear(media.matches ? 'reduced-motion' : 'skipped');
+    return;
+  }
+  try {
+    const offsets = [[-40,35,-5],[35,-30,5],[20,35,-3],[-25,-35,9],[25,-35,-9]];
+    const centers = paths.map(path => {
+      const box = path.getBBox();
+      return [box.x + box.width / 2, box.y + box.height / 2];
+    });
+    const paint = elapsed => {
+      const progress = Math.min(1, Math.max(0, elapsed / 800));
+      const remaining = Math.pow(1 - progress, 3);
+      paths.forEach((path, index) => {
+        if (elapsed >= 800) { path.removeAttribute('transform'); return; }
+        const [x,y,angle] = offsets[index];
+        const [cx,cy] = centers[index];
+        path.setAttribute('transform', `translate(${x*remaining} ${y*remaining}) translate(${cx} ${cy}) rotate(${angle*remaining}) translate(${-cx} ${-cy})`);
+      });
+      screen.style.opacity = String(elapsed >= 1200 ? 0 : 1 - Math.max(0, (elapsed - 900) / 300));
+    };
+    paint(0);
+    screen.querySelector('svg').style.visibility = 'visible';
+    root.dataset.introState = 'playing';
+    const start = performance.now();
+    const tick = now => {
+      const elapsed = now - start;
+      paint(elapsed);
+      if (elapsed >= 1200) clear('complete');
+      else frame = requestAnimationFrame(tick);
+    };
+    deadline = setTimeout(() => clear('complete'), 1200);
+    frame = requestAnimationFrame(tick);
+    screen.addEventListener('pointerdown', skip, {once:true});
+    document.addEventListener('keydown', skip, {once:true});
+    media.addEventListener?.('change', reduce);
+  } catch (error) {
+    clear('fallback');
+  }
+})();
+
 
 const copyButton = document.querySelector("[data-copy-message]");
 const messageField = document.querySelector("#message-template");

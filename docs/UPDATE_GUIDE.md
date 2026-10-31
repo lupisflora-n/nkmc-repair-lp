@@ -86,3 +86,7 @@ HTMLの演出ボタンが動かない場合はscripts/render_effect_videos.pyで
 ## 最新のマーク演出候補
 
 旧0.7秒案はEFFECT_OPTIONS_V2.txtの新版1.2秒案へ更新。scripts/render_mark_effects.pyでマーク自体を動かす比較用HTMLと、チャット内用GIF・コマ送りPNGを生成する。0.8秒で正式形状へ戻し、1.2秒で本文へ完全に切り替える。候補番号が選ばれるまで実LPへ適用しない。
+
+## 本ページの初回演出
+
+最新版はintro.enabled=true/effect=2/durationMs=1200。本ページへ2番を適用済み。オフにする場合はenabled=falseで再ビルドする。演出の確認はscripts/verify_intro.py。HTMLを開き直す・再読み込みすると再生する。低減モーション、ページ内位置付きの遷移、JavaScript無効時は省略。LP本文や写真の読み込みを演出の完了待ちにしない。

@@ -295,3 +295,10 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
   .mobile-contact > span { flex:1; min-width:0; }
   .mobile-contact .button { flex-shrink:0; }
 }
+
+/* 選択済み2番：パーツが復元して本文へ。写真や元SVGファイルは変更しない。 */
+.intro-screen { display:none; }
+.intro-pending .intro-screen { position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; background:#fff; touch-action:none; }
+.intro-pending { overflow:hidden; }
+.intro-mark { display:block; width:clamp(160px,36vw,260px); height:auto; overflow:visible; visibility:hidden; }
+@media (prefers-reduced-motion:reduce) { .intro-screen { display:none!important; } }

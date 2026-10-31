@@ -109,6 +109,26 @@ def raster_dimensions(path):
     return None
 
 
+
+def intro_markup(data):
+    settings = data.get('intro', {})
+    if not settings.get('enabled'):
+        return '', ''
+    if settings.get('effect') != 2 or settings.get('durationMs') != 1200:
+        raise ValueError('選択済みの初回演出は2番・1200msです。')
+    original = ET.fromstring(asset_path(data['brand']['assets']['symbol']).read_text(encoding='utf-8'))
+    original.attrib.pop('width', None)
+    original.attrib.pop('height', None)
+    original.set('class', 'intro-mark')
+    original.set('aria-hidden', 'true')
+    original.set('focusable', 'false')
+    ET.register_namespace('', 'http://www.w3.org/2000/svg')
+    svg = ET.tostring(original, encoding='unicode')
+    overlay = '<div class="intro-screen" data-intro-effect="2" data-intro-duration="1200" aria-hidden="true">' + svg + '</div>'
+    boot = """<script>(function(){try{if(!location.hash&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro-pending');window.librightIntroFailsafe=setTimeout(function(){document.documentElement.classList.remove('intro-pending');},1600);}}catch(error){document.documentElement.classList.remove('intro-pending');}})();</script>"""
+    return overlay, boot
+
+
 def check_image_policy(data):
     policy = data['cases']['imagePolicy']
     required = {'useOriginalFiles': True, 'allowEditing': False, 'allowCompression': False,
@@ -154,6 +174,7 @@ def release_issues(data):
 
 def render(data, review):
     used_assets = set()
+    intro_screen, intro_boot = intro_markup(data)
     copy = data['copy']
     cases = data['cases']['items']
     visible_cases = cases if review else [case for case in cases if data['cases'].get('publish') and ready(case)]
@@ -269,6 +290,7 @@ def render(data, review):
         business_html = '<div class="business-details">' + '<br>'.join(esc(business[key]) for key in ['publicRepresentativeName', 'publicAddress'] if business.get(key)) + '</div>'
     review_bar = '<div class="review-bar"><span>DESIGN PREVIEW</span> 制作確認版・未公開｜掲載内容は最終確認前です。</div>' if review else ''
     values = {
+        'INTRO_SCREEN': intro_screen, 'INTRO_BOOT': intro_boot,
         'ROBOTS': 'noindex,nofollow' if review else 'index,follow',
         'TITLE': esc(data['seo']['title']),
         'SEO_HEAD': seo_head(data, review),
