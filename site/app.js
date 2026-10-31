@@ -15,6 +15,7 @@
     root.classList.remove('intro-pending');
     root.dataset.introState = state;
     screen?.remove();
+    document.dispatchEvent(new Event('libright:intro-end'));
     document.removeEventListener('keydown', skip);
     media.removeEventListener?.('change', reduce);
   };
@@ -43,6 +44,91 @@
     clearTimeout(replayTimer);
     if (replay.open) replayTimer = setTimeout(() => { replay.open = false; }, 2500);
   });
+})();
+
+// Progressive enhancement: the page stays readable without motion or scripts.
+(() => {
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (motion.matches || !('IntersectionObserver' in window)) return;
+
+  const targets = new Set(document.querySelectorAll([
+    '.section-heading', '.case-heading', '.case-description', '.photo-note',
+    '.service-row', '#partner .partner-grid > *',
+    '#approach .section-label', '#approach h2', '.practice-list > li',
+    '#area .area-grid > *', '#process > .section-label', '#process > h2',
+    '.steps > li', '.faq-section .section-label', '.faq-section h2',
+    '.faq-item', '#contact .contact-grid > *'
+  ].join(',')));
+  document.querySelectorAll('.photo-pair').forEach(pair => {
+    [...pair.children].forEach((frame, index) => {
+      targets.add(frame);
+      frame.dataset.revealType = 'photo';
+      frame.style.setProperty('--reveal-delay', `${index * 140}ms`);
+    });
+  });
+  document.querySelectorAll('.service-grid,.practice-list,.steps').forEach(group => {
+    [...group.children].forEach((item, index) => {
+      item.style.setProperty('--reveal-delay', `${index * 70}ms`);
+    });
+  });
+
+  let observer;
+  let startTimer = 0;
+  let started = false;
+  const reveal = (element, immediately = false) => {
+    if (immediately) element.dataset.revealInstant = '';
+    element.dataset.scrollReveal = 'visible';
+    observer?.unobserve(element);
+  };
+  const revealAll = () => {
+    started = true;
+    clearTimeout(startTimer);
+    targets.forEach(element => reveal(element, true));
+    observer?.disconnect();
+  };
+  const revealHashTarget = () => {
+    if (!location.hash) return;
+    let target;
+    try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); }
+    catch { return; }
+    // Keep the consultation controls ready after a CTA jump. Other sections,
+    // especially later photo pairs, still reveal only as they enter the viewport.
+    if (target?.id === 'contact') targets.forEach(element => {
+      if (target === element || target.contains(element)) reveal(element, true);
+    });
+  };
+  try {
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) reveal(entry.target);
+      });
+    }, {threshold: 0.08, rootMargin: '0px 0px -48px 0px'});
+    const start = () => {
+      if (started) return;
+      started = true;
+      clearTimeout(startTimer);
+      targets.forEach(element => {
+        if (element.dataset.scrollReveal === 'pending') observer.observe(element);
+      });
+      revealHashTarget();
+    };
+    targets.forEach(element => { element.dataset.scrollReveal = 'pending'; });
+    if (document.querySelector('.intro-screen')) {
+      document.addEventListener('libright:intro-end', start, {once: true});
+      startTimer = setTimeout(start, 2800);
+    } else start();
+
+    document.addEventListener('focusin', event => {
+      const element = event.target.closest?.('[data-scroll-reveal]');
+      if (element) reveal(element, true);
+    });
+    window.addEventListener('hashchange', revealHashTarget);
+    window.addEventListener('beforeprint', revealAll);
+    window.addEventListener('pageshow', event => { if (event.persisted) revealAll(); });
+    motion.addEventListener?.('change', event => { if (event.matches) revealAll(); });
+  } catch {
+    revealAll();
+  }
 })();
 
 const copyButton = document.querySelector("[data-copy-message]");

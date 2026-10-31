@@ -342,8 +342,10 @@ def main():
 
     def compile_page(standalone):
         v = dict(values)
-        v['STYLE'] = '<style>\n' + css + '\n</style>' if standalone else '<link rel="stylesheet" href="styles.css">'
-        v['SCRIPT'] = '<script>\n' + js + '\n</script>' if standalone else '<script src="app.js" defer></script>'
+        css_version = hashlib.sha256(css.encode('utf-8')).hexdigest()[:12]
+        js_version = hashlib.sha256(js.encode('utf-8')).hexdigest()[:12]
+        v['STYLE'] = '<style>\n' + css + '\n</style>' if standalone else f'<link rel="stylesheet" href="styles.css?v={css_version}">'
+        v['SCRIPT'] = '<script>\n' + js + '\n</script>' if standalone else f'<script src="app.js?v={js_version}" defer></script>'
         result = re.sub(r'\{\{([A-Z_]+)\}\}', lambda match: v[match.group(1)], template)
         if standalone:
             # Single-file preview: reversible data URIs preserve every supplied asset byte.

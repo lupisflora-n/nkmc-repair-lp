@@ -70,3 +70,5 @@
 - 最新ユーザー指定は「NKMCの方で変えた」。現在の配信元はnkmc-repair-lp、URLはhttps://lupisflora-n.github.io/nkmc-repair-lp/。Sourceが未有効でrun 41151444803再実行もdeploy失敗。所有者にNKMC側PagesのSourceをGitHub Actionsにする操作を依頼中。librightを公開先にする案は現在使わず、そのrepoやファイルは勝手に削除しない。元repoのPublic化はユーザー操作であり、いまPrivateに戻すと無料Pagesへ影響する。
 
 - 公開完了の最新記録：run 41151444803 / deploy job 124393084285成功、HTTP 200、HTML/写真SHA一致、基本表示操作を確認。site/content.jsonのpublication.urlStatus=live。新たな公開先設定を再度求めず、通常の修正は既存main→Pagesで進める。ユーザー実機とDM到達は未検証。
+
+- スクロール表示：site/app.jsとstyles.cssでIntersectionObserverによる一度限りの表示。写真フレーム950ms/20px、前後140ms差、文章650ms/14px。画像自体は変更しない。低減モーション/JSなし/Observer欠落時は通常表示。検証はscripts/verify_scroll_reveal.py。公開時はCSS/JSの内容ハッシュ付きURLを維持し、古いキャッシュで新演出が欠落しないようにする。
