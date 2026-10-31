@@ -75,7 +75,7 @@
     "paymentConditions": null
   },
   "cases": {
-    "publish": false,
+    "publish": true,
     "items": [
       {
         "id": "case-01",
@@ -85,8 +85,8 @@
         "description": "室内建具の木枠に生じた傷の補修事例です。",
         "altBefore": "木枠",
         "altAfter": "木枠補修後",
-        "confirmed": false,
-        "publicationCleared": false,
+        "confirmed": true,
+        "publicationCleared": true,
         "title": "木枠の欠け補修",
         "beforeSha256": "7cc39982cca1963739896d2afa3c3e7d6c2ddd3ab5f133bc04758dd2c0a4010e",
         "afterSha256": "f1d3c14328a4cc99bac4c2a59ae4d149ee991524e55bf5bf063d89d20b030f37"
@@ -99,8 +99,8 @@
         "description": "階段側板に生じた継ぎ目の補修事例です。",
         "altBefore": "階段側板",
         "altAfter": "階段側板補修後",
-        "confirmed": false,
-        "publicationCleared": false,
+        "confirmed": true,
+        "publicationCleared": true,
         "title": "木材継ぎ目の補修",
         "beforeSha256": "d6215bc905895c74e2cf82852cac8f7795a2b946afdbaaf6bd801db97671241c",
         "afterSha256": "632956ad6ac1cd60d4f5ebf6300f96ea853e386bc72cba5cb4577cf23b9f3aaf"
@@ -113,8 +113,8 @@
         "description": "木目調の扉の下端に見られる欠け・傷の補修事例です。",
         "altBefore": "扉下端",
         "altAfter": "扉下端補修後",
-        "confirmed": false,
-        "publicationCleared": false,
+        "confirmed": true,
+        "publicationCleared": true,
         "beforeSha256": "d74224ddb0ba92fdd64ee6cfc5fc7bee1519904bc7a26dc76be9195d4215d57c",
         "afterSha256": "4129ead9cbb2065d0d480acbc954ea871c4064aa945ab3fd976f8ca3883f87b4",
         "title": "扉下端の補修"
@@ -136,13 +136,14 @@
     "instagramUsername": "libright_chiba",
     "profileUrl": "https://www.instagram.com/libright_chiba/",
     "linkVerified": false,
-    "channelConfirmedForLp": false,
+    "channelConfirmedForLp": true,
     "hours": null,
     "replyTime": null,
     "phone": null,
     "email": null,
     "lineUrl": null,
-    "suggestedMessage": "会社名・ご担当者名・お客様のお名前：\n現場の市区町村：\n希望日程・引渡し予定日：\nキズの箇所数：\n気になる点：\n\n（全体とキズが分かる写真を添付）"
+    "suggestedMessage": "会社名・ご担当者名・お客様のお名前：\n現場の市区町村：\n希望日程・引渡し予定日：\nキズの箇所数：\n気になる点：\n\n（全体とキズが分かる写真を添付）",
+    "profileUrlConfirmed": true
   },
   "business": {
     "publishDetails": false,
@@ -152,14 +153,12 @@
     "profileConfirmed": false
   },
   "partnerIntroduction": {
-    "publish": false,
-    "name": null,
-    "relationship": null,
-    "description": null,
+    "publish": true,
+    "name": "株式会社TRC",
     "officialUrl": "https://total-repair-circle.com/",
-    "confirmed": false,
-    "publicationCleared": false,
-    "reviewDraft": {
+    "confirmed": true,
+    "publicationCleared": true,
+    "content": {
       "show": true,
       "headline": "学んだ技術を、\n求められる形と価値へ。",
       "name": "株式会社TRC",
@@ -230,7 +229,7 @@
     "aboutHeadline": "傷を直す。その先の、\n晴れやかな暮らしまで。",
     "aboutText": "住まいについた傷だけでなく、その傷を見るたびに生まれる気がかりにも目を向ける。\n\n丁寧な補修で住まいの本来の美しさを取り戻し、安心して毎日を過ごせるように。\n\nかつて補修技術に感動した人が、今度はその技術で人に喜びを届けていく。",
     "aboutConfirmed": true,
-    "processConfirmed": false,
+    "processConfirmed": true,
     "brandPromise": "",
     "contractorBridge": "",
     "brandOriginText": "フランス語の「libre（自由な）」と、英語の「bright（明るい・輝かしい）」。LIBRIGHTは、住まいの傷への気がかりを手放し、暮らしの輝かしさを取り戻すお手伝いをしています。",
@@ -241,7 +240,7 @@
     "servicesHeadline": "まとめ補修も、\n急なキズのご相談も。",
     "storyHeadline": "傷が直る驚きを、\n喜びを届ける仕事へ。",
     "storyText": "傷のあった場所が、住まいになじんでいく。その変化に心を動かされたことが、リブライトの原点です。\n\n技術を学び、自分の手で直せる喜びを知った先にあったのは、誰かに喜んでもらえる仕事でした。現場での経験を重ねながら、その思いを一つひとつの補修につなげています。",
-    "storyConfirmed": false,
+    "storyConfirmed": true,
     "practiceHeadline": "仕上がりと、\n現場の進めやすさを大切に。",
     "practiceItems": [
       {
@@ -257,7 +256,7 @@
         "text": "施工後は補修した箇所を一緒に確認。気になる点もお聞かせください。"
       }
     ],
-    "practiceConfirmed": false,
+    "practiceConfirmed": true,
     "areaHeadline": "千葉県を中心に、\n関東エリアへ。",
     "areaDescription": "現場の市区町村と、ご希望の日程をお知らせください。対応できるか確認します。",
     "processHeadline": "ご相談から施工まで。",
@@ -280,9 +279,10 @@
     "showAboutSection": false
   },
   "publication": {
-    "hostingConditionsChecked": false,
+    "hostingConditionsChecked": true,
     "repository": "lupisflora-n/nkmc-repair-lp",
-    "siteUrl": null
+    "siteUrl": "https://lupisflora-n.github.io/libright/",
+    "publicRepository": "lupisflora-n/libright"
   },
   "seo": {
     "title": "千葉の住宅リペア・キズ補修｜関東対応｜リブライト LIBRIGHT",

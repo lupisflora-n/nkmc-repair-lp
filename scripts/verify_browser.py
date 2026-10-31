@@ -2,12 +2,18 @@
 """Verify the built LP locally; never send an Instagram DM or publish a site."""
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import argparse
 import json
 from pathlib import Path
 import threading
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser()
+parser.add_argument('--mode', choices=['review', 'release'], default='review')
+args = parser.parse_args()
+review = args.mode == 'review'
+data = json.loads((ROOT / 'site/content.json').read_text())
 QA = ROOT / 'qa'
 QA.mkdir(exist_ok=True)
 
@@ -17,14 +23,14 @@ class QuietHandler(SimpleHTTPRequestHandler):
         pass
 
 
-server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=str(ROOT / 'dist-review')))
+server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=str(ROOT / ('dist-review' if review else 'dist'))))
 thread = threading.Thread(target=server.serve_forever, daemon=True)
 thread.start()
 origin = f'http://127.0.0.1:{server.server_port}'
-report = {'pageErrors': [], 'failedRequests': [], 'viewports': [], 'checks': {}, 'limits': [
-    '施工写真6枚の表示・元ファイル一致・拡大表示を検証。施工の詳細と掲載条件の最終確認は別途必要。',
+report = {'mode': args.mode, 'pageErrors': [], 'failedRequests': [], 'viewports': [], 'checks': {}, 'limits': [
+    '施工写真6枚の表示・元ファイル一致・拡大表示を検証。公開可否はユーザーの掲載・公開指示を根拠とする。',
     'Instagramの外部通信はテストで代替し、遷移先URLを確認した。実アカウントの表示、DM画面と送受信は未検証。',
-    'ローカルの確認版を検証。GitHubや他ホスティングへは未公開。',
+    'ローカルで生成物を検証。実URLでの配信確認は別工程。',
     'file://の直接起動は実行環境の管理ポリシーで遮断されるため、単体HTMLの内容をブラウザへ読み込んで確認。'
 ]}
 try:
@@ -58,8 +64,12 @@ try:
                 assert 'リブライトの原点です。' in page.locator('.hero-story').inner_text()
                 assert page.locator('#brand-concept').count() == 0
                 assert 'OUR STORY' not in page.locator('main').inner_text()
-                assert page.locator('meta[name="robots"]').get_attribute('content') == 'noindex,nofollow'
-                assert page.locator('link[rel="canonical"]').count() == 0
+                assert page.locator('meta[name="robots"]').get_attribute('content') == ('noindex,nofollow' if review else 'index,follow')
+                if review:
+                    assert page.locator('link[rel="canonical"]').count() == 0
+                else:
+                    assert page.locator('link[rel="canonical"]').get_attribute('href') == data['publication']['siteUrl']
+                    assert page.locator('.review-bar,.intro-review,.partner-draft-note').count() == 0
                 structured = json.loads(page.locator('script[type="application/ld+json"]').text_content())
                 assert structured['name'] == 'リブライト'
                 assert '住所' not in structured
@@ -80,8 +90,8 @@ try:
                     assert abs(dimensions['width'] / dimensions['height'] - dimensions['ratio']) < .02
                     assert dimensions['fit'] == 'contain' and dimensions['filter'] == 'none'
                 if width in (390, 1440):
-                    page.screenshot(path=str(QA / f'preview-{width}.png'), full_page=True)
-                    page.screenshot(path=str(QA / f'preview-top-{width}.png'))
+                    page.screenshot(path=str(QA / f'{args.mode}-{width}.png'), full_page=True)
+                    page.screenshot(path=str(QA / f'{args.mode}-top-{width}.png'))
                 report['viewports'].append({'width': width, 'height': height, 'http': response.status, 'horizontalOverflow': overflow})
             page.set_viewport_size({'width': 390, 'height': 844})
             page.goto(origin + '/', wait_until='networkidle')
@@ -132,7 +142,8 @@ try:
             fallback.close()
             offline = browser.new_context(java_script_enabled=False)
             offline_page = offline.new_page()
-            offline_page.set_content((ROOT / 'design/preview.html').read_text(encoding='utf-8').replace('<head>', '<head><base href="' + origin + '/">'), wait_until='load')
+            standalone = ROOT / ('design/preview.html' if review else 'design/release-preview.html')
+            offline_page.set_content(standalone.read_text(encoding='utf-8').replace('<head>', '<head><base href="' + origin + '/">'), wait_until='load')
             for photo in offline_page.locator('.original-photo').all():
                 photo.scroll_into_view_if_needed()
             assert offline_page.locator('h1').is_visible()
@@ -149,5 +160,5 @@ try:
 finally:
     server.shutdown()
     server.server_close()
-    (QA / 'browser-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    (QA / ('browser-report.json' if review else 'release-browser-report.json')).write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 print(json.dumps(report, ensure_ascii=False, indent=2))

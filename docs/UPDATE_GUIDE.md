@@ -42,19 +42,19 @@ case-02、case-03も同様。元ファイルのバイト列を変更せず、`si
 
 ブランド紹介は `copy.aboutConfirmed`。現在はユーザーが提示した対外コンセプトを採用済み。実際の施工の流れは `copy.processConfirmed` で管理し、未確認の間は公開版から除外する。
 `copy.brandPromise` が冒頭の補助文、`copy.aboutText` がコンセプト本文、`copy.brandOriginText` がお客様への価値に結びつけた屋号の説明。私的な創業動機をこれらへ入れない。
-TRCを紹介する場合は `partnerIntroduction` に実際の関係、同社の仕事も伝わる紹介、公式案内先をそろえ、内容と掲載条件を確認してから公開する。
+TRCの採用原稿は `partnerIntroduction.content`。確認版・公開版で同じ原稿とTRC/RBS案内を使用する。ユーザーの掲載・編集・公開指示を根拠に公開設定を更新済み。第三者から独立した個別承認を得たとの説明はしない。
 
 ## 問い合わせ
 
-`contact.profileUrl` はスクリーンショットのユーザー名を元にしたInstagram URL。確認版ではプロフィールを開く導線を用意済み。
+`contact.profileUrl` はユーザーが直接指定したInstagram URL。`profileUrlConfirmed` はこのURLと公開窓口の採用確認。公開時に実機DM到達確認を偽装しない。
 本人の実アカウントと、プロフィールの「メッセージ」からDMに進めることを確認して `linkVerified` を更新する。実際にDMを送る操作は別の送信許可として扱う。
 `channelConfirmedForLp` は最終的に採用する窓口が確定したときに更新する。
 相談文のコピーは送信ではない。ページ側で内容を保存・送信するフォームやデータベースは使用していない。
 
 ## 公開
 
-公開先の条件と設定を確認して `publication.hostingConditionsChecked` を更新する。GitHub Pagesの利用条件の確認は未完了。
-`python scripts/build.py --mode release` は、原写真・問い合わせ経路・ロゴ・公開条件がそろうまで停止する。実際の確認なしにフラグを変更して通さない。
+GitHub Pagesの公式制限を確認し、現在の紹介ページ構成で継続するユーザー指示を記録済み。`hostingConditionsChecked` は個別適合承認や配信成功を意味しない。実際の公開状況と権限不足の残件は `docs/PUBLISHING.md` に記録する。
+`python scripts/build.py --mode release` は、原写真・採用プロフィールURL・ロゴ・公開条件がそろうまで停止する。実際の確認なしにフラグを変更して通さない。
 条件がそろうと `dist/` に公開用HTML/CSS/JavaScriptと必要な素材だけを作成する。写真はコピー後もSHA-256で一致を確認する。
 `docs/`、`design/`、`qa/` や第三者の未公開情報を公開サイトへ移さない。
 

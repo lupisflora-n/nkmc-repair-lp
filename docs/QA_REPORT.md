@@ -164,3 +164,10 @@ SEO専門担当の最終監査は必須修正なし。住所未確定時はOrgan
 - ユーザーの「マークのエフェクトをもう少し見れるように」指示で、最新の時間を1.2秒から2.4秒へ変更。0〜0.3秒は分解状態を保持、0.3〜1.5秒で復元、1.5〜2秒は完成形を保持、2〜2.4秒は白い演出画面から本文へフェード。
 - 2番の形・色、原写真と正式ロゴファイル、本文は変更なし。CSS方式・低減モーション・スキップ・確認版の再生操作を維持。
 - scripts/verify_intro.pyを新しい時間で更新し、JavaScript有効・無効、繰り返し再生、低減モーション、キー操作、履歴復帰を確認済み。
+
+## 公開予定版の検証（2026-10-31）
+
+- python scripts/build.py --mode release --standalone-output design/release-preview.html：公開用ビルド成功、17ファイル、全原写真コピーのSHA一致。
+- python -m unittest discover -s tests -v：7件合格。公開版で承認済みセクションを欠落させないこと、確認操作・内部注記を出さないこと、プロフィールURL承認とDM未検証の区別を含む。
+- python scripts/verify_browser.py --mode release：320/390/768/1440pxで横はみ出し・JS例外・素材失敗なし。写真6枚の拡大とフォーカス復帰、相談文コピーと代替、FAQ、ページ内リンク、Instagram宛先、JavaScriptなし単体HTMLを確認。
+- Web公開担当の独立確認でreleaseとreviewのmain内HTMLが一致。公開用17ファイルに制作メモは含まれない。予定URLのcanonical/OG/sitemap一致、index,followを確認。実URLはGitHub接続権限不足で未配信・未検証。

@@ -161,8 +161,8 @@ def release_issues(data):
         issues.append('正式な公開URLを設定する')
     if not data['cases'].get('publish') or not all(ready(case) for case in data['cases']['items']):
         issues.append('施工写真3組の元ファイル・内容・掲載条件を確認する')
-    if not data['contact'].get('linkVerified'):
-        issues.append('Instagramの実際の遷移とDMまでの経路を確認する')
+    if not data['contact'].get('profileUrlConfirmed'):
+        issues.append('ユーザー指定のInstagramプロフィールURLを確認する')
     if not data['contact'].get('channelConfirmedForLp'):
         issues.append('LPの問い合わせ窓口を確定する')
     if not data['brand'].get('assetsReady') or not data['brand']['assets'].get('horizontal'):
@@ -280,14 +280,14 @@ def render(data, review):
         pricing = '<section class="wrap" id="pricing"><span class="section-label">PRICING</span><h2>料金・お見積もりについて。</h2><table class="price-table"><tbody>' + rows + '</tbody></table></section>'
     partner = ''
     p = data['partnerIntroduction']
+    draft = p.get('content', p.get('reviewDraft', {}))
     if p.get('publish'):
-        if not all(p.get(key) for key in ['name', 'relationship', 'description', 'officialUrl', 'confirmed', 'publicationCleared']):
+        if not all(p.get(key) for key in ['name', 'officialUrl', 'confirmed', 'publicationCleared']) or not all(draft.get(key) for key in ['headline', 'relationship', 'description', 'companyHeadline']):
             raise ValueError('協力先紹介は、関係・紹介文・公式案内先・掲載条件を確認してから公開してください。')
-        partner = f'<section class="partner-section" id="partner"><div class="wrap"><span class="section-label">PARTNER</span><h2>{esc(p["name"])}</h2><p>{esc(p["relationship"])}</p><p>{esc(p["description"])}</p><a href="{esc(web_url(p["officialUrl"]))}" target="_blank" rel="noopener noreferrer">{esc(p["name"])}の公式サイトを見る</a></div></section>'
-    elif review and p.get('reviewDraft', {}).get('show'):
-        draft = p['reviewDraft']
+    if (p.get('publish') or review) and draft.get('show'):
         draft_links = '<nav class="partner-links" aria-label="TRC・RBSのご紹介">' + ''.join(f'<a href="{esc(web_url(link["url"]))}" target="_blank" rel="noopener noreferrer">{esc(link["label"])}</a>' for link in draft.get('links', []) if link.get('label')) + '</nav>' if draft.get('links') else ''
-        partner = '<section class="partner-section" id="partner"><div class="wrap partner-grid"><div><span class="section-label">FIELD WORK</span><h2>' + lines(draft['headline']) + '</h2><p class="partner-draft-note">紹介文案｜関係・紹介内容・掲載条件は最終確認前です。</p></div><div><p>' + esc(draft['relationship']) + '</p>' + (('<p>' + esc(draft['approach']) + '</p>') if draft.get('approach') else '') + '</div><aside class="partner-company" aria-labelledby="partner-company-title"><div><h3 id="partner-company-title">' + esc(draft['companyHeadline']) + '</h3><p>' + lines(draft['description']) + '</p></div>' + draft_links + '</aside></div></section>'
+        note = '<p class="partner-draft-note">紹介文案｜関係・紹介内容・掲載条件は最終確認前です。</p>' if review and not p.get('publish') else ''
+        partner = '<section class="partner-section" id="partner"><div class="wrap partner-grid"><div><span class="section-label">FIELD WORK</span><h2>' + lines(draft['headline']) + '</h2>' + note + '</div><div><p>' + esc(draft['relationship']) + '</p>' + (('<p>' + esc(draft['approach']) + '</p>') if draft.get('approach') else '') + '</div><aside class="partner-company" aria-labelledby="partner-company-title"><div><h3 id="partner-company-title">' + esc(draft['companyHeadline']) + '</h3><p>' + lines(draft['description']) + '</p></div>' + draft_links + '</aside></div></section>'
     business = data['business']
     business_html = ''
     if business.get('publishDetails'):
@@ -327,6 +327,7 @@ def render(data, review):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--mode', choices=['review', 'release'], default='review')
+    parser.add_argument('--standalone-output', type=Path, help='Write an additional single-file HTML for checking the chosen mode.')
     args = parser.parse_args()
     data = json.loads((SITE / 'content.json').read_text(encoding='utf-8'))
     check_image_policy(data)
@@ -369,6 +370,9 @@ def main():
             raise ValueError(f'元画像と配信ファイルが一致しません: {value}')
     if args.mode == 'release':
         write_indexing_files(out, data)
+    if args.standalone_output:
+        args.standalone_output.parent.mkdir(parents=True, exist_ok=True)
+        args.standalone_output.write_text(compile_page(True), encoding='utf-8')
     if args.mode == 'review':
         preview = ROOT / 'design' / 'preview.html'
         preview.parent.mkdir(exist_ok=True)

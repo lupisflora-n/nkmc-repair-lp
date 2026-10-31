@@ -224,3 +224,13 @@ GitHubでのソース管理とWeb公開を分ける。GitHub Pages等の配信�
 - ユーザーから無料公開の実施指示を受領。Web公開担当を編成し、GitHub Pagesの公式利用制限を主担当が取得。受注と継続取引の獲得を主目的とする本LPには適さないと判断し、Pagesを有効化しなかった。
 - GitHubでの非公開管理を保ち、Cloudflare Pages無料枠で公開する案を提示。変更可否をユーザーへ確認中。アカウント作成・接続・公開はまだ実行していない。
 - 実施設定、根拠URL、正式公開で確認版から除外される項目などをdocs/PUBLISHING.mdに保存。次は公開先変更の回答を受け、アカウント接続・掲載データ整理・正式URL設定・公開ビルド・配信確認の順に進む。
+
+## GitHub Pagesへの公開継続と接続権限（2026-10-31）
+
+- ユーザーはInstagramへの案内という現在構成でGitHub公開継続を指示。既存の写真差し込みとOK、編集原稿反映、TRC再構成指示、今回の公開指示を根拠として写真・本文の公開フラグを更新。これは第三者個別許諾や独立した業務実態確認を取得したという意味ではない。
+- partnerIntroduction.contentへ原稿を昇格し確認版と公開版を共通化。TRC/RBS2リンク、ブランド本文、姿勢、施工の流れを保持。制作バー・紹介文案注記だけ除去。Instagramはユーザー指定プロフィールの確認とDM実機確認を分離し、profileUrlConfirmed=true / linkVerified=falseを保存。
+- 公開版を17ファイルに限定し、施工写真6枚のSHA-256一致を維持。releaseの本文はreviewと一致、OUR STORYは引き続き非掲載。7単体テストとreleaseの320/390/768/1440pxの実ブラウザ検証、コピー/代替/写真拡大/FAQ/Instagramプロフィール宛先に合格。
+- POST /user/repos と POST /repos/lupisflora-n/nkmc-repair-lp/pages がいずれも403 Resource not accessible by integration。公開設定・新規repo作成の権限がない。ブラウザ操作ツールも利用不可。GitHub PagesでのWeb配信は未実施。
+- ユーザーは既存nkmcリポジトリを指している。これは接続済み制作元であり、再読取でもprivate/has_pages=falseを確認。既存repo全体の公開や履歴書き換えは行わない。配信用別Publicを提案した理由を説明。新規Public作成とCodex接続対象への追加を所有者に依頼中。
+- 予定の配信先はlupisflora-n/libright、URLはhttps://lupisflora-n.github.io/libright/（未作成・未公開）。/workspace/libright-publicに17ファイルだけの配信待機フォルダ、/workspace/LIBRIGHT-GitHub-Pages-public.zipに公開用ZIP、/workspace/LIBRIGHT-LP-public-preview.htmlに公開予定本文の単体HTMLを作成。
+- 次は所有者操作でPublic配信用repoが利用できるようになったら、17ファイルをpushし、Pages設定を試す。403継続時は所有者のSettings→Pages→main/(root)設定が必要。実URL200・配信内容確認後だけ公開完了と案内する。

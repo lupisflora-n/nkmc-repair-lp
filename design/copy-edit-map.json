@@ -1,6 +1,6 @@
 {
   "baseline": "v0.5",
-  "sourceSha256": "fa2e6ff3d97c570ace1eaa510d55de2c69dd2b1470774b17842b787146f3e70e",
+  "sourceSha256": "92c705c5e0dfc498b5cef2298e1ad210a24df508e235615efeecf6971874e3a4",
   "fields": [
     {
       "section": "A｜冒頭"
@@ -228,49 +228,49 @@
       "id": "F01",
       "label": "Nさんの実務の見出し",
       "text": "学んだ技術を、\n求められる形と価値へ。",
-      "source": "site/content.json:partnerIntroduction.reviewDraft.headline"
+      "source": "site/content.json:partnerIntroduction.content.headline"
     },
     {
       "id": "F02",
       "label": "学びと現場協力の説明",
       "text": "リペアの専門スクールで学んだ補修技術を土台に、リブライトとして活動しています。修了後もスクール運営会社の現場協力者として、住宅引渡し前の種類数多の傷キズ補修に日々向き合っています。",
-      "source": "site/content.json:partnerIntroduction.reviewDraft.relationship"
+      "source": "site/content.json:partnerIntroduction.content.relationship"
     },
     {
       "id": "F03",
       "label": "現在の取り組みの補足",
       "text": "",
-      "source": "site/content.json:partnerIntroduction.reviewDraft.approach"
+      "source": "site/content.json:partnerIntroduction.content.approach"
     },
     {
       "id": "F04",
       "label": "TRC紹介の小見出し",
       "text": "住宅補修、その技術を担う人を育てるスクールとの出会い",
-      "source": "site/content.json:partnerIntroduction.reviewDraft.companyHeadline"
+      "source": "site/content.json:partnerIntroduction.content.companyHeadline"
     },
     {
       "id": "F05",
       "label": "TRC・RBS紹介の本文",
       "text": "「補修って何？」「どんな傷が直せるの？」\nそんな疑問が補修を始める前の私にもありました。\nその疑問を解決するリペアビジネススクール（RBS）との出会い、そこで得た学びと技術で、今度は私が千葉を拠店に皆様の疑問にお答えいたします。",
-      "source": "site/content.json:partnerIntroduction.reviewDraft.description"
+      "source": "site/content.json:partnerIntroduction.content.description"
     },
     {
       "id": "F06",
       "label": "案内リンク1の表示文",
       "text": "",
-      "source": "site/content.json:partnerIntroduction.reviewDraft.links.0.label"
+      "source": "site/content.json:partnerIntroduction.content.links.0.label"
     },
     {
       "id": "F07",
       "label": "案内リンク2の表示文",
       "text": "私が学んだスクール（RBS）のご紹介",
-      "source": "site/content.json:partnerIntroduction.reviewDraft.links.1.label"
+      "source": "site/content.json:partnerIntroduction.content.links.1.label"
     },
     {
       "id": "F08",
       "label": "案内リンク3の表示文",
       "text": "スクール運営元、株式会社TRCのご紹介",
-      "source": "site/content.json:partnerIntroduction.reviewDraft.links.2.label"
+      "source": "site/content.json:partnerIntroduction.content.links.2.label"
     },
     {
       "section": "G｜現場で大切にすること"

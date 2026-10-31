@@ -1,67 +1,88 @@
 # LIBRIGHT LP 公開引き継ぎ
 
-更新：2026-10-31。公開手続きを求めるユーザー指示を受領済み。現在は未公開。GitHub制作リポジトリの公開範囲や、外部サービスのアカウント設定は変更していない。
+更新：2026-10-31。ユーザーは「Instagramへの誘導なので行けると思います。続けてお願い」とGitHubでの無料公開を改めて指示した。公開先はGitHub Pagesで手続きを進める。公開用ファイルと検証は完了したが、GitHub APIの権限不足で新規リポジトリ作成・Pages設定ができず、現在は未公開。必要な所有者操作と次の作業を末尾に記録する。
 
-## 公開先の判断
+## 今回の公開方針
 
-GitHubは制作ソースの管理先として継続する。既存の `lupisflora-n/nkmc-repair-lp` は非公開を維持し、制作記録を含むリポジトリ全体を公開リポジトリに変更しない。
+制作ソースは `lupisflora-n/nkmc-repair-lp` の非公開管理を維持する。制作メモ・編集原稿・ブランドの再編集資料・Git履歴を含む既存リポジトリ全体の公開設定は変更しない。公開用の別リポジトリには `python scripts/build.py --mode release` が生成した `dist` の配信物だけを入れる。配信用リポジトリは `lupisflora-n/libright`、予定URLは `https://lupisflora-n.github.io/libright/`。この準備時点では未作成であり、Pagesの設定・公開URLは実際の作成結果を確認して記録する。
 
-GitHub Pages公式の「GitHub Pages limits」は、オンラインビジネスの運営や商取引の促進を主目的とする無料ホスティング利用を許可しない旨を定めている。
+サイトは住宅リペアのサービス・施工例を紹介し、ユーザー指定のInstagramプロフィールへ案内する静的ページ。ページ内で注文、予約、支払い、個人情報の送信を受け付ける機能は追加しない。相談文コピーは端末内で実行し、DMをこちらから送らない。
+
+GitHub Pages公式には次の利用制限がある。
 
 > GitHub Pages is not intended for or allowed to be used as a free web-hosting service to run your online business, e-commerce site, or any other website that is primarily directed at either facilitating commercial transactions or providing commercial software as a service (SaaS).
 
 出典：<https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits>
 
-本LPは住宅補修の依頼・継続取引の獲得が主目的のため、今回の公開先としてGitHub Pagesを選ばない。これは本案件への適合性に関する制作側の判断であり、GitHubによる個別審査結果ではない。
+この制限はInstagram等への外部リンクがあれば自動的に対象外になるという規定ではない。ユーザーは説明を受けたうえで現在の紹介ページとして公開を継続する意向を示したため、今回の指示に従って手続きを進める。GitHubによる個別の適合確認・承認を得たとは説明しない。前版の「GitHub Pagesは選ばない／Cloudflare必須」という制作判断は今回の指示で置き換える。GitHubから指摘や技術的制限が出た場合は、それを記録して対応し、別サービスを勝手に契約しない。
 
-代替候補は、GitHubの非公開リポジトリに接続して静的ファイルを配信するCloudflare Pages。公式公開ソースで、GitHubのpublic/privateリポジトリ接続、pushに連動したデプロイ、Free枠の月500ビルド・20,000ファイル・各ファイル25MiBの上限を確認した。無料枠を超える構成へ自動的に変更しない。商用用途と適用されるサービス規約・アカウント条件も接続前に確認する。
+## 掲載内容を公開版へ移す
 
-主担当が2026-10-31に公式ドキュメントの公開ソースを取得。ドキュメントサイトへの直接アクセスは403だったため、GitHub上のCloudflare公式リポジトリを参照した。
+公開データは `site/content.json`。既存の確認フラグには、承認済みの作業後も未更新のものが残っている。ユーザーの写真差し込み指示と「OK」、掲載文を一括編集して返した原稿の反映指示、TRC紹介の再構成指示、今回の公開継続指示を根拠として、公開範囲と移行の記録を残す。フラグを変えたこと自体を事実の独立検証として扱わない。
 
-- [Pages limits](https://developers.cloudflare.com/pages/platform/limits/) ／ [公式公開ソース](https://raw.githubusercontent.com/cloudflare/cloudflare-docs/production/src/content/docs/pages/platform/limits.mdx)
-- [GitHub integration](https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/) ／ [公式公開ソース](https://raw.githubusercontent.com/cloudflare/cloudflare-docs/production/src/content/docs/pages/configuration/git-integration/github-integration.mdx)
+- 写真は3組6枚を使用し、タイトル・説明・前後の組み合わせを現確認版から引き継ぐ。元ファイルのSHA-256一致を保ち、トリミング、補正、圧縮、形式変換、再エンコードをしない。
+- 冒頭に移動したブランド文と原点本文、OUR APPROACH、HOW TO REQUEST、FAQを維持する。中段OUR STORYは削除指示どおり復活させない。
+- TRC・RBS紹介は旧版では `partnerIntroduction.reviewDraft` と確認版専用分岐にあった。これを `partnerIntroduction.content` と共通レンダーへ移し、現在の文・配置・RBSとTRCへの2本の案内リンクを正式掲載する。公開版では「紹介文案」「最終確認前」の制作注記を外す。
+- TRCの公認、雇用、大手メーカーとの直接取引等の新しい主張を加えない。ユーザー提供の背景と、調査済みの公開情報の範囲を守る。
+- 料金、住所、電話、返信時間、保証等の未確定情報は引き続き非掲載。仮の値で埋めない。
+- Instagram窓口の指定は今回のユーザー発言でも確認済み。URLは `https://www.instagram.com/libright_chiba/`。`profileUrlConfirmed=true` はユーザー指定URLと窓口採用の根拠を表す。実機DM経路の検証を表す `linkVerified` は未検証のまま `false` を維持する。プロフィールへの遷移と実際のDM経路の検証範囲を区別し、未検証の画面を確認済みと記録しない。DMや外部メッセージは送信しない。
 
-Cloudflare無料枠への変更可否はユーザーへ確認中。現時点ではCloudflareのアカウント作成・GitHub接続・プロジェクト作成・デプロイを実施していない。無料でも新しい外部アカウントやサービス契約を無断で作らない。
+## 公開用ビルドと配信物
 
-## 公開前に整えるデータ
-
-公開データは `site/content.json`。`python scripts/build.py --mode release` が残件を表示して停止する場合、確認版を代わりに公開せず、表示された項目を解決する。
-
-- `publication.siteUrl`：実際に使用する正規HTTPS URL。確定後に設定し、仮URLを正式サイトとして配信しない。
-- `publication.hostingConditionsChecked`：選んだ公開先の条件と設定を実際に確認してから更新する。
-- `cases.publish` と各事例の `confirmed` / `publicationCleared`：ユーザーが写真を提供しLPへの差し込みと公開を指示した履歴を確認し、その指示が認める利用範囲を記録する。単に過去の未更新フラグが残っていることと、実際に未確認の事項を区別する。写真は原ファイルを使用し、SHA-256一致を維持する。
-- `contact.channelConfirmedForLp`：LPの窓口としてInstagramを採用する指示・確認履歴を確認する。
-- `contact.linkVerified`：指定アカウントのプロフィールから「メッセージ」へ進める実際の経路を確認する。URLが構文的に正しいことだけで確認済みにしない。テストのためのDMは送信しない。
-
-releaseでは確認フラグにより、ブランド原点本文、仕事への姿勢、施工の流れ、TRC紹介等が確認版から非掲載になる場合がある。特にTRCの現行文は `partnerIntroduction.reviewDraft` にあり、確認版専用である。正式掲載内容への移行と根拠の確認を済ませるか、正式公開時に省くことを明確にする。公開ビルドが成功したことだけで、確認版と文章・構成が同じと判断しない。
-
-## Cloudflare Pages接続時の設定案
-
-以下は接続を行う場合の引き継ぎ手順。管理画面の表記や利用条件は実施時の公式資料に照らして確認する。
-
-1. ユーザーの利用可能なCloudflareアカウントを確認し、GitHub連携の許可を得る。GitHub Appのアクセス対象はこの制作リポジトリだけに絞る。
-2. 事前にプロジェクト名と予定の `pages.dev` URLを確認し、正規URLを `publication.siteUrl` に設定する。独自ドメインは今回の無料運用の必須条件にしない。
-3. 未確認項目の解消前に初回公開が走らないよう、releaseビルドの停止条件を維持する。確認フラグを通すだけの変更はしない。
-4. 接続するGitHubリポジトリは `lupisflora-n/nkmc-repair-lp`、本番ブランチは `main`、フレームワークは静的サイトとして設定する。
-5. リポジトリのルートをビルドルートとし、ビルドコマンドを `python scripts/build.py --mode release`、出力ディレクトリを `dist` にする。ビルド環境でPython 3.10以上を使用できることを確認する。このビルドに秘密鍵やAPIキーは不要。
-6. 配信対象を `dist` に限定する。`design/preview.html`、`dist-review`、`docs`、原稿、制作メモ、Git履歴、ブランド納品ZIP、内部限定の背景情報を配信しない。リポジトリのルート全体をアップロードしない。
-7. プレビューブランチの自動配信は必要時だけ有効にする。別URLのプレビューが自動生成される場合は検索対象や共有範囲の扱いを確認する。制作確認版HTMLの `noindex` をアクセス制限の代わりと考えない。
-8. デプロイ成功後、正式URLで下記の確認を行い、URLとデプロイ識別子を制作記録へ残す。
-
-## デプロイ前後の確認
-
-ローカルで公開用ビルドを実行し、生成された `dist` について確認する。
+正式URLが決まったら `publication.siteUrl` に設定する。`hostingConditionsChecked` は技術設定と利用条件の確認記録を伴って更新し、GitHubが個別承認したという意味にしない。必要な写真・文章・窓口の公開設定を反映し、次を実行する。
 
 ```sh
 python scripts/build.py --mode release
 ```
 
-releaseは正式URLに合わせたcanonical、OG URL、構造化データ、`sitemap.xml`、`robots.txt`を生成する。確認版の `noindex,nofollow` が正式HTMLに残っていないこと、本文とTRC紹介の掲載範囲、リンクの整合を確認する。
+出力の `dist` だけを配信用リポジトリへ登録する。`.nojekyll` を含め、HTML/CSS/JSと実際に参照される素材に限定する。確認版HTML、`dist-review`、`docs`、原稿、フォント本体、ブランドの再編集資料、ZIP、内部限定の創業背景を移さない。
 
-配信後は、HTTPSのHTTP 200応答、スマホ表示、マーク演出から本文への遷移、写真6枚の全体表示と原ファイルの一致、写真拡大、相談文コピーと代替手段、FAQ、Instagramのプロフィールまでの経路を確認する。正規URLとcanonical・サイトマップの一致も実URLで確認する。Search Consoleの所有権確認・サイトマップ送信は権限がそろった段階で行い、未実施を実施済みと記録しない。
+現在の表示に必要な素材は、施工JPEG6枚、横ロゴSVG2枚、シンボルSVG1枚、favicon SVGとPNG各1枚の計11ファイル。使用SVGは文字アウトラインで、外部フォントや外部ファイルを参照していない。ロゴ使用の根拠は制作リポジトリ内のライセンス資料に保管する。
 
-## 変更と復旧
+配信用リポジトリのPages配信元は、実際に作成したブランチのルートを選ぶ。無料プランでの可否と現在のAPI権限は実アカウントで確認する。公開済みでないURLを公開完了として渡さない。
 
-公開後も内容は `site/content.json`、表示は `site/styles.css`、操作は `site/app.js`、構造は `site/template.html` を変更して管理する。GitHubの `main` を更新すると本番へ自動配信される設定にした場合は、その事実をユーザーへ伝え、公開前に差分とビルドを確認する。
+## 公開前後の検証
 
-問題がある場合は、配信サービスで利用可能な直前の正常デプロイへの復旧方法を確認してから実行する。復旧後もGitHubのソースとの相違を解消し、次の自動配信で問題を再発させない。Git履歴の強制書き換えは行わない。
+公開版のHTMLについて、確認版との本文・順序の差分を点検する。意図した差分は制作確認バー、再生操作、TRC紹介の制作注記の除去と、公開URLに合わせたSEOタグ等である。
+
+確認する項目：
+
+- `index,follow`、canonical、OG URL、JSON-LD、`sitemap.xml`が実際の正式URLを指している。
+- GitHubプロジェクトPagesのサブディレクトリでもCSS、JS、画像、ページ内リンクが解決する。
+- `robots.txt` はオリジン直下でのみ参照されるため、プロジェクト配下の配置だけでクロール制御が有効とは説明しない。Search Consoleへの登録・送信は別作業。
+- 施工写真6枚の全体表示・元ファイル一致、横ロゴの比率・サイズ、320/390/768/1440px表示。
+- 2番のマーク演出は合計2.4秒。開始保持0.3秒、復元1.2秒、完成保持0.5秒、フェード0.4秒。低減モーション、スキップ、JavaScript無効時も本文が見える。
+- 写真拡大、閉じる操作、相談文コピーと代替手段、FAQ、Instagramプロフィールへのリンク。
+- 公開URLがHTTPSでHTTP 200を返し、公開した写真のバイト列が制作元と一致する。
+- 制作メモ、未確認注記、個人情報、秘密情報が配信物に混入していない。
+
+GitHub Pagesのデプロイ完了と実URLの表示確認を別々に記録する。実機スマホ、Instagramログイン後のDM画面、問い合わせ送受信、検索掲載の結果は、確認できたものだけを記録する。
+
+## 更新と復旧
+
+本文は非公開制作リポジトリの `site/content.json`、構造は `site/template.html`、表示は `site/styles.css`、操作は `site/app.js` で変更する。公開用ビルドと必要な検証後、配信用リポジトリに生成物を反映する。配信リポジトリに直接加えた変更は制作ソースにも戻し、次回ビルドで失わないようにする。
+
+不具合があれば、配信用リポジトリで直前の正常な配信物へ戻し、GitHub Pagesで再配信する。Git履歴の強制書き換えをしない。有料プラン・独自ドメイン・外部サービスへの移行は自動で行わない。
+
+## 作業結果と権限の制限
+
+2026-10-31、主担当がGitHub APIへ実際にリクエストした結果：
+
+- `POST /user/repos`（配信用のPublicリポジトリ `libright` の作成）：HTTP 403、`Resource not accessible by integration`。
+- `POST /repos/lupisflora-n/nkmc-repair-lp/pages`（接続済みリポジトリのPages設定）：HTTP 403、`Resource not accessible by integration`。既存リポジトリの公開範囲は変更していない。
+
+これは現在の接続にある操作権限の制限であり、サイト内容についてGitHubが個別審査・却下した結果とは扱わない。利用可能なブラウザ操作ツールも見つからず、所有者の画面操作を代行できる状態ではなかった。権限を迂回する手段は取っていない。
+
+配信用リポジトリ `lupisflora-n/libright` は未作成であり、予定のPages URLも未公開。ユーザーには、[GitHubの新規作成画面](https://github.com/new?name=libright&visibility=public)で空のPublicリポジトリを作成し、CodexのGitHub接続対象へ追加する操作を依頼済み。サイト公開と掲載への許可は受領済みのため、同じ許可を改めて求める必要はない。
+
+公開用ビルドの残件は0。独立点検で確認版と公開版の `<main>` 内HTML完全一致、写真6枚の元バイト・SHA一致、必須素材11点＋HTML/CSS/JS/SEO/`.nojekyll`の計17ファイルのみ、TRC/RBS案内2リンク維持、OUR STORYと制作注記の除去、予定URLでのSEO設定を確認済み。ローカルの完成はWeb配信完了を意味しない。
+
+## 再開時の具体的手順
+
+1. ユーザーが `lupisflora-n/libright` をPublicで空の状態にして作成し、CodexのGitHub接続でそのリポジトリを選択する。非公開の制作リポジトリをPublicへ変更しない。
+2. 主担当が新しいリポジトリへの読み書きを確認し、用意した配信物17ファイルだけを `main` のルートへpushする。内部資料や制作ソース全体は移さない。
+3. 主担当がPublic配信リポジトリのPages設定を試す。現在の接続で引き続き403となる場合、ユーザーが対象リポジトリの **Settings → Pages → Build and deployment** で **Source: Deploy from a branch / Branch: main / Folder: /(root)** を選びSaveする。`main` は配信物をpushした後に選択できる。
+4. 主担当がPagesのビルド完了と実URLのHTTPS応答を確認し、`https://lupisflora-n.github.io/libright/` の表示・素材・演出・相談リンクを検証する。設定前や404の段階で公開完了と案内しない。
+5. 実際の配信コミット、デプロイ結果、公開URLをこの資料と `docs/WORKFLOW.md` へ追記する。別の公開名・URLとなった場合はcanonical/OG/sitemapも一致させて再ビルドする。
+
+この段階で必要なのはGitHub所有者によるリポジトリ作成・接続対象の指定であり、Cloudflare等の別サービスへの移行承認ではない。

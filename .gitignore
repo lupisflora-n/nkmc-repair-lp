@@ -5,3 +5,5 @@ dist-review/
 qa/*.png
 qa/*.json
 /docs/BRAND_CONTEXT_PRIVATE.md
+
+/design/release-preview.html
