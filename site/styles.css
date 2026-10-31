@@ -298,10 +298,10 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
 
 /* 選択済み2番。CSSだけで開始・復元・終了するため、スクリプト無効でも動く。 */
 .intro-screen,.intro-replay-screen { position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; background:#fff; touch-action:none; opacity:0; visibility:hidden; pointer-events:none; }
-.intro-screen { animation:libright-intro-dismiss 1.2s linear both; }
+.intro-screen { animation:libright-intro-dismiss 2.4s linear both; }
 .intro-mark { display:block; width:clamp(160px,36vw,260px); height:auto; overflow:visible; }
 .intro-mark [data-part] { transform-box:fill-box; transform-origin:center; }
-.intro-screen .intro-mark [data-part],.intro-review[open] + .intro-replay-screen .intro-mark [data-part] { animation-duration:.8s; animation-timing-function:cubic-bezier(.333333,1,.666667,1); animation-fill-mode:both; }
+.intro-screen .intro-mark [data-part],.intro-review[open] + .intro-replay-screen .intro-mark [data-part] { animation-duration:1.2s; animation-delay:.3s; animation-timing-function:cubic-bezier(.333333,1,.666667,1); animation-fill-mode:both; }
 .intro-screen [data-part="base"],.intro-review[open] + .intro-replay-screen [data-part="base"] { animation-name:libright-repair-base; }
 .intro-screen [data-part="wall"],.intro-review[open] + .intro-replay-screen [data-part="wall"] { animation-name:libright-repair-wall; }
 .intro-screen [data-part="floor"],.intro-review[open] + .intro-replay-screen [data-part="floor"] { animation-name:libright-repair-floor; }
@@ -312,14 +312,14 @@ h3 { font-size:17px; font-weight:700; line-height:1.8; margin:0; }
 @keyframes libright-repair-floor { from { transform:translate(20px,35px) rotate(-3deg); } to { transform:none; } }
 @keyframes libright-repair-tip { from { transform:translate(-25px,-35px) rotate(9deg); } to { transform:none; } }
 @keyframes libright-repair-handle { from { transform:translate(25px,-35px) rotate(-9deg); } to { transform:none; } }
-@keyframes libright-intro-dismiss { 0%,75% { opacity:1; visibility:visible; pointer-events:auto; } 100% { opacity:0; visibility:hidden; pointer-events:none; } }
+@keyframes libright-intro-dismiss { 0%,83.333333% { opacity:1; visibility:visible; pointer-events:auto; } 100% { opacity:0; visibility:hidden; pointer-events:none; } }
 .intro-review { display:inline-block; margin-left:12px; }
 .intro-review summary { cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
 .intro-review .intro-open-label,.intro-review .intro-close-label { margin:0; font:inherit; letter-spacing:normal; }
 .intro-close-label { display:none; }
 .intro-review[open] .intro-close-label { display:inline; }
 .intro-review[open] .intro-open-label { display:none; }
-.intro-review[open] + .intro-replay-screen { animation:libright-intro-dismiss 1.2s linear both; }
+.intro-review[open] + .intro-replay-screen { animation:libright-intro-dismiss 2.4s linear both; }
 .intro-reduced-note { display:none; }
 @media (prefers-reduced-motion:reduce) {
   .intro-screen,.intro-replay-screen { display:none!important; animation:none!important; }

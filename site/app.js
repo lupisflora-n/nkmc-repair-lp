@@ -27,7 +27,7 @@
     } else {
       const animation = screen.getAnimations?.().find(item => item.animationName === 'libright-intro-dismiss');
       const elapsed = Number(animation?.currentTime) || 0;
-      const remaining = Math.max(0, 1200 - elapsed);
+      const remaining = Math.max(0, Number(screen.dataset.introDuration) - elapsed);
       root.dataset.introState = remaining > 0 ? 'playing' : 'complete';
       screen.addEventListener('animationend', event => {
         if (event.animationName === 'libright-intro-dismiss') clear('complete');
@@ -41,7 +41,7 @@
   let replayTimer = 0;
   replay?.addEventListener('toggle', () => {
     clearTimeout(replayTimer);
-    if (replay.open) replayTimer = setTimeout(() => { replay.open = false; }, 1300);
+    if (replay.open) replayTimer = setTimeout(() => { replay.open = false; }, 2500);
   });
 })();
 

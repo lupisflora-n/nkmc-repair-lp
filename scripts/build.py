@@ -114,8 +114,8 @@ def intro_markup(data):
     settings = data.get('intro', {})
     if not settings.get('enabled'):
         return '', ''
-    if settings.get('effect') != 2 or settings.get('durationMs') != 1200:
-        raise ValueError('選択済みの初回演出は2番・1200msです。')
+    if settings.get('effect') != 2 or settings.get('durationMs') != 2400:
+        raise ValueError('選択済みの初回演出は2番・2400msです。')
     original = ET.fromstring(asset_path(data['brand']['assets']['symbol']).read_text(encoding='utf-8'))
     original.attrib.pop('width', None)
     original.attrib.pop('height', None)
@@ -124,7 +124,7 @@ def intro_markup(data):
     original.set('focusable', 'false')
     ET.register_namespace('', 'http://www.w3.org/2000/svg')
     svg = ET.tostring(original, encoding='unicode')
-    overlay = '<div class="intro-screen" data-intro-effect="2" data-intro-duration="1200" aria-hidden="true">' + svg + '</div>'
+    overlay = '<div class="intro-screen" data-intro-effect="2" data-intro-duration="2400" aria-hidden="true">' + svg + '</div>'
     return overlay, ''
 
 
@@ -178,7 +178,7 @@ def render(data, review):
     intro_replay = ''
     if review and intro_screen:
         replay_screen = intro_screen.replace('class="intro-screen"', 'class="intro-replay-screen"')
-        intro_replay = '<details class="intro-review"><summary><span class="intro-open-label">2番の演出を再生（1.2秒）</span><span class="intro-close-label">閉じて、もう一度再生する</span></summary></details>' + replay_screen + '<span class="intro-reduced-note">端末の「動きを減らす」設定により演出を省略しています。</span>'
+        intro_replay = '<details class="intro-review"><summary><span class="intro-open-label">2番の演出を再生（2.4秒）</span><span class="intro-close-label">閉じて、もう一度再生する</span></summary></details>' + replay_screen + '<span class="intro-reduced-note">端末の「動きを減らす」設定により演出を省略しています。</span>'
     copy = data['copy']
     cases = data['cases']['items']
     visible_cases = cases if review else [case for case in cases if data['cases'].get('publish') and ready(case)]

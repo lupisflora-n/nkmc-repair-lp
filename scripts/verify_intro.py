@@ -18,22 +18,22 @@ with sync_playwright() as p:
             page.on('pageerror', lambda e: errors.append(str(e)))
             page.set_content(html, wait_until='load')
             # Freeze CSS animations at explicit points to check the actual markup deterministically.
-            page.evaluate("""() => document.querySelector('.intro-screen').getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=400})""")
+            page.evaluate("""() => document.querySelector('.intro-screen').getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=900})""")
             assert page.locator('.intro-screen').is_visible()
             transforms = page.locator('.intro-screen [data-part]').evaluate_all('(es)=>es.map(e=>getComputedStyle(e).transform)')
             assert len(transforms) == 5 and all(t != 'none' for t in transforms), transforms
-            page.evaluate("""() => document.querySelector('.intro-screen').getAnimations({subtree:true}).forEach(a=>{a.currentTime=950})""")
+            page.evaluate("""() => document.querySelector('.intro-screen').getAnimations({subtree:true}).forEach(a=>{a.currentTime=2200})""")
             opacity = float(page.locator('.intro-screen').evaluate('(e)=>getComputedStyle(e).opacity'))
             assert 0 < opacity < 1, opacity
             transforms = page.locator('.intro-screen [data-part]').evaluate_all('(es)=>es.map(e=>getComputedStyle(e).transform)')
             assert all(t in ('none', 'matrix(1, 0, 0, 1, 0, 0)') for t in transforms), transforms
-            page.evaluate("""() => document.querySelector('.intro-screen').getAnimations({subtree:true}).forEach(a=>{a.currentTime=1200})""")
+            page.evaluate("""() => document.querySelector('.intro-screen').getAnimations({subtree:true}).forEach(a=>{a.currentTime=2400})""")
             assert not page.locator('.intro-screen').is_visible()
             assert page.locator('h1').is_visible()
             page.locator('.intro-review summary').click()
             page.wait_for_timeout(100)
             assert page.locator('.intro-replay-screen').is_visible()
-            page.wait_for_timeout(1250)
+            page.wait_for_timeout(2450)
             assert not page.locator('.intro-replay-screen').is_visible()
             if not scripts:
                 page.locator('.intro-review summary').click()  # close native details

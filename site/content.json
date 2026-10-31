@@ -292,6 +292,6 @@
   "intro": {
     "enabled": true,
     "effect": 2,
-    "durationMs": 1200
+    "durationMs": 2400
   }
 }
