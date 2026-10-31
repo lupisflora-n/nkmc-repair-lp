@@ -143,3 +143,5 @@ GitHub Pagesの公式条件には商取引を主目的とする利用の制限�
 - 2026-10-31：マークを見せる時間を延ばす指示を受け、演出を2.4秒へ延長（開始保持0.3秒・復元1.2秒・完成保持0.5秒・フェード0.4秒）。GitHub無料公開の手続きをWeb公開担当が確認。
 
 - 2026-10-31：ユーザーがGitHub公開継続を指定。現在の文章・写真を公開予定版へ移行し検証済み。APIの新規repo作成/Pages設定が403のため未公開。非公開制作元は維持し、配信専用Public作成・接続の所有者操作待ち。詳細はdocs/PUBLISHING.md。
+
+- 2026-10-31最新：repairctと同じGitHub Actions→Pagesを既存nkmcリポジトリに実装。GitHubビルド成功、Pages未有効のため配信停止。所有者の初回設定待ち。予定URLはhttps://lupisflora-n.github.io/nkmc-repair-lp/。

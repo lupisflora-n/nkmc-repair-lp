@@ -60,3 +60,5 @@
 `docs/WORKFLOW.md` の現在地・チェック項目・次の作業を更新する。方針変更は `docs/PROJECT.md` の決定履歴にも追記する。
 
 - 最新の時間指定（2026-10-31追記）：ユーザーの追加指示により、2番の演出は合計2.4秒（待ち0.3秒・復元1.2秒・完成保持0.5秒・フェード0.4秒）。以前の1.2秒指定を置き換える。
+
+- 最新の配信指定：repairctと同じGitHub Actions→GitHub Pages。既存nkmc-repair-lpの.github/workflows/pages.ymlでdistだけ配信する。GitHub run 41151444803はbuild成功/deployのPages未有効エラー。所有者のSettings→Pages→GitHub Actions設定待ち、まだ未公開。予定URLはhttps://lupisflora-n.github.io/nkmc-repair-lp/。設定後は失敗deployジョブ再実行と実URL確認。Privateのプラン条件を確認せず有料化・元repo全Public化を行わない。詳細docs/PUBLISHING.md。

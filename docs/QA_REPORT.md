@@ -171,3 +171,10 @@ SEO専門担当の最終監査は必須修正なし。住所未確定時はOrgan
 - python -m unittest discover -s tests -v：7件合格。公開版で承認済みセクションを欠落させないこと、確認操作・内部注記を出さないこと、プロフィールURL承認とDM未検証の区別を含む。
 - python scripts/verify_browser.py --mode release：320/390/768/1440pxで横はみ出し・JS例外・素材失敗なし。写真6枚の拡大とフォーカス復帰、相談文コピーと代替、FAQ、ページ内リンク、Instagram宛先、JavaScriptなし単体HTMLを確認。
 - Web公開担当の独立確認でreleaseとreviewのmain内HTMLが一致。公開用17ファイルに制作メモは含まれない。予定URLのcanonical/OG/sitemap一致、index,followを確認。実URLはGitHub接続権限不足で未配信・未検証。
+
+## GitHub Actionsでの公開試行（2026-10-31）
+
+- repairctの実workflowを参照。LIBRIGHTは公開用distだけをartifactにするよう実装。
+- commit a1a70e27692f3793b3741402b6b9e05f18095e49 / run 41151444803。GitHub Ubuntu上のPython 3.12で7件テスト合格、SHA検証付きビルド成功、Pages artifactアップロード成功。
+- deploy job 124388700333 はconfigure-pages@v5でNot Found。Pagesが未有効で、deploy-pagesは実行されていない。実URLの配信検証は所有者設定後。
+- URL設定変更だけで、本文・画像・演出・動作に変更なし。前回合格した同じUIのブラウザ試験は理由なく繰り返していない。

@@ -234,3 +234,12 @@ GitHubでのソース管理とWeb公開を分ける。GitHub Pages等の配信�
 - ユーザーは既存nkmcリポジトリを指している。これは接続済み制作元であり、再読取でもprivate/has_pages=falseを確認。既存repo全体の公開や履歴書き換えは行わない。配信用別Publicを提案した理由を説明。新規Public作成とCodex接続対象への追加を所有者に依頼中。
 - 予定の配信先はlupisflora-n/libright、URLはhttps://lupisflora-n.github.io/libright/（未作成・未公開）。/workspace/libright-publicに17ファイルだけの配信待機フォルダ、/workspace/LIBRIGHT-GitHub-Pages-public.zipに公開用ZIP、/workspace/LIBRIGHT-LP-public-preview.htmlに公開予定本文の単体HTMLを作成。
 - 次は所有者操作でPublic配信用repoが利用できるようになったら、17ファイルをpushし、Pages設定を試す。403継続時は所有者のSettings→Pages→main/(root)設定が必要。実URL200・配信内容確認後だけ公開完了と案内する。
+
+## repairctと同じ配信方式へ変更（2026-10-31・最新）
+
+- ユーザーが「repairctのLPと同じようにして公開」を指定。GitHubコネクタでPublicのrepairctのREADME・Pages初回手順・workflowを取得し、GitHub Actions→GitHub Pagesの構成を確認した。
+- 既存nkmc-repair-lpへ.github/workflows/pages.ymlを追加してa1a70e2をpush。公開対象はdistだけ、写真・本文は不変。予定URLをhttps://lupisflora-n.github.io/nkmc-repair-lp/へ変更。以前のlibright別Public作成を必須とする手順は、この方式に置き換えた。
+- GitHub実行41151444803で7単体テスト・元写真検証・公開ビルド・artifactアップロードに成功。deployのSet up PagesがNot Foundで失敗、公開はskip。まだ未公開。
+- 管理APIが403のため所有者へ既存repoのSettings→Pages→Source: GitHub Actionsを依頼。Privateのためプラン条件で設定できない場合は案内文を確認し、料金契約や元repo全体のPublic化は行わない。
+- 公式configure-pages actionは自動enablementにGITHUB_TOKEN以外と管理権限が必要。フラグだけで解消しない。
+- 次は設定完了の返信を受け、失敗deployジョブのみ再実行し実URLで確認。artifact失効時は全体再実行。Public別repoが必要ならその時点でURLを含めて調整する。
