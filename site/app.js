@@ -1,72 +1,49 @@
 "use strict";
 
-// The selected mark restores in 0.8s, holds for 0.1s, and fades by 1.2s.
+// CSS drives the selected intro, including when scripts are unavailable.
 (() => {
   const screen = document.querySelector('.intro-screen');
-  if (!screen) return;
+  const replay = document.querySelector('.intro-review');
   const root = document.documentElement;
   const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const paths = Array.from(screen.querySelectorAll('[data-part]'));
-  let frame = 0;
   let deadline = 0;
   let finished = false;
-  const clear = (state) => {
+  const clear = state => {
     if (finished) return;
     finished = true;
-    cancelAnimationFrame(frame);
     clearTimeout(deadline);
-    clearTimeout(window.librightIntroFailsafe);
-    paths.forEach(path => path.removeAttribute('transform'));
     root.classList.remove('intro-pending');
     root.dataset.introState = state;
-    screen.remove();
+    screen?.remove();
     document.removeEventListener('keydown', skip);
     media.removeEventListener?.('change', reduce);
   };
   const skip = () => clear('skipped');
   const reduce = () => { if (media.matches) clear('reduced-motion'); };
   window.addEventListener('pageshow', event => { if (event.persisted) clear('restored'); });
-  if (!root.classList.contains('intro-pending') || media.matches) {
-    clear(media.matches ? 'reduced-motion' : 'skipped');
-    return;
-  }
-  try {
-    const offsets = [[-40,35,-5],[35,-30,5],[20,35,-3],[-25,-35,9],[25,-35,-9]];
-    const centers = paths.map(path => {
-      const box = path.getBBox();
-      return [box.x + box.width / 2, box.y + box.height / 2];
-    });
-    const paint = elapsed => {
-      const progress = Math.min(1, Math.max(0, elapsed / 800));
-      const remaining = Math.pow(1 - progress, 3);
-      paths.forEach((path, index) => {
-        if (elapsed >= 800) { path.removeAttribute('transform'); return; }
-        const [x,y,angle] = offsets[index];
-        const [cx,cy] = centers[index];
-        path.setAttribute('transform', `translate(${x*remaining} ${y*remaining}) translate(${cx} ${cy}) rotate(${angle*remaining}) translate(${-cx} ${-cy})`);
+  if (screen) {
+    if (media.matches || location.hash) {
+      clear(media.matches ? 'reduced-motion' : 'skipped');
+    } else {
+      const animation = screen.getAnimations?.().find(item => item.animationName === 'libright-intro-dismiss');
+      const elapsed = Number(animation?.currentTime) || 0;
+      const remaining = Math.max(0, 1200 - elapsed);
+      root.dataset.introState = remaining > 0 ? 'playing' : 'complete';
+      screen.addEventListener('animationend', event => {
+        if (event.animationName === 'libright-intro-dismiss') clear('complete');
       });
-      screen.style.opacity = String(elapsed >= 1200 ? 0 : 1 - Math.max(0, (elapsed - 900) / 300));
-    };
-    paint(0);
-    screen.querySelector('svg').style.visibility = 'visible';
-    root.dataset.introState = 'playing';
-    const start = performance.now();
-    const tick = now => {
-      const elapsed = now - start;
-      paint(elapsed);
-      if (elapsed >= 1200) clear('complete');
-      else frame = requestAnimationFrame(tick);
-    };
-    deadline = setTimeout(() => clear('complete'), 1200);
-    frame = requestAnimationFrame(tick);
-    screen.addEventListener('pointerdown', skip, {once:true});
-    document.addEventListener('keydown', skip, {once:true});
-    media.addEventListener?.('change', reduce);
-  } catch (error) {
-    clear('fallback');
+      deadline = setTimeout(() => clear('complete'), remaining);
+      screen.addEventListener('pointerdown', skip, {once:true});
+      document.addEventListener('keydown', skip, {once:true});
+      media.addEventListener?.('change', reduce);
+    }
   }
+  let replayTimer = 0;
+  replay?.addEventListener('toggle', () => {
+    clearTimeout(replayTimer);
+    if (replay.open) replayTimer = setTimeout(() => { replay.open = false; }, 1300);
+  });
 })();
-
 
 const copyButton = document.querySelector("[data-copy-message]");
 const messageField = document.querySelector("#message-template");

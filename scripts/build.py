@@ -125,8 +125,8 @@ def intro_markup(data):
     ET.register_namespace('', 'http://www.w3.org/2000/svg')
     svg = ET.tostring(original, encoding='unicode')
     overlay = '<div class="intro-screen" data-intro-effect="2" data-intro-duration="1200" aria-hidden="true">' + svg + '</div>'
-    boot = """<script>(function(){try{if(!location.hash&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro-pending');window.librightIntroFailsafe=setTimeout(function(){document.documentElement.classList.remove('intro-pending');},1600);}}catch(error){document.documentElement.classList.remove('intro-pending');}})();</script>"""
-    return overlay, boot
+    return overlay, ''
+
 
 
 def check_image_policy(data):
@@ -175,6 +175,10 @@ def release_issues(data):
 def render(data, review):
     used_assets = set()
     intro_screen, intro_boot = intro_markup(data)
+    intro_replay = ''
+    if review and intro_screen:
+        replay_screen = intro_screen.replace('class="intro-screen"', 'class="intro-replay-screen"')
+        intro_replay = '<details class="intro-review"><summary><span class="intro-open-label">2番の演出を再生（1.2秒）</span><span class="intro-close-label">閉じて、もう一度再生する</span></summary></details>' + replay_screen + '<span class="intro-reduced-note">端末の「動きを減らす」設定により演出を省略しています。</span>'
     copy = data['copy']
     cases = data['cases']['items']
     visible_cases = cases if review else [case for case in cases if data['cases'].get('publish') and ready(case)]
@@ -288,7 +292,7 @@ def render(data, review):
     business_html = ''
     if business.get('publishDetails'):
         business_html = '<div class="business-details">' + '<br>'.join(esc(business[key]) for key in ['publicRepresentativeName', 'publicAddress'] if business.get(key)) + '</div>'
-    review_bar = '<div class="review-bar"><span>DESIGN PREVIEW</span> 制作確認版・未公開｜掲載内容は最終確認前です。</div>' if review else ''
+    review_bar = '<div class="review-bar"><span>DESIGN PREVIEW</span> 制作確認版・未公開｜掲載内容は最終確認前です。' + intro_replay + '</div>' if review else ''
     values = {
         'INTRO_SCREEN': intro_screen, 'INTRO_BOOT': intro_boot,
         'ROBOTS': 'noindex,nofollow' if review else 'index,follow',
