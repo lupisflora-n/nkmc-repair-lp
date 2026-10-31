@@ -19,7 +19,7 @@ LIBRIGHT（リブライト）のLP制作案件。工務店・建築会社から�
 現段階は静的LPの確認版実装と表示・基本操作の検証まで完了。施工写真3組・計6枚を無加工で配置済み。原ファイルとのSHA-256一致、スマホ・PCの全体表示と拡大操作を確認。写真を含む単体HTMLをダウンロードして確認できる。
 対外ブランドの軸は「傷を直す。その先の、晴れやかな暮らしまで。」。創業者の私的な背景は公開用ファイルや配布用ZIPへ含めない。
 写真はユーザー指示により編集・変更禁止。元ファイルのまま、全体と縦横比を保って表示する。
-正式ロゴをLPへ組み込み、黒白・黄色・赤のブランド配色でレイアウトを再構成。SVGとfaviconの読み込み、320〜1440px幅での表示・操作を確認済み。GitHub Actionsによる公開ビルドは成功。GitHub管理リポジトリは非公開のまま、Pages初回設定待ちのためまだ未公開。
+正式ロゴをLPへ組み込み、黒白・黄色・赤のブランド配色でレイアウトを再構成。SVGとfaviconの読み込み、320〜1440px幅での表示・操作を確認済み。GitHub ActionsからGitHub Pagesへ公開済み。管理リポジトリは所有者操作によりPublic。
 GitHubでのソース管理と無料公開が希望。GitHub Pagesの利用条件への適合性は確認事項として残す。
 
 `docs/`、`design/` と `AGENTS.md` は内部制作記録・確認用資料。公開サイトにはそのまま配信しない。
@@ -30,8 +30,8 @@ GitHubでのソース管理と無料公開が希望。GitHub Pagesの利用条�
 
 管理先: https://github.com/lupisflora-n/nkmc-repair-lp
 
-非公開（Private）、管理ブランチはmain。ユーザーが作成した空のリポジトリへの接続と書き込み権限を確認し、制作ソース・制作方針・工程表をGit管理へ移す。
-内部限定の創業背景ファイルは.gitignoreで除外する。Web公開の設定は未実施。
+現在Public、管理ブランチはmain。ユーザーが作成した空のリポジトリへの接続と書き込み権限を確認し、制作ソース・制作方針・工程表をGit管理へ移す。
+内部限定の創業背景ファイルは.gitignoreで除外する。GitHub Pagesの設定・公開は完了。
 
 ## LIBRIGHTロゴ・制作素材
 
@@ -82,11 +82,10 @@ TRCとRBSの紹介根拠・採用情報は[公式調査メモ](docs/TRC_RESEARCH
 
 2番「割れた形が元に戻る」を本ページに反映しました。[写真入り単体HTML](design/preview.html)を開くと、5パーツが復元して本文へフェードします。低減モーションでは省略。Web公開は未実施です。
 
-## repairctと同じGitHub Pages配信
+## 公開URLと更新
 
-mainへの該当変更のpushで `.github/workflows/pages.yml` が検証・公開用ビルド・dist限定配信を実行する。リポジトリ全体を配信しない。
+https://lupisflora-n.github.io/nkmc-repair-lp/
 
-- 予定URL（初回設定待ち・未公開）：https://lupisflora-n.github.io/nkmc-repair-lp/
-- 初回設定：https://github.com/lupisflora-n/nkmc-repair-lp/settings/pages のSourceをGitHub Actionsにする。
-- 現状：GitHub上のテストとビルドは成功、Pages未有効で配信停止。Privateのプラン条件で設定不可の場合は無料運用・制作元非公開を守って対応する。
-- 現在地と再開手順：[docs/PUBLISHING.md](docs/PUBLISHING.md)
+repairctと同じmain→GitHub Actions→Pages方式で公開済み。配信するのはrelease生成物distだけ。ソース変更をpushすると同じURLへ自動反映する。
+
+公開HTMLの一致、施工写真6枚の元SHA一致、基本表示・操作を確認済み。詳しい確認範囲と更新手順は[docs/PUBLISHING.md](docs/PUBLISHING.md)。リポジトリ自体はPublicのため、内部限定情報はGitへ加えない。

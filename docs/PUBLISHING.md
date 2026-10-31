@@ -1,65 +1,67 @@
 # LIBRIGHT LP 公開手順と現在地
 
-更新：2026-10-31。ユーザーの「repairctのLPと同じようにして公開」に従い、既存の `lupisflora-n/nkmc-repair-lp` にGitHub ActionsからGitHub Pagesへの配信を実装済み。GitHub上でビルド成功、Pages初期設定が未有効のためデプロイ失敗。まだWeb未公開。
+更新：2026-10-31。ユーザーは「NKMCの方で変えた」と公開先を指定。現在は既存のnkmc-repair-lpからGitHub Actions→Pagesで公開を進める。Public化とPagesのSource設定を確認し、再実行に成功。現在Web公開済み。
 
-## repairctで確認した方式
+## 現在の公開先
 
-- 参照元：`lupisflora-n/repairct`（Public、has_pages=true）。GitHubコネクタでREADME、docs/github-pages.md、.github/workflows/pages.ymlを取得した。
-- repairctはmainへのpushでactions/configure-pages@v5 → actions/upload-pages-artifact@v3 → actions/deploy-pages@v4を実行する。GitHub側の初回設定はSettings → Pages → Source: GitHub Actions。
-- LIBRIGHTでは同じ配信方式を採用し、公開対象をリポジトリ全体ではなくrelease生成物のdistだけに限定した。別の公開用リポジトリを先に作ることは現在の必須手順としていない。
+- リポジトリ： https://github.com/lupisflora-n/nkmc-repair-lp
+- Pages初回設定： https://github.com/lupisflora-n/nkmc-repair-lp/settings/pages
+- 公開URL： https://lupisflora-n.github.io/nkmc-repair-lp/
+- 配信設定： .github/workflows/pages.yml
+- 対象run： https://github.com/lupisflora-n/nkmc-repair-lp/actions/runs/41151444803
 
-## LIBRIGHTの設定
+ユーザーが所有者画面でPrivateからPublicへ変更した。当方は公開範囲を変更していない。GitHub FreeのPagesを使うにはPublicが必要。元repoは制作記録も含めリポジトリ経由で公開されるため、新たな内部限定情報はGitへ加えない。私的な創業背景ファイルは従来どおり.gitignoreで除外する。現在このrepoから配信するため、Privateへ戻すと無料Pagesには影響する。
 
-- 制作・配信設定のリポジトリ： https://github.com/lupisflora-n/nkmc-repair-lp
-- ワークフロー： `.github/workflows/pages.yml`
-- 予定URL： https://lupisflora-n.github.io/nkmc-repair-lp/ （現在未公開）
-- mainのsite/scripts/tests/workflow変更をpushすると起動。workflow_dispatchで手動起動もできる。
-- buildジョブ：Python 3.12 → 7単体テスト → python scripts/build.py --mode release → distのみPages artifactへアップロード。
-- deployジョブ：Pages設定確認 → GitHub Pagesへ配信。必要なpages:writeとid-token:writeをこのジョブに限定。
-- GitHub Actions側でテスト・写真検証・生成・アップロードまで成功した。写真は6枚とも元ファイルのままで、SHA-256が一致する。
-- 既存リポジトリの可視性はPrivateのまま。制作メモを含むリポジトリ全体のPublic化やGit履歴書き換えはしていない。
+## repairctと同じ方式
 
-## 実行結果と止まっている箇所
+PublicのrepairctのREADME・初回手順・workflowをGitHubコネクタで確認済み。mainの変更からActions→Pagesで配信する構成を採用した。
 
-対象コミット：a1a70e27692f3793b3741402b6b9e05f18095e49
+- buildジョブ：Python 3.12、7単体テスト、元写真のSHA検証付きrelease生成、distだけPages artifactへ。
+- deployジョブ：configure-pages@v5 → deploy-pages@v4。公開対象は生成物17ファイルだけ。
+- mainのsite/scripts/tests/workflow変更で起動。workflow_dispatchにも対応。
+- リポジトリ全体をPagesへアップロードしない。docs/design/qa/編集原稿/再編集素材/Git履歴をWeb配信しない。ただしPublic repo自体からはGitに登録済みの制作資料が閲覧可能である点を区別する。
 
-実行： https://github.com/lupisflora-n/nkmc-repair-lp/actions/runs/41151444803
+## 実行結果
 
-- buildジョブ成功。deployジョブのSet up Pagesが失敗し、公開ステップはskip。
-- ログ：`Get Pages site failed. Please verify that the repository has Pages enabled and configured to build using GitHub Actions` / `Not Found`。
-- 管理APIは以前の実リクエストでPOST /user/reposとPOST /repos/lupisflora-n/nkmc-repair-lp/pagesが403 Resource not accessible by integration。現在のGitHub接続はリポジトリへのコミットは可能だが、Pagesの初回管理設定は操作できない。
-- actions/configure-pagesのenablement入力の公式定義も確認。自動有効化にはGITHUB_TOKEN以外のトークンが必要で、GitHub Appではadministration:writeとpages:writeが必要。単にenablement:trueを設定して回避しない。
+- 初回commit a1a70e27692f3793b3741402b6b9e05f18095e49のrun 41151444803でbuild成功。Set up PagesがNot Foundで失敗。
+- 「NKMCの方で変えた」の返信後、Public化を確認し同runを再実行した。新job 124392558348もSet up PagesでNot Found、公開はskip。buildは成功している。
+- ログ：`Please verify that the repository has Pages enabled and configured to build using GitHub Actions`。
+- 管理APIへのPOST /repos/lupisflora-n/nkmc-repair-lp/pagesは403 Resource not accessible by integration。現在の接続はコミット・Actions再実行は可能だがPagesの初回管理設定はできない。
 
-## 所有者にお願いしている初回設定
+所有者がSourceをGitHub Actionsに設定後、run 41151444803を再実行。deploy job 124393084285が成功し、公開URLのHTTPS 200を確認した。公開HTMLとローカルの検証済みreleaseがバイト一致、配信された写真6枚のSHAが元ファイルと一致することを確認。
 
-https://github.com/lupisflora-n/nkmc-repair-lp/settings/pages
+configure-pagesのenablement入力はGITHUB_TOKEN以外の管理権限付きトークンが必要。フラグだけで有効化できると仮定しない。別サービスへの変更・有料契約・Git履歴の強制書き換えはしない。
 
-Sourceを **GitHub Actions** にする。設定後、主担当が失敗したdeployジョブだけ再実行し、実URLと公開内容を確認する。Pages artifactが期限切れならワークフロー全体を再実行する。
+## 別リポジトリlibrightの扱い
 
-GitHub FreeではPublicリポジトリがPagesの対象であり、PrivateリポジトリのPagesには対応プランが必要。repairctがPublicである一方、nkmcはPrivateである点は残る。画面で有料プランを案内された場合は、無料運用の希望を守り契約せず、表示内容を確認する。制作メモを含む元リポジトリを丸ごとPublicへ変更する手順は案内しない。必要なら公開用ファイルだけを入れる別Publicリポジトリを所有者が作成する代替へ切り替え、URLを合わせ直す。
+同じユーザー操作の後、空のPublicリポジトリlupisflora-n/librightも作成されていた。その時点で公開配信物17＋Pages workflowの計18ファイルを初回commit 3190f88f878895b6577de69c0aa283e24402e194としてpushした。
 
-現在はユーザーにこの設定の実施可否・案内文の返信を依頼中。Pages未設定・404・ビルド成功だけの段階で「公開完了」と報告しない。
+librightのrun 41152414796もPages初回設定未有効で失敗。ユーザーがその後NKMC側を指定したため、現在librightのPages設定を依頼したり、こちらへデプロイしたりしない。作成済みファイルは勝手に削除せず残している。公開用ファイルだけで制作メモは含まない。主担当の作業先を混同しない。
 
-## 掲載内容と素材の管理
+## 掲載内容・検証
 
-ユーザーによる写真差し込みとOK、編集原稿の反映、TRC紹介再構成、公開継続の指示を根拠に公開設定を更新済み。この更新は第三者による個別許諾取得や業務実態の独立検証を意味しない。
+- 確認版と公開版のmainの本文・構造を一致させ、写真3組、ブランド本文、TRC/RBSの2リンク、姿勢、施工の流れ、FAQを保持。OUR STORYは非掲載、制作確認注記は公開版から除去。
+- 写真6枚は元ファイルとSHAが一致。加工・圧縮・形式変換なし。
+- 掲載可否は写真差込とOK、編集原稿反映、TRC再構成、公開指示を根拠とする。独立した第三者承認や実績検証を取得したという意味ではない。
+- contact.profileUrlConfirmed=trueは指定プロフィールURLの採用確認。linkVerified=falseは実機DM到達未検証。検証のためのDMは送らない。
+- 2.4秒演出と本文UIに変更なし。同一の合格済みローカルブラウザ試験は理由なく反復せず、配信後の実URL確認を行う。
 
-- `partnerIntroduction.content`：現在のTRC/RBS原稿を確認版・公開版で共通利用。本文と2つの公式案内リンクを欠落させない。
-- 写真3組・6枚、ブランド本文、姿勢、施工の流れ、FAQを確認版と同じ内容で維持。OUR STORYは非掲載。制作確認バーと紹介文案注記は公開版から除去。
-- `contact.profileUrlConfirmed=true`：ユーザー指定URLと採用窓口の確認。`contact.linkVerified=false`：実アカウントのDM到達は実機未確認。検証のためのDMは送らない。
-- distはHTML/CSS/JS/SEO/.nojekyllと必要素材11点の計17ファイルだけ。docs、design、qa、編集原稿、ブランド再編集資料、私的な創業背景、Git履歴をWeb配信しない。
-- 単体HTMLの確認用書き出し：`python scripts/build.py --mode release --standalone-output design/release-preview.html`。通常配信版の画像は元ファイルをそのまま参照する。
+## 更新と公開後確認
 
-## 利用条件の確認記録
+両チャットによる変更を取り込み、site/content.json等を編集。必要なテストと `python scripts/build.py --mode release` を実行後、nkmc/mainへpushする。distがGitHub Actionsで生成されPagesへ自動反映される。単体HTMLの確認版は `python scripts/build.py --mode release --standalone-output design/release-preview.html`。
 
-GitHub公式はオンラインビジネスや商取引促進を主目的とする無料ホスティングへの制限を定めている。
+公開後はHTTPS 200、マーク演出から本文、スマホ表示、写真6枚の全体・拡大・SHA一致、コピーと代替、FAQ、Instagram宛先、canonical/OG/sitemapと実URL一致を確認。Search Consoleは未実施。
 
-> GitHub Pages is not intended for or allowed to be used as a free web-hosting service to run your online business, e-commerce site, or any other website that is primarily directed at either facilitating commercial transactions or providing commercial software as a service (SaaS).
+## 利用条件の記録
 
-https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits
+https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits のオンラインビジネス等を主目的とする無料ホスティング制限は確認済み。外部Instagramリンクがあれば自動的に対象外になる規定ではない。ユーザーは説明後、現在の紹介・Instagram案内構成で公開続行を指示した。GitHubによる個別適合承認を取得したとは説明しない。
 
-外部Instagramリンクがあれば自動的に対象外になるという規定ではない。ユーザーは説明後、現在の事業紹介・Instagram案内構成でGitHub公開を続行する意向を示した。GitHubから個別の適合承認を得たとは説明しない。hostingConditionsCheckedは利用条件の確認記録であり、配信成功を意味しない。別サービスへ勝手に切り替えたり有料契約したりしない。
+## 公開完了と実URL検証（2026-10-31）
 
-## 公開後の確認
+https://lupisflora-n.github.io/nkmc-repair-lp/ で公開完了。
 
-HTTPS 200、マーク演出2.4秒から本文への遷移、スマホ表示、写真6枚の全体・拡大表示とSHA一致、相談文コピーと代替、FAQ、Instagramプロフィール宛先、canonical/OG/sitemapと実URLの一致を確認する。Search Consoleの操作は未実施。運用時はmainの該当ファイル変更が本番配信につながるため、公開前に差分とテストを確認する。
+- run 41151444803の最終再実行はbuild/deploy成功。deploy job 124393084285成功。
+- 公開HTMLが検証済みreleaseとバイト一致。写真6枚はHTTPS取得後のSHAが元ファイルと一致。
+- 390/1440pxで横はみ出しなし、演出終了・写真拡大・FAQ・相談文コピー・Instagramプロフィール宛先・canonicalを確認。JS例外なし。
+- 検証環境のChromiumにはプロキシCAが未登録のため、直接のHTTPSナビゲーションは証明書エラー。TLS検証を有効にしたurllibで実URLの応答を取得し、その元応答をChromiumへ渡して描画・操作した。HTTPS検証を無効化していない。ユーザーのスマホ実機での表示とDM到達、Search Consoleは未実施。
+- ローカルの結果はqa/live-report.json（Git対象外）。更新後もmain→GitHub Actions→dist限定Pages配信を維持する。

@@ -178,3 +178,22 @@ SEO専門担当の最終監査は必須修正なし。住所未確定時はOrgan
 - commit a1a70e27692f3793b3741402b6b9e05f18095e49 / run 41151444803。GitHub Ubuntu上のPython 3.12で7件テスト合格、SHA検証付きビルド成功、Pages artifactアップロード成功。
 - deploy job 124388700333 はconfigure-pages@v5でNot Found。Pagesが未有効で、deploy-pagesは実行されていない。実URLの配信検証は所有者設定後。
 - URL設定変更だけで、本文・画像・演出・動作に変更なし。前回合格した同じUIのブラウザ試験は理由なく繰り返していない。
+
+## 公開用repoへの配置確認（2026-10-31）
+
+- librightへ初回commit 3190f88f878895b6577de69c0aa283e24402e194をpush。配信物17＋workflowの計18ファイル、全6写真SHA一致、docs/design/qa等の混入なし。
+- 予定URLをlibrightへ戻してrelease生成し、7単体テスト合格。本文とUIは不変。
+- run 41152414796 / job 124391705064 はcheckoutと組立成功、Pages設定失敗。公開用repoへの管理APIも403。まだ実URLの配信確認はできていない。
+
+## NKMC側の再実行（2026-10-31）
+
+- Public化を確認後、GitHubコネクタでrun 41151444803を再実行。build成功、deploy job 124392558348のSet up PagesはNot Found。
+- 公開先をNKMCに戻し、URL/canonical/OG/sitemapはhttps://lupisflora-n.github.io/nkmc-repair-lp/へ統一。Source設定待ちで未公開。
+
+## 実URLでの公開確認（2026-10-31）
+
+- GitHub run 41151444803、deploy job 124393084285成功。https://lupisflora-n.github.io/nkmc-repair-lp/ がHTTPS 200。
+- HTTPS取得HTMLがローカルdist/index.htmlとバイト一致、配信JPEG6枚のSHAが元写真と一致。
+- 390/1440px表示で横はみ出しなし、写真拡大・閉じる、相談文の実クリップボードコピー、FAQ、InstagramプロフィールURL、canonical、確認用UI非掲載、OUR STORY削除、演出終了を確認。JS例外なし。
+- 環境のChromiumがプロキシCAを信頼せず直接HTTPSナビゲーションはERR_CERT_AUTHORITY_INVALID。TLS検証有効のurllibで公開URLと素材を取得し、同じHTTPS応答をブラウザへ渡して確認。証明書検証を無効にしていない。これはユーザー端末での直接確認を代替するものではない。
+- 結果：qa/live-report.json（Git対象外）。Instagramの実ログイン・DM到達・送信とSearch Consoleは未実施。

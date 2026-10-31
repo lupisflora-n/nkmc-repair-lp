@@ -243,3 +243,25 @@ GitHubでのソース管理とWeb公開を分ける。GitHub Pages等の配信�
 - 管理APIが403のため所有者へ既存repoのSettings→Pages→Source: GitHub Actionsを依頼。Privateのためプラン条件で設定できない場合は案内文を確認し、料金契約や元repo全体のPublic化は行わない。
 - 公式configure-pages actionは自動enablementにGITHUB_TOKEN以外と管理権限が必要。フラグだけで解消しない。
 - 次は設定完了の返信を受け、失敗deployジョブのみ再実行し実URLで確認。artifact失効時は全体再実行。Public別repoが必要ならその時点でURLを含めて調整する。
+
+## 公開用librightへ配置（2026-10-31・最新）
+
+- ユーザー「変えた」後、Publicのlupisflora-n/librightを確認。制作元も所有者によってPublic化されていた。当方は可視性を変更していない。制作記録を非公開に保つなら制作元をPrivateへ戻しても公開用librightに影響しない。
+- /workspace/libright-deployへ空repoをcloneし、公開版17ファイルとPages workflowだけを配置。3190f88をpush成功。JPEG6枚のSHA一致、計18ファイル、制作メモ混入なしを確認。
+- 公開URL設定をhttps://lupisflora-n.github.io/libright/へ変更。制作元のworkflowはbuildのみへ変更し、旧nkmc配信runは再実行しない。
+- librightのrun 41152414796はcheckout/組立成功、Set up Pages失敗。POST /repos/lupisflora-n/libright/pagesも403。librightのSourceをGitHub Actionsにする所有者操作を依頼中。まだWeb未公開。
+- 次は所有者の設定完了後にlibrightの失敗run再実行→実URL検証。公開後はurlStatusをliveとし、正式URLをユーザーへ渡す。制作元Publicのため新たな内部限定情報をGitへ加えない。
+
+## ユーザー指定：NKMC側を公開先とする（2026-10-31・最新）
+
+- 「NKMCの方で変えた」との追加指示を受け、公開先をnkmc-repair-lpに統一。workflowはbuild/deployの構成を維持、URLはhttps://lupisflora-n.github.io/nkmc-repair-lp/。librightへの切替案は現在使わない。
+- ユーザーによりnkmcがPublic化されたことは確認済み。元repoのGit登録済み資料もPublicで閲覧可能。非公開背景ファイルはignoreを維持し、新たな内部限定情報はGitに追加しない。いま元repoをPrivateへ戻すと無料Pagesに影響する。
+- run 41151444803を実際に再実行。build成功、最新deploy job 124392558348はSet up PagesでNot Found。Pages初回設定がまだ未有効。Source: GitHub Actionsの選択をユーザーへ依頼中。
+- 現在の再開手順はNKMC側Sourceの確認→同runを再実行→実URL確認。libright側設定の質問は取り消し、元repoのSourceを確認する。まだ未公開。
+
+## Web公開完了（2026-10-31・現在地）
+
+- ユーザーがNKMCのPages Source設定を完了。run 41151444803を再実行しbuild/deploy成功。deploy job 124393084285成功。
+- 正式URL：https://lupisflora-n.github.io/nkmc-repair-lp/ 。HTTP 200、HTMLのreleaseバイト一致、写真6枚の元SHA一致を確認。
+- 390/1440pxの表示、2.4秒演出の終了、写真拡大、FAQ、相談文コピー、Instagram宛先、canonicalを確認。プロキシCA未登録のChromiumには、TLS検証済みHTTPS応答をそのまま渡して検証した（詳細QA_REPORT）。
+- urlStatus=live。今後は通常の修正・運用フェーズ。mainの対象ソース変更で同URLへ自動反映。旧libright別repo案は使わず、そこへ意図せず公開しない。DM送信・Search Console操作は未実施。
