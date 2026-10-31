@@ -281,8 +281,9 @@
   "publication": {
     "hostingConditionsChecked": true,
     "repository": "lupisflora-n/nkmc-repair-lp",
-    "siteUrl": "https://lupisflora-n.github.io/libright/",
-    "publicRepository": "lupisflora-n/libright"
+    "siteUrl": "https://lupisflora-n.github.io/nkmc-repair-lp/",
+    "deploymentRepository": "lupisflora-n/nkmc-repair-lp",
+    "urlStatus": "pending"
   },
   "seo": {
     "title": "千葉の住宅リペア・キズ補修｜関東対応｜リブライト LIBRIGHT",
