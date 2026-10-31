@@ -65,3 +65,7 @@ https://lupisflora-n.github.io/nkmc-repair-lp/ で公開完了。
 - 390/1440pxで横はみ出しなし、演出終了・写真拡大・FAQ・相談文コピー・Instagramプロフィール宛先・canonicalを確認。JS例外なし。
 - 検証環境のChromiumにはプロキシCAが未登録のため、直接のHTTPSナビゲーションは証明書エラー。TLS検証を有効にしたurllibで実URLの応答を取得し、その元応答をChromiumへ渡して描画・操作した。HTTPS検証を無効化していない。ユーザーのスマホ実機での表示とDM到達、Search Consoleは未実施。
 - ローカルの結果はqa/live-report.json（Git対象外）。更新後もmain→GitHub Actions→dist限定Pages配信を維持する。
+
+## スクロール演出の更新
+
+2026-10-31、ed9a9baをrun 41154629393で配信成功。CSS/JSのハッシュ付きURLを維持する。写真フレームは950ms・前後140ms差で一度だけ表示、文章等は650ms。動きを減らす設定では通常表示。写真の元バイトは不変。実URLでの表示・操作と配信ファイル一致を確認済み。
