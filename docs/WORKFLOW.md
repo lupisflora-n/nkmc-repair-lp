@@ -275,3 +275,10 @@ GitHubでのソース管理とWeb公開を分ける。GitHub Pages等の配信�
 - scripts/verify_scroll_reveal.pyで写真の時間差、表示後の保持、施工例リンク、フォーカス、問い合わせ、印刷、低減モーション、JavaScript無効、Observer欠落/失敗の確認に合格。既存の4幅・写真6枚拡大・コピー/代替・FAQ等の検証も合格。単体テスト7件合格。
 
 - 公開反映完了：commit ed9a9ba / GitHub run 41154629393成功。実URLのHTML、ハッシュ付きCSS/JSがreleaseと一致し、写真6枚のSHAも一致。公開取得内容の390/1440px描画・スクロール表示・写真拡大・コピー・FAQ・Instagram宛先に合格。HTTP 200、JS例外なし。ブラウザ検証は既存のTLS検証済みHTTPS応答を渡す方法を使用。結果はqa/live-report.json。
+
+## リポジトリ改名への対応（2026-10-31・最新）
+
+- ユーザーが未使用の旧librightを削除し、nkmc-repair-lpをlibrightに改名した。APIで現行repo ID 1438624039、Public、Pages有効を確認。同じ制作・公開元が改名されたもの。
+- Git originをhttps://github.com/lupisflora-n/libright.gitへ更新し、リモートとの一致を確認。publicationとSEOの正規URLはhttps://lupisflora-n.github.io/libright/へ更新。
+- ローカル本体フォルダは従来の/workspace/nkmc-repair-lpを継続利用。古い/workspace/libright-deployは削除済みの別repoのコピーであり誤push防止のためoriginを削除。履歴の上書きは行わない。
+- 本文・写真・演出は変更せず、新名で再ビルド・配信確認する。今後はlibrightを制作/公開元として扱い、古い別repo案と混同しない。

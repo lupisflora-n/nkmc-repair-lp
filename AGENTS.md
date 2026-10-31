@@ -1,13 +1,13 @@
 # NKMCリペアLP 制作引き継ぎ
 
-現在地：公開済み。https://lupisflora-n.github.io/nkmc-repair-lp/ 。main→GitHub Actions→dist限定Pages配信。Public設定・Pages Source設定は所有者操作で完了。通常更新フェーズ。
+現在地：公開済み。https://lupisflora-n.github.io/libright/ 。main→GitHub Actions→dist限定Pages配信。Public設定・Pages Source設定は所有者操作で完了。通常更新フェーズ。
 
 作業開始時に `docs/PROJECT.md`、`docs/WORKFLOW.md`、`site/content.json` を読む。
 このファイルと制作メモは、この案件の継続用記録。ChatGPT全体の永続メモリが設定済みとは説明しない。
 
 ## GitHub管理
 
-- 制作元は https://github.com/lupisflora-n/nkmc-repair-lp 、main。所有者変更で現在Public。現在の公開配信元もnkmc-repair-lp。新たな内部限定情報はGitに追加しない。
+- 制作元は https://github.com/lupisflora-n/libright 、main。所有者変更で現在Public。現在の公開配信元もlibright。新たな内部限定情報はGitに追加しない。
 - 他チャットで素材が追加されるため、編集前にリモートの差分を確認して取り込む。既存のロゴや納品資料を上書きしない。
 - 内部限定の創業背景はGitへ追加しない。ソースの登録とWeb公開を別工程として扱う。
 
@@ -63,12 +63,15 @@
 
 - 最新の時間指定（2026-10-31追記）：ユーザーの追加指示により、2番の演出は合計2.4秒（待ち0.3秒・復元1.2秒・完成保持0.5秒・フェード0.4秒）。以前の1.2秒指定を置き換える。
 
-- 最新の配信指定：repairctと同じGitHub Actions→GitHub Pages。既存nkmc-repair-lpの.github/workflows/pages.ymlでdistだけ配信する。GitHub run 41151444803はbuild成功/deployのPages未有効エラー。所有者のSettings→Pages→GitHub Actions設定待ち、まだ未公開。予定URLはhttps://lupisflora-n.github.io/nkmc-repair-lp/。設定後は失敗deployジョブ再実行と実URL確認。Privateのプラン条件を確認せず有料化・元repo全Public化を行わない。詳細docs/PUBLISHING.md。
+- 最新の配信指定：repairctと同じGitHub Actions→GitHub Pages。既存nkmc-repair-lpの.github/workflows/pages.ymlでdistだけ配信する。GitHub run 41151444803はbuild成功/deployのPages未有効エラー。所有者のSettings→Pages→GitHub Actions設定待ち、まだ未公開。予定URLはhttps://lupisflora-n.github.io/libright/。設定後は失敗deployジョブ再実行と実URL確認。Privateのプラン条件を確認せず有料化・元repo全Public化を行わない。詳細docs/PUBLISHING.md。
 
 - 最新の公開先：Publicのlupisflora-n/librightへ配信17ファイル＋Pages workflowをpush済み。サイト予定URLはhttps://lupisflora-n.github.io/libright/。run 41152414796はPages未有効で停止、所有者へlibrightのSource: GitHub Actions設定を依頼中。設定後はこのrunを再実行し、旧nkmc配信runは使わない。制作元workflowはbuildだけ。元repoもユーザーによりPublic化されているが、Privateへ戻しても公開用librightに影響しない。
 
-- 最新ユーザー指定は「NKMCの方で変えた」。現在の配信元はnkmc-repair-lp、URLはhttps://lupisflora-n.github.io/nkmc-repair-lp/。Sourceが未有効でrun 41151444803再実行もdeploy失敗。所有者にNKMC側PagesのSourceをGitHub Actionsにする操作を依頼中。librightを公開先にする案は現在使わず、そのrepoやファイルは勝手に削除しない。元repoのPublic化はユーザー操作であり、いまPrivateに戻すと無料Pagesへ影響する。
+- 最新ユーザー指定は「NKMCの方で変えた」。現在の配信元はnkmc-repair-lp、URLはhttps://lupisflora-n.github.io/libright/。Sourceが未有効でrun 41151444803再実行もdeploy失敗。所有者にNKMC側PagesのSourceをGitHub Actionsにする操作を依頼中。librightを公開先にする案は現在使わず、そのrepoやファイルは勝手に削除しない。元repoのPublic化はユーザー操作であり、いまPrivateに戻すと無料Pagesへ影響する。
 
 - 公開完了の最新記録：run 41151444803 / deploy job 124393084285成功、HTTP 200、HTML/写真SHA一致、基本表示操作を確認。site/content.jsonのpublication.urlStatus=live。新たな公開先設定を再度求めず、通常の修正は既存main→Pagesで進める。ユーザー実機とDM到達は未検証。
 
 - スクロール表示：site/app.jsとstyles.cssでIntersectionObserverによる一度限りの表示。写真フレーム950ms/20px、前後140ms差、文章650ms/14px。画像自体は変更しない。低減モーション/JSなし/Observer欠落時は通常表示。検証はscripts/verify_scroll_reveal.py。公開時はCSS/JSの内容ハッシュ付きURLを維持し、古いキャッシュで新演出が欠落しないようにする。
+
+- リポジトリ改名の最新指定：ユーザーが未使用の旧librightを削除し、nkmc-repair-lpをlibrightへ改名。現行repoはlupisflora-n/libright、GitHub ID 1438624039（元NKMCと同一）。今後はこのrepoだけを制作・公開元とする。Git originとpublication設定を更新。ローカル本体は/workspace/nkmc-repair-lpを継続利用するが、GitHubのリポジトリ名はlibright。
+- /workspace/libright-deployは削除された旧別repoの作業コピーであり、現行repoの作業場所ではない。誤push防止のためoriginは削除済み。現行repoの履歴をこの古いコピーで上書きしない。古い「librightを使わない」記録は改名前の別repoについての履歴であり、現在の指示より優先しない。

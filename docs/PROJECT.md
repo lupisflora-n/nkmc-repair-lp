@@ -153,3 +153,10 @@ GitHub Pagesの公式条件には商取引を主目的とする利用の制限�
 - 2026-10-31公開完了：https://lupisflora-n.github.io/nkmc-repair-lp/ 。Pages実行成功と実URLのHTML・元写真一致・基本操作を確認済み。通常更新フェーズへ移行。
 
 - 2026-10-31：写真を中心とする一度限りのスクロール表示を追加。前→後に140msの時間差、写真950ms、文章650ms。動きを減らす設定等では即表示。写真元ファイルは不変。
+
+## リポジトリ改名への対応（2026-10-31・最新）
+
+- ユーザーが未使用の旧librightを削除し、nkmc-repair-lpをlibrightに改名した。APIで現行repo ID 1438624039、Public、Pages有効を確認。同じ制作・公開元が改名されたもの。
+- Git originをhttps://github.com/lupisflora-n/libright.gitへ更新し、リモートとの一致を確認。publicationとSEOの正規URLはhttps://lupisflora-n.github.io/libright/へ更新。
+- ローカル本体フォルダは従来の/workspace/nkmc-repair-lpを継続利用。古い/workspace/libright-deployは削除済みの別repoのコピーであり誤push防止のためoriginを削除。履歴の上書きは行わない。
+- 本文・写真・演出は変更せず、新名で再ビルド・配信確認する。今後はlibrightを制作/公開元として扱い、古い別repo案と混同しない。

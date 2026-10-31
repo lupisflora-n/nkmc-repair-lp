@@ -1,4 +1,4 @@
-# NKMCリペアLP
+# LIBRIGHT LP
 
 LIBRIGHT（リブライト）のLP制作案件。工務店・建築会社からの継続的な補修依頼を最優先とする。
 
@@ -28,7 +28,7 @@ GitHubでのソース管理と無料公開が希望。GitHub Pagesの利用条�
 
 ## GitHub管理への移行
 
-管理先: https://github.com/lupisflora-n/nkmc-repair-lp
+管理先: https://github.com/lupisflora-n/libright
 
 現在Public、管理ブランチはmain。ユーザーが作成した空のリポジトリへの接続と書き込み権限を確認し、制作ソース・制作方針・工程表をGit管理へ移す。
 内部限定の創業背景ファイルは.gitignoreで除外する。GitHub Pagesの設定・公開は完了。
@@ -84,8 +84,10 @@ TRCとRBSの紹介根拠・採用情報は[公式調査メモ](docs/TRC_RESEARCH
 
 ## 公開URLと更新
 
-https://lupisflora-n.github.io/nkmc-repair-lp/
+https://lupisflora-n.github.io/libright/
 
 repairctと同じmain→GitHub Actions→Pages方式で公開済み。配信するのはrelease生成物distだけ。ソース変更をpushすると同じURLへ自動反映する。
 
 公開HTMLの一致、施工写真6枚の元SHA一致、基本表示・操作を確認済み。詳しい確認範囲と更新手順は[docs/PUBLISHING.md](docs/PUBLISHING.md)。リポジトリ自体はPublicのため、内部限定情報はGitへ加えない。
+
+旧リポジトリ名はnkmc-repair-lp。現在の制作・公開元はlibrightへ改名済み。履歴とGitHub Pages設定を引き継いでいる。

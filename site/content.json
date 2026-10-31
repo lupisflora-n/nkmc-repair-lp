@@ -280,9 +280,9 @@
   },
   "publication": {
     "hostingConditionsChecked": true,
-    "repository": "lupisflora-n/nkmc-repair-lp",
-    "siteUrl": "https://lupisflora-n.github.io/nkmc-repair-lp/",
-    "deploymentRepository": "lupisflora-n/nkmc-repair-lp",
+    "repository": "lupisflora-n/libright",
+    "siteUrl": "https://lupisflora-n.github.io/libright/",
+    "deploymentRepository": "lupisflora-n/libright",
     "urlStatus": "live"
   },
   "seo": {

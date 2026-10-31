@@ -1,71 +1,36 @@
-# LIBRIGHT LP 公開手順と現在地
+# LIBRIGHT LP 公開・更新手順
 
-更新：2026-10-31。ユーザーは「NKMCの方で変えた」と公開先を指定。現在は既存のnkmc-repair-lpからGitHub Actions→Pagesで公開を進める。Public化とPagesのSource設定を確認し、再実行に成功。現在Web公開済み。
+現在のリポジトリは https://github.com/lupisflora-n/libright 。公開URLは https://lupisflora-n.github.io/libright/ 。旧nkmc-repair-lpを所有者が改名した同一リポジトリ（GitHub ID 1438624039）であり、これまでの履歴とPages設定を引き継ぐ。
 
-## 現在の公開先
+## 改名への対応（2026-10-31）
 
-- リポジトリ： https://github.com/lupisflora-n/nkmc-repair-lp
-- Pages初回設定： https://github.com/lupisflora-n/nkmc-repair-lp/settings/pages
-- 公開URL： https://lupisflora-n.github.io/nkmc-repair-lp/
-- 配信設定： .github/workflows/pages.yml
-- 対象run： https://github.com/lupisflora-n/nkmc-repair-lp/actions/runs/41151444803
+ユーザーは未使用だった別repoのlibrightを削除し、NKMC側をlibrightへ改名した。現行repoの同一ID、Public、has_pages=trueをAPIで確認。Git origin、publication.repository/deploymentRepository/siteUrl、canonical/OG/構造化データ/sitemapを新URLへ合わせた。
 
-ユーザーが所有者画面でPrivateからPublicへ変更した。当方は公開範囲を変更していない。GitHub FreeのPagesを使うにはPublicが必要。元repoは制作記録も含めリポジトリ経由で公開されるため、新たな内部限定情報はGitへ加えない。私的な創業背景ファイルは従来どおり.gitignoreで除外する。現在このrepoから配信するため、Privateへ戻すと無料Pagesには影響する。
+ローカル制作本体は /workspace/nkmc-repair-lp のまま。/workspace/libright-deploy は削除された旧別repoの古いコピーなので使用しない。誤って現行repoへpushしないよう、この古いコピーのoriginは削除した。既存の履歴を削除・上書きしない。
 
-## repairctと同じ方式
+## 現在の配信方式
 
-PublicのrepairctのREADME・初回手順・workflowをGitHubコネクタで確認済み。mainの変更からActions→Pagesで配信する構成を採用した。
+- 制作・公開元：lupisflora-n/libright、main、Public。
+- .github/workflows/pages.ymlにより、mainのsite/scripts/tests/workflow変更をpushすると検証・release生成・GitHub Pages配信が実行される。
+- Python 3.12、単体テスト、元写真のSHA検証付きビルドを実行。distだけをPages artifactとして配信する。
+- Settings→PagesのSource: GitHub Actionsは設定済み。新しい公開先を作成したり、この初期設定を再びユーザーへ依頼したりしない。
+- distはページ配信物17ファイルのみ。リポジトリ全体は配信しない。ただしリポジトリ自体はPublicなのでGit登録済み資料は閲覧可能。内部限定情報はGitへ追加しない。
 
-- buildジョブ：Python 3.12、7単体テスト、元写真のSHA検証付きrelease生成、distだけPages artifactへ。
-- deployジョブ：configure-pages@v5 → deploy-pages@v4。公開対象は生成物17ファイルだけ。
-- mainのsite/scripts/tests/workflow変更で起動。workflow_dispatchにも対応。
-- リポジトリ全体をPagesへアップロードしない。docs/design/qa/編集原稿/再編集素材/Git履歴をWeb配信しない。ただしPublic repo自体からはGitに登録済みの制作資料が閲覧可能である点を区別する。
+## 更新手順
 
-## 実行結果
+1. git originが https://github.com/lupisflora-n/libright.git であることを確認し、リモートの変更を取り込む。
+2. site/content.json、template、CSS、JSを編集し、変更に必要な確認を実行する。
+3. python scripts/build.py --mode release でdistを生成。確認用単体HTMLは --standalone-output design/release-preview.html を追加する。
+4. mainへcommit/pushし、該当コミットのActions結果を確認する。
+5. 実URLの表示・関連操作・原写真一致を確認。CSS/JSは内容ハッシュ付きURLを維持し、旧キャッシュを避ける。
 
-- 初回commit a1a70e27692f3793b3741402b6b9e05f18095e49のrun 41151444803でbuild成功。Set up PagesがNot Foundで失敗。
-- 「NKMCの方で変えた」の返信後、Public化を確認し同runを再実行した。新job 124392558348もSet up PagesでNot Found、公開はskip。buildは成功している。
-- ログ：`Please verify that the repository has Pages enabled and configured to build using GitHub Actions`。
-- 管理APIへのPOST /repos/lupisflora-n/nkmc-repair-lp/pagesは403 Resource not accessible by integration。現在の接続はコミット・Actions再実行は可能だがPagesの初回管理設定はできない。
+LPのプレビューは写真入りの単体HTMLを基本とし、公開後は実URLも共有する。ブラウザ環境のプロキシCA信頼が使えない場合は、TLS検証を無効化せず、検証済みHTTPS応答をブラウザへ渡して確認した範囲を記録する。
 
-所有者がSourceをGitHub Actionsに設定後、run 41151444803を再実行。deploy job 124393084285が成功し、公開URLのHTTPS 200を確認した。公開HTMLとローカルの検証済みreleaseがバイト一致、配信された写真6枚のSHAが元ファイルと一致することを確認。
+## 維持する内容
 
-configure-pagesのenablement入力はGITHUB_TOKEN以外の管理権限付きトークンが必要。フラグだけで有効化できると仮定しない。別サービスへの変更・有料契約・Git履歴の強制書き換えはしない。
+- 写真6枚の元バイト・縦横比・全体表示を維持。加工・圧縮・形式変換禁止。
+- 冒頭マーク演出2.4秒、スクロール時の写真フレーム950ms/前後140ms差、文章650msを維持。一度表示した箇所は再び隠さない。低減モーション等では通常表示。
+- TRC/RBSの紹介2リンク、承認済み本文、コピー/代替、FAQ、Instagramプロフィール宛先を維持。OUR STORYは非掲載。
+- 実績や第三者の個別承認を取得したという未確認の説明を追加しない。DM送信とSearch Consoleは未実施。
 
-## 別リポジトリlibrightの扱い
-
-同じユーザー操作の後、空のPublicリポジトリlupisflora-n/librightも作成されていた。その時点で公開配信物17＋Pages workflowの計18ファイルを初回commit 3190f88f878895b6577de69c0aa283e24402e194としてpushした。
-
-librightのrun 41152414796もPages初回設定未有効で失敗。ユーザーがその後NKMC側を指定したため、現在librightのPages設定を依頼したり、こちらへデプロイしたりしない。作成済みファイルは勝手に削除せず残している。公開用ファイルだけで制作メモは含まない。主担当の作業先を混同しない。
-
-## 掲載内容・検証
-
-- 確認版と公開版のmainの本文・構造を一致させ、写真3組、ブランド本文、TRC/RBSの2リンク、姿勢、施工の流れ、FAQを保持。OUR STORYは非掲載、制作確認注記は公開版から除去。
-- 写真6枚は元ファイルとSHAが一致。加工・圧縮・形式変換なし。
-- 掲載可否は写真差込とOK、編集原稿反映、TRC再構成、公開指示を根拠とする。独立した第三者承認や実績検証を取得したという意味ではない。
-- contact.profileUrlConfirmed=trueは指定プロフィールURLの採用確認。linkVerified=falseは実機DM到達未検証。検証のためのDMは送らない。
-- 2.4秒演出と本文UIに変更なし。同一の合格済みローカルブラウザ試験は理由なく反復せず、配信後の実URL確認を行う。
-
-## 更新と公開後確認
-
-両チャットによる変更を取り込み、site/content.json等を編集。必要なテストと `python scripts/build.py --mode release` を実行後、nkmc/mainへpushする。distがGitHub Actionsで生成されPagesへ自動反映される。単体HTMLの確認版は `python scripts/build.py --mode release --standalone-output design/release-preview.html`。
-
-公開後はHTTPS 200、マーク演出から本文、スマホ表示、写真6枚の全体・拡大・SHA一致、コピーと代替、FAQ、Instagram宛先、canonical/OG/sitemapと実URL一致を確認。Search Consoleは未実施。
-
-## 利用条件の記録
-
-https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits のオンラインビジネス等を主目的とする無料ホスティング制限は確認済み。外部Instagramリンクがあれば自動的に対象外になる規定ではない。ユーザーは説明後、現在の紹介・Instagram案内構成で公開続行を指示した。GitHubによる個別適合承認を取得したとは説明しない。
-
-## 公開完了と実URL検証（2026-10-31）
-
-https://lupisflora-n.github.io/nkmc-repair-lp/ で公開完了。
-
-- run 41151444803の最終再実行はbuild/deploy成功。deploy job 124393084285成功。
-- 公開HTMLが検証済みreleaseとバイト一致。写真6枚はHTTPS取得後のSHAが元ファイルと一致。
-- 390/1440pxで横はみ出しなし、演出終了・写真拡大・FAQ・相談文コピー・Instagramプロフィール宛先・canonicalを確認。JS例外なし。
-- 検証環境のChromiumにはプロキシCAが未登録のため、直接のHTTPSナビゲーションは証明書エラー。TLS検証を有効にしたurllibで実URLの応答を取得し、その元応答をChromiumへ渡して描画・操作した。HTTPS検証を無効化していない。ユーザーのスマホ実機での表示とDM到達、Search Consoleは未実施。
-- ローカルの結果はqa/live-report.json（Git対象外）。更新後もmain→GitHub Actions→dist限定Pages配信を維持する。
-
-## スクロール演出の更新
-
-2026-10-31、ed9a9baをrun 41154629393で配信成功。CSS/JSのハッシュ付きURLを維持する。写真フレームは950ms・前後140ms差で一度だけ表示、文章等は650ms。動きを減らす設定では通常表示。写真の元バイトは不変。実URLでの表示・操作と配信ファイル一致を確認済み。
+GitHub Pagesの利用条件に関する以前の確認記録と公開続行指示はPROJECT/WORKFLOWに保存済み。改名はGitHubによる個別適合承認を意味しない。
