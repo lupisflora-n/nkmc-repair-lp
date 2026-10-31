@@ -34,3 +34,5 @@ LPのプレビューは写真入りの単体HTMLを基本とし、公開後は�
 - 実績や第三者の個別承認を取得したという未確認の説明を追加しない。DM送信とSearch Consoleは未実施。
 
 GitHub Pagesの利用条件に関する以前の確認記録と公開続行指示はPROJECT/WORKFLOWに保存済み。改名はGitHubによる個別適合承認を意味しない。
+
+改名後の確認結果：run 41155775376が成功。新URLはHTTP 200、HTML・CSS・JSがreleaseと一致、写真6枚のSHA一致、canonical/OG/sitemapも新URLへ統一済み。

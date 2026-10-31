@@ -2,7 +2,7 @@
 
 このフォルダへ元の写真6枚を追加してください。名前は元のままで構いません。圧縮・加工・形式変換は不要です。
 
-[写真をアップロードする](https://github.com/lupisflora-n/nkmc-repair-lp/upload/main/site/assets/cases)
+[写真をアップロードする](https://github.com/lupisflora-n/libright/upload/main/site/assets/cases)
 
 1. Upload filesの画面で6枚を選択します。
 2. Commit changesで保存します。

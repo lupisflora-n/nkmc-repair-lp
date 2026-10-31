@@ -282,3 +282,5 @@ GitHubでのソース管理とWeb公開を分ける。GitHub Pages等の配信�
 - Git originをhttps://github.com/lupisflora-n/libright.gitへ更新し、リモートとの一致を確認。publicationとSEOの正規URLはhttps://lupisflora-n.github.io/libright/へ更新。
 - ローカル本体フォルダは従来の/workspace/nkmc-repair-lpを継続利用。古い/workspace/libright-deployは削除済みの別repoのコピーであり誤push防止のためoriginを削除。履歴の上書きは行わない。
 - 本文・写真・演出は変更せず、新名で再ビルド・配信確認する。今後はlibrightを制作/公開元として扱い、古い別repo案と混同しない。
+
+- 改名後の公開確認完了：commit ef3522c、run 41155775376のbuild/deploy成功。https://lupisflora-n.github.io/libright/ がHTTP 200、HTMLがreleaseと一致、canonical/OG/sitemapが新URLと一致。写真6枚の元SHAおよびCSS/JS一致を確認。本文・演出は不変。結果qa/rename-report.json。

@@ -207,3 +207,5 @@ SEO専門担当の最終監査は必須修正なし。住所未確定時はOrgan
 - scripts/verify_scroll_reveal.pyで写真の時間差、表示後の保持、施工例リンク、フォーカス、問い合わせ、印刷、低減モーション、JavaScript無効、Observer欠落/失敗の確認に合格。既存の4幅・写真6枚拡大・コピー/代替・FAQ等の検証も合格。単体テスト7件合格。
 
 - 公開反映完了：commit ed9a9ba / GitHub run 41154629393成功。実URLのHTML、ハッシュ付きCSS/JSがreleaseと一致し、写真6枚のSHAも一致。公開取得内容の390/1440px描画・スクロール表示・写真拡大・コピー・FAQ・Instagram宛先に合格。HTTP 200、JS例外なし。ブラウザ検証は既存のTLS検証済みHTTPS応答を渡す方法を使用。結果はqa/live-report.json。
+
+- 改名後の公開確認完了：commit ef3522c、run 41155775376のbuild/deploy成功。https://lupisflora-n.github.io/libright/ がHTTP 200、HTMLがreleaseと一致、canonical/OG/sitemapが新URLと一致。写真6枚の元SHAおよびCSS/JS一致を確認。本文・演出は不変。結果qa/rename-report.json。
